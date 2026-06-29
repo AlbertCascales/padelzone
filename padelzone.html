@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PadelZone – Reviews y Guías de Compra 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green:   #1a7a4a;
+    --green-l: #e6f4ec;
+    --green-d: #0f4f2f;
+    --lime:    #c8f135;
+    --lime-d:  #9ec22a;
+    --black:   #0d0d0d;
+    --white:   #ffffff;
+    --gray-1:  #f5f5f3;
+    --gray-2:  #e8e8e4;
+    --gray-3:  #b0b0a8;
+    --gray-4:  #6b6b63;
+    --text:    #1a1a18;
+    --radius:  10px;
+    --shadow:  0 2px 16px rgba(0,0,0,0.07);
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); font-size: 16px; line-height: 1.65; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; border-bottom: 2px solid var(--lime); }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--lime); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { color: var(--gray-3); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--lime); }
+
+  /* HERO */
+  .hero { background: var(--black); padding: 4rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(200,241,53,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero-tag { display: inline-block; background: var(--lime); color: var(--black); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1.25rem; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3.25rem); color: var(--white); line-height: 1.15; max-width: 680px; margin: 0 auto 1rem; }
+  .hero h1 em { color: var(--lime); font-style: normal; }
+  .hero p { color: var(--gray-3); font-size: 1.05rem; max-width: 480px; margin: 0 auto 2rem; }
+  .hero-search { display: flex; max-width: 440px; margin: 0 auto; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 2px solid var(--lime); }
+  .hero-search input { flex: 1; border: none; outline: none; padding: 0.75rem 1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; }
+  .hero-search button { background: var(--lime); border: none; cursor: pointer; padding: 0 1.25rem; font-size: 0.85rem; font-weight: 700; color: var(--black); font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
+  .hero-search button:hover { background: var(--lime-d); }
+
+  /* STATS */
+  .stats-bar { background: var(--green); display: flex; justify-content: center; gap: 3rem; padding: 1rem 2rem; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-n { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--lime); line-height: 1; }
+  .stat-l { font-size: 0.75rem; color: rgba(255,255,255,0.75); margin-top: 2px; }
+
+  /* SECTIONS */
+  section { padding: 3.5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.75rem; border-bottom: 2px solid var(--gray-2); padding-bottom: 0.75rem; }
+  .section-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; }
+  .section-header a { font-size: 0.82rem; color: var(--green); text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--green); }
+
+  /* PRODUCT CARDS */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+  .product-card { background: var(--white); border: 1.5px solid var(--gray-2); border-radius: 14px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+  .product-card:hover { box-shadow: 0 8px 32px rgba(26,122,74,0.13); transform: translateY(-2px); }
+  .card-img { background: var(--white); height: 200px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--gray-2); }
+  .card-img img { width: 100%; height: 100%; object-fit: contain; padding: 16px; mix-blend-mode: multiply; }
+  /* zoom hover eliminado */
+  .badge-new { position: absolute; top: 10px; left: 10px; background: var(--lime); color: var(--black); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; z-index: 2; }
+  .badge-top { position: absolute; top: 10px; left: 10px; background: var(--green); color: var(--white); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; z-index: 2; }
+  .card-body { padding: 1rem 1.1rem 1.1rem; flex: 1; display: flex; flex-direction: column; }
+  .card-brand { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 3px; }
+  .card-name { font-family: 'DM Serif Display', serif; font-size: 1rem; line-height: 1.3; margin-bottom: 6px; color: var(--black); }
+  .card-level { font-size: 0.75rem; color: var(--gray-4); margin-bottom: 8px; }
+  .stars { color: #f5a623; font-size: 0.8rem; letter-spacing: 1px; }
+  .stars span { color: var(--gray-3); font-size: 0.72rem; margin-left: 4px; }
+  .card-price { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--black); margin: 0.6rem 0 0.75rem; }
+  .card-price small { font-size: 0.7rem; color: var(--gray-3); font-family: 'DM Sans', sans-serif; }
+  .btn-amazon { display: flex; align-items: center; justify-content: center; gap: 8px; background: #ff9900; color: var(--black); border: none; border-radius: 8px; padding: 0.6rem 1rem; font-size: 0.82rem; font-weight: 700; font-family: 'DM Sans', sans-serif; text-decoration: none; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: auto; }
+  .btn-amazon:hover { background: #e68900; transform: scale(1.02); }
+  .btn-review { display: block; text-align: center; color: var(--green); font-size: 0.78rem; font-weight: 600; margin-top: 0.5rem; text-decoration: none; cursor: pointer; transition: color 0.2s; }
+  .btn-review:hover { color: var(--green-d); }
+
+  /* FEATURED */
+  .featured-product { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; background: var(--black); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; border: 2px solid var(--lime); }
+  .featured-img { background: transparent; border-radius: 12px; height: 320px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .featured-img img { width: 100%; height: 100%; object-fit: contain; padding: 0; mix-blend-mode: lighten; }
+  .featured-tag { display: inline-block; background: var(--lime); color: var(--black); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 0.75rem; }
+  .featured-brand { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); margin-bottom: 4px; }
+  .featured-name { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--white); line-height: 1.2; margin-bottom: 0.75rem; }
+  .featured-desc { color: var(--gray-3); font-size: 0.9rem; margin-bottom: 1.25rem; line-height: 1.6; }
+  .featured-specs { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .spec-pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 4px 12px; font-size: 0.75rem; color: var(--gray-3); }
+  .spec-pill strong { color: var(--white); }
+  .featured-price { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white); margin-bottom: 1rem; }
+  .btn-amazon-lg { display: inline-flex; align-items: center; gap: 8px; background: #ff9900; color: var(--black); border: none; border-radius: 10px; padding: 0.85rem 1.75rem; font-size: 0.95rem; font-weight: 700; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: background 0.2s; }
+  .btn-amazon-lg:hover { background: #e68900; }
+
+  /* CATEGORIES */
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+  .cat-card { background: var(--gray-1); border-radius: 12px; padding: 1.25rem 1rem; text-align: center; cursor: pointer; transition: background 0.2s, transform 0.2s; border: 1.5px solid transparent; }
+  .cat-card:hover { background: var(--green-l); border-color: var(--green); transform: translateY(-2px); }
+  .cat-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .cat-name { font-weight: 600; font-size: 0.88rem; color: var(--black); }
+  .cat-count { font-size: 0.72rem; color: var(--gray-3); margin-top: 2px; }
+
+  /* FILTERS */
+  .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+  .filter-btn { background: var(--gray-1); border: 1.5px solid var(--gray-2); border-radius: 20px; padding: 6px 16px; font-size: 0.78rem; font-weight: 600; cursor: pointer; color: var(--gray-4); transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .filter-btn:hover, .filter-btn.active { background: var(--green); border-color: var(--green); color: var(--white); }
+
+  /* GUIDES */
+  .guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+  .guide-card.guide-hidden { display: none; }
+  .guide-card { border: 1.5px solid var(--gray-2); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; }
+  .guide-card:hover { border-color: var(--green); box-shadow: var(--shadow); }
+  .guide-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem; }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 1rem; line-height: 1.35; margin-bottom: 0.5rem; }
+  .guide-meta { font-size: 0.75rem; color: var(--gray-3); }
+  .guide-arrow { font-size: 0.8rem; color: var(--green); margin-top: 0.5rem; font-weight: 600; }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+  .modal-overlay.active { display: flex; }
+  .modal { background: var(--white); border-radius: 16px; max-width: 960px; width: 100%; box-shadow: 0 24px 80px rgba(0,0,0,0.3); overflow: hidden; position: relative; margin: auto; }
+  .modal-close { position: absolute; top: 1rem; right: 1rem; background: var(--gray-1); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; color: var(--gray-4); transition: background 0.2s; }
+  .modal-close:hover { background: var(--gray-2); }
+
+  .modal-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+  .modal-img { background: var(--gray-1); display: flex; align-items: center; justify-content: center; min-height: 520px; border-right: 1px solid var(--gray-2); }
+  .modal-img img { width: 100%; height: 100%; object-fit: contain; padding: 2rem; mix-blend-mode: multiply; }
+  .modal-body { padding: 2rem 2rem 2rem; overflow-y: auto; max-height: 90vh; }
+  @media (max-width: 640px) {
+    .modal-inner { grid-template-columns: 1fr; }
+    .modal-img { min-height: 260px; border-right: none; border-bottom: 1px solid var(--gray-2); }
+    .modal-body { max-height: none; }
+  }
+
+  .modal-brand { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+  .modal-name { font-family: 'DM Serif Display', serif; font-size: 1.5rem; line-height: 1.2; margin-bottom: 0.5rem; }
+  .modal-stars { color: #f5a623; font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .modal-stars span { color: var(--gray-4); font-size: 0.8rem; margin-left: 6px; }
+  .modal-desc { font-size: 0.92rem; color: var(--gray-4); margin-bottom: 1.25rem; line-height: 1.7; }
+  .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .spec-row { background: var(--gray-1); border-radius: 8px; padding: 0.6rem 0.85rem; font-size: 0.82rem; }
+  .spec-row .spec-key { color: var(--gray-4); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1px; }
+  .spec-row .spec-val { font-weight: 600; color: var(--black); }
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  .pros-cons h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.5rem; }
+  .pros h4 { color: var(--green); }
+  .cons h4 { color: #c0392b; }
+  .pros-cons ul { list-style: none; }
+  .pros-cons li { font-size: 0.85rem; color: var(--gray-4); padding: 3px 0; display: flex; align-items: flex-start; gap: 6px; }
+  .pros li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .cons li::before { content: '✗'; color: #c0392b; font-weight: 700; flex-shrink: 0; }
+  .modal-verdict { background: var(--green-l); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 0.85rem 1rem; margin-bottom: 1.5rem; font-size: 0.88rem; color: var(--green-d); }
+  .modal-verdict strong { display: block; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.07em; }
+  .modal-buy { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-top: 1.25rem; border-top: 1.5px solid var(--gray-2); }
+  .modal-price { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--black); }
+  .modal-price small { font-size: 0.75rem; color: var(--gray-3); font-family: 'DM Sans', sans-serif; }
+  .affiliate-note { font-size: 0.68rem; color: var(--gray-3); margin-top: 0.4rem; font-style: italic; }
+
+  /* FOOTER */
+  footer { background: var(--black); color: var(--gray-3); padding: 2.5rem 2rem; text-align: center; font-size: 0.8rem; line-height: 1.7; border-top: 2px solid #1a1a18; }
+  .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.75rem; }
+  .footer-logo span { color: var(--lime); }
+  .affiliate-disclaimer { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #2a2a28; font-size: 0.72rem; color: #555; }
+
+  @media (max-width: 700px) {
+    .featured-product { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+  }
+
+  /* HERO WORDMARK */
+  .hero-wordmark { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 10vw, 6rem); color: var(--white); line-height: 1; margin-bottom: 0.25rem; letter-spacing: -2px; }
+  .hero-wordmark span { color: var(--lime); }
+  .hero-season { display: inline-block; background: var(--lime); color: var(--black); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 1.25rem; }
+  /* Remove old hero-tag and h1 styles collision */
+  .hero p { color: var(--gray-3); font-size: 1rem; max-width: 460px; margin: 0 auto 2rem; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-wordmark">Padel<span>Zone</span></div>
+  <div class="hero-season">Temporada 2026</div>
+  <p>Analizamos las mejores palas, zapatillas y accesorios para que compres con seguridad.</p>
+  <div class="hero-search">
+    <input type="text" placeholder="Busca una pala, marca…" id="searchInput" oninput="window._searchScrollPending=false; filterProducts()" onkeydown="if(event.key==='Enter'){window._searchScrollPending=true; filterProducts();}" />
+    <button onclick="window._searchScrollPending=true; filterProducts()">Buscar</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n">35+</div><div class="stat-l">Palas analizadas</div></div>
+  <div class="stat"><div class="stat-n">2026</div><div class="stat-l">Modelos actualizados</div></div>
+  <div class="stat"><div class="stat-n">12 marcas</div><div class="stat-l">Principales del mercado</div></div>
+  <div class="stat"><div class="stat-n">+12.000</div><div class="stat-l">Lectores al mes</div></div>
+</div>
+
+<main>
+
+  <!-- DESTACADO -->
+  <section>
+    <div class="section-header"><h2>⭐ Pala del momento</h2></div>
+    <div class="featured-product">
+      <div class="featured-img">
+        <img src="img/p8.jpg"
+             referrerpolicy="no-referrer"
+             onerror="this.onerror=null;this.src='https://placehold.co/400x300/f5f5f3/6b6b63?text=Sin+imagen'"
+             alt="Nox AT10 Genius 18K 2026">
+      </div>
+      <div>
+        <span class="featured-tag">Mejor valorada 2026</span>
+        <div class="featured-brand">Nox</div>
+        <div class="featured-name">AT10 Genius 18K 2026 – Agustín Tapia</div>
+        <div class="featured-desc">La pala del número 1 del mundo. Carbono 18K de máxima rigidez, núcleo MLD Black Eva y sistema SmartStrap. Para jugadores avanzados que buscan potencia y control en cada golpe.</div>
+        <div class="featured-specs">
+          <span class="spec-pill"><strong>Forma:</strong> Lágrima</span>
+          <span class="spec-pill"><strong>Balance:</strong> Medio-alto</span>
+          <span class="spec-pill"><strong>Nivel:</strong> Avanzado</span>
+          <span class="spec-pill"><strong>Material:</strong> Carbono 18K</span>
+        </div>
+        <div class="featured-price">169,90 €</div>
+        <a class="btn-amazon-lg" href="https://www.amazon.es/s?k=Nox+AT10+Genius+18K+2026&tag=albertomart09-21" target="_blank" rel="noopener">
+          🛒 Ver en Amazon
+        </a>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORÍAS -->
+  <section>
+    <div class="section-header"><h2>Explorar por categoría</h2></div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="scrollToSection('palas')">
+        <div class="cat-icon">🏓</div><div class="cat-name">Palas</div><div class="cat-count">18 reviews</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('zapatillas')">
+        <div class="cat-icon">👟</div><div class="cat-name">Zapatillas</div><div class="cat-count">9 reviews</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('paleteros')">
+        <div class="cat-icon">🎒</div><div class="cat-name">Paleteros</div><div class="cat-count">3 reviews</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('pelotas')">
+        <div class="cat-icon">🎾</div><div class="cat-name">Pelotas</div><div class="cat-count">3 reviews</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('overgrips')">
+        <div class="cat-icon">🖐️</div><div class="cat-name">Overgrips</div><div class="cat-count">3 reviews</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('guias')">
+        <div class="cat-icon">📖</div><div class="cat-name">Guías</div><div class="cat-count">12 artículos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALAS -->
+  <section id="palas">
+    <div class="section-header"><h2>🏓 Palas 2026</h2><a href="#" onclick="openCategory('palas');return false;">Ver todas →</a></div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="setFilter('todas', this)">Todas</button>
+      <button class="filter-btn" onclick="setFilter('principiante', this)">Principiante</button>
+      <button class="filter-btn" onclick="setFilter('intermedio', this)">Intermedio</button>
+      <button class="filter-btn" onclick="setFilter('avanzado', this)">Avanzado</button>
+    </div>
+    <div class="product-grid" id="palasGrid"></div>
+  </section>
+
+  <!-- ZAPATILLAS -->
+  <section id="zapatillas">
+    <div class="section-header"><h2>👟 Zapatillas 2026</h2><a href="#" onclick="openCategory('zapatillas');return false;">Ver todas →</a></div>
+    <div class="filter-bar" id="zapatillasFilters">
+      <button class="filter-btn active" onclick="setZapatFilter('todas', this)">Todas</button>
+      <button class="filter-btn" onclick="setZapatFilter('hierba', this)">Hierba artificial</button>
+      <button class="filter-btn" onclick="setZapatFilter('multisuelo', this)">Multisuelo</button>
+      <button class="filter-btn" onclick="setZapatFilter('cemento', this)">Cemento / Indoor</button>
+    </div>
+    <div class="product-grid" id="zapatillasGrid"></div>
+  </section>
+
+  <!-- PALETEROS -->
+  <section id="paleteros">
+    <div class="section-header"><h2>🎒 Paleteros 2026</h2><a href="#" onclick="openCategory('paleteros');return false;">Ver todas →</a></div>
+    <div class="product-grid" id="paletersGrid"></div>
+  </section>
+
+  <!-- PELOTAS -->
+  <section id="pelotas">
+    <div class="section-header"><h2>🎾 Pelotas de pádel</h2><a href="#" onclick="openCategory('pelotas');return false;">Ver todas →</a></div>
+    <div class="product-grid" id="pelotasGrid"></div>
+  </section>
+
+  <!-- OVERGRIPS -->
+  <section id="overgrips">
+    <div class="section-header"><h2>🖐️ Overgrips</h2><a href="#" onclick="openCategory('overgrips');return false;">Ver todas →</a></div>
+    <div class="product-grid" id="overgripsGrid"></div>
+  </section>
+
+  <!-- GUÍAS -->
+  <section id="guias">
+    <div class="section-header"><h2>📖 Guías de compra</h2><a href="#" id="verTodasGuias">Ver todas →</a></div>
+    <div class="guides-grid">
+      <div class="guide-card" data-guide="g1">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Cómo elegir tu primera pala de pádel en 2026</div>
+        <div class="guide-meta">Actualizado junio 2026 · 8 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card" data-guide="g2">
+        <div class="guide-cat">Comparativa</div>
+        <div class="guide-title">Bullpadel vs Nox: cuál va mejor según tu nivel</div>
+        <div class="guide-meta">Actualizado mayo 2026 · 6 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card" data-guide="g3">
+        <div class="guide-cat">Top 10</div>
+        <div class="guide-title">Las 10 mejores palas de pádel por menos de 100 €</div>
+        <div class="guide-meta">Actualizado junio 2026 · 10 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g4">
+        <div class="guide-cat">Técnica</div>
+        <div class="guide-title">Forma redonda vs lágrima vs diamante: qué diferencia hay</div>
+        <div class="guide-meta">Actualizado abril 2026 · 5 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g5">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Las mejores zapatillas para pistas de hierba artificial</div>
+        <div class="guide-meta">Actualizado mayo 2026 · 7 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g6">
+        <div class="guide-cat">Análisis</div>
+        <div class="guide-title">Carbono vs fibra de vidrio: qué material elegir según tu juego</div>
+        <div class="guide-meta">Actualizado junio 2026 · 6 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g7">
+        <div class="guide-cat">Comparativa</div>
+        <div class="guide-title">Adidas Metalbone vs Bullpadel Vertex 05: la batalla del año</div>
+        <div class="guide-meta">Actualizado junio 2026 · 8 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g8">
+        <div class="guide-cat">Top 5</div>
+        <div class="guide-title">Las 5 mejores palas para jugadores con codo de tenista</div>
+        <div class="guide-meta">Actualizado mayo 2026 · 7 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g9">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Qué paletero comprar según cuánto equipas llevas al club</div>
+        <div class="guide-meta">Actualizado junio 2026 · 5 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g10">
+        <div class="guide-cat">Top 3</div>
+        <div class="guide-title">Las mejores pelotas de pádel para cada tipo de jugador</div>
+        <div class="guide-meta">Actualizado mayo 2026 · 5 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g11">
+        <div class="guide-cat">Técnica</div>
+        <div class="guide-title">Peso de la pala: más ligera o más pesada, ¿qué te conviene?</div>
+        <div class="guide-meta">Actualizado abril 2026 · 6 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g12">
+        <div class="guide-cat">Comparativa</div>
+        <div class="guide-title">Head Coello Pro vs Nox AT10 Genius: dos monstruos frente a frente</div>
+        <div class="guide-meta">Actualizado junio 2026 · 9 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">Padel<span>Zone</span></div>
+  <p>Reviews honestas de equipamiento de pádel. Actualizadas en 2026.</p>
+  
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-inner">
+    <div class="modal-img"><img id="modalImg" src="" alt=""></div>
+    <div class="modal-body">
+      <div class="modal-brand" id="modalBrand"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-stars" id="modalStars"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="specs-grid" id="modalSpecs"></div>
+      <div class="pros-cons" id="modalProsCons"></div>
+      <div class="modal-verdict" id="modalVerdict"></div>
+      <div class="modal-buy">
+        <div>
+          <div class="modal-price" id="modalPrice"></div>
+          
+        </div>
+        <a class="btn-amazon-lg" id="modalAmazonBtn" href="#" target="_blank" rel="noopener">
+          🛒 Comprar en Amazon
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- GUIDE MODAL -->
+<div class="modal-overlay" id="guideOverlay" onclick="closeGuideModalOutside(event)">
+  <div class="modal" id="guideModal" style="max-width:780px;">
+    <button class="modal-close" onclick="closeGuideModal()">✕</button>
+    <div class="modal-body" style="padding-top:2.5rem;">
+      <div class="modal-brand" id="guideCat"></div>
+      <div class="modal-name" id="guideTitle" style="margin-bottom:0.4rem;"></div>
+      <div class="guide-meta" id="guideMeta" style="margin-bottom:1.5rem;color:var(--gray-3);font-size:0.78rem;"></div>
+      <div id="guideBody" style="font-size:0.92rem;color:var(--gray-4);line-height:1.8;"></div>
+      <div id="guideLinks" style="margin-top:1.75rem;padding-top:1.25rem;border-top:1.5px solid var(--gray-2);display:flex;flex-direction:column;gap:0.75rem;"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- CATEGORY OVERLAY -->
+<style>
+.cat-overlay { display:none; position:fixed; inset:0; background:var(--white); z-index:2000; overflow-y:auto; padding:0; }
+.cat-overlay.active { display:block; }
+.cat-overlay-header { position:sticky; top:0; background:var(--black); padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; border-bottom:2px solid var(--lime); z-index:10; }
+.cat-overlay-title { font-family:'DM Serif Display',serif; font-size:1.25rem; color:var(--white); }
+.cat-overlay-close { background:rgba(255,255,255,0.1); border:none; color:var(--white); width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+.cat-overlay-close:hover { background:rgba(255,255,255,0.25); }
+.cat-overlay-body { padding:2rem; max-width:1100px; margin:0 auto; }
+.cat-filter-bar { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.75rem; }
+.cat-filter-btn { background:var(--gray-1); border:1.5px solid var(--gray-2); border-radius:20px; padding:6px 16px; font-size:0.78rem; font-weight:600; cursor:pointer; color:var(--gray-4); transition:all 0.2s; font-family:'DM Sans',sans-serif; }
+.cat-filter-btn:hover, .cat-filter-btn.active { background:var(--green); border-color:var(--green); color:var(--white); }
+</style>
+
+<div class="cat-overlay" id="catOverlay">
+  <div class="cat-overlay-header">
+    <span class="cat-overlay-title" id="catOverlayTitle"></span>
+    <button class="cat-overlay-close" onclick="closeCategoryOverlay()">✕</button>
+  </div>
+  <div class="cat-overlay-body">
+    <div class="cat-filter-bar" id="catFilterBar"></div>
+    <div class="product-grid" id="catGrid"></div>
+  </div>
+</div>
+
+
+
+<script>
+
+const STORE_ID = 'albertomart09-21';
+const PLACEHOLDER = 'https://placehold.co/400x300/f5f5f3/6b6b63?text=Sin+imagen';
+
+const palas = [
+  {
+    id: 'p1', img: 'img/p1.jpg',
+    brand: 'Bullpadel', name: 'Vertex 05 2026', level: 'Avanzado',
+    stars: 5, reviews: 312, price: '189,00', badge: 'top',
+    desc: 'La pala de Juan Tello es un auténtico cañón de potencia. Forma diamante con balance alto, núcleo MultiEva y carbono 12K en las caras. Diseñada para jugadores que necesitan explosividad en los remates.',
+    specs: { Forma: 'Diamante', Balance: 'Alto', Núcleo: 'MultiEva', Superficie: 'Carbono 12K' },
+    pros: ['Potencia brutal en smash', 'Gran durabilidad', 'Diseño muy atractivo'],
+    cons: ['Punto dulce pequeño', 'No apta para principiantes'],
+    verdict: 'La mejor opción si juegas en posición de ataque y buscas pegar fuerte. Exige técnica.',
+    query: 'Bullpadel Vertex 05 2026'
+  },
+  {
+    id: 'p2', img: 'img/p2.jpg',
+    brand: 'Adidas', name: 'Metalbone Carbon 2026', level: 'Avanzado',
+    stars: 5, reviews: 487, price: '209,00', badge: 'new',
+    desc: 'La pala de Ale Galán. Carbono 16K aluminizado, sistema Weight & Balance ajustable y forma diamante para un juego ofensivo de máximo nivel.',
+    specs: { Forma: 'Diamante', Balance: 'Alto', Material: 'Carbono 16K', Peso: '345-360g' },
+    pros: ['Balance personalizable', 'Texturizado excelente para efectos', 'Gran rigidez'],
+    cons: ['Precio elevado', 'Manejo exige experiencia'],
+    verdict: 'Referente absoluto en su categoría. Si llevas años jugando y buscas rendimiento profesional, esta es tu pala.',
+    query: 'Adidas Metalbone Carbon 2026 padel'
+  },
+  {
+    id: 'p3', img: 'img/p3.jpg',
+    brand: 'Nox', name: 'ML10 Ventus Control 3K 2026', level: 'Intermedio',
+    stars: 4, reviews: 198, price: '149,00', badge: null,
+    desc: 'La pala de Miguel Lamperti combina control, potencia y velocidad en un diseño redondo. Carbono 3K y goma HR3 para jugadores que quieren versatilidad sin sacrificar rendimiento.',
+    specs: { Forma: 'Redonda', Balance: 'Medio', Material: 'Carbono 3K', Núcleo: 'HR3' },
+    pros: ['Muy versátil', 'Fácil manejo', 'Gran relación calidad-precio'],
+    cons: ['Menos potencia que modelos diamante', 'Acabado mejorable'],
+    verdict: 'Perfecta para el jugador intermedio-avanzado que quiere mejorar sin gastar 200€. Muy buena compra.',
+    query: 'Nox ML10 Ventus Control 3K 2026'
+  },
+  {
+    id: 'p4', img: 'img/p4.jpg',
+    brand: 'Wilson', name: 'Bela LS V3', level: 'Intermedio',
+    stars: 4, reviews: 143, price: '129,00', badge: null,
+    desc: 'Diseñada con Fernando Belasteguín. Forma lágrima con punto dulce ampliado, ultraligera, ideal para jugadores que están subiendo de nivel.',
+    specs: { Forma: 'Lágrima', Balance: 'Medio', Material: 'Fibra de vidrio', Nivel: 'Intermedio' },
+    pros: ['Punto dulce generoso', 'Muy manejable', 'Precio competitivo'],
+    cons: ['Menos potencia bruta', 'Algo pesada para algunos'],
+    verdict: 'Una opción muy sólida en la franja de precio intermedia. La firma Belasteguín garantiza calidad contrastada.',
+    query: 'Wilson Bela LS V3 padel'
+  },
+  {
+    id: 'p5', img: 'img/p5.jpg',
+    brand: 'Bullpadel', name: 'Indiga Power 2026', level: 'Principiante',
+    stars: 4, reviews: 521, price: '69,00', badge: 'top',
+    desc: 'La pala de iniciación más vendida de 2026. Núcleo SoftEva para mayor comodidad en el brazo, forma lágrima-diamante con buen control y precio muy asequible.',
+    specs: { Forma: 'Lágrima', Balance: 'Medio', Núcleo: 'SoftEva', Nivel: 'Principiante' },
+    pros: ['Excelente precio', 'Muy cómoda', 'Control sencillo'],
+    cons: ['Potencia limitada', 'Materiales básicos'],
+    verdict: 'La elección más inteligente si empiezas desde cero. No malgastes dinero en una pala avanzada todavía.',
+    query: 'Bullpadel Indiga Power 2026'
+  },
+  {
+    id: 'p6', img: 'img/p6.jpg',
+    brand: 'Head', name: 'Coello Pro 2026', level: 'Avanzado',
+    stars: 5, reviews: 267, price: '219,00', badge: 'new',
+    desc: 'La pala del "Rey Arturo" Coello, número 1 del ranking mundial. Auxetic 2.0, Power Foam y carbono híbrido para potencia y control en ataque.',
+    specs: { Forma: 'Diamante', Balance: 'Muy alto', Material: 'Carbono Híbrido', Peso: '365-380g' },
+    pros: ['Potencia extrema', 'Control total para avanzados', 'Diseño exclusivo'],
+    cons: ['Muy exigente técnicamente', 'Cara'],
+    verdict: 'Si ya estás en un buen nivel y quieres lo mejor del mercado, la Head Coello Pro no decepciona.',
+    query: 'Head Coello Pro 2026 padel'
+  },
+  {
+    id: 'p7', img: 'img/p7.jpg',
+    brand: 'Bullpadel', name: 'Hack 04 2026', level: 'Avanzado',
+    stars: 5, reviews: 389, price: '229,00', badge: 'new',
+    desc: 'La pala de Paquito Navarro redefine la potencia con Total Channel, triple puente en el corazón y aerodinámica avanzada. Para jugadores que quieren dominar el ataque.',
+    specs: { Forma: 'Diamante', Balance: 'Alto', Núcleo: 'MultiEva', Superficie: 'Carbono 12K' },
+    pros: ['Potencia explosiva', 'Excelente en remates', 'Aerodinámica superior'],
+    cons: ['Solo para jugadores avanzados', 'No perdona errores técnicos'],
+    verdict: 'Si tu juego es puro ataque y rematas desde la red, la Hack 04 es tu arma definitiva.',
+    query: 'Bullpadel Hack 04 2026 padel'
+  },
+  {
+    id: 'p8', img: 'img/p8.jpg',
+    brand: 'Nox', name: 'AT10 Genius 12K 2026', level: 'Avanzado',
+    stars: 5, reviews: 201, price: '199,00', badge: null,
+    desc: 'La pala de Agustín Tapia en versión 12K. Carbono aluminizado, sistema Weight Balance y superficie Dual Spin para un control milimétrico con efectos devastadores.',
+    specs: { Forma: 'Redonda', Balance: 'Medio', Material: 'Carbono 12K Alum', Núcleo: 'MLD Eva' },
+    pros: ['Control excepcional', 'Efectos brillantes', 'Balance ajustable'],
+    cons: ['Requiere técnica sólida', 'Precio alto'],
+    verdict: 'Para jugadores que construyen el punto con inteligencia. Control y efecto al máximo nivel.',
+    query: 'Nox AT10 Genius 12K 2026 padel'
+  },
+  {
+    id: 'p9', img: 'img/p9.jpg',
+    brand: 'Head', name: 'Gravity Pro 2026', level: 'Intermedio',
+    stars: 4, reviews: 156, price: '159,00', badge: null,
+    desc: 'La pala más versátil de Head para 2026. Forma híbrida, balance equilibrado y Power Foam. Perfecta para jugadores que quieren rendir tanto en defensa como en ataque.',
+    specs: { Forma: 'Híbrida', Balance: 'Equilibrado', Material: 'Carbono + Fibra', Núcleo: 'Power Foam' },
+    pros: ['Muy versátil', 'Cómoda para el brazo', 'Gran sweet spot'],
+    cons: ['No especializada en potencia', 'Algo cara para su nivel'],
+    verdict: 'La mejor pala todo terreno de Head. Si juegas en ambas posiciones y quieres una sola pala, esta es.',
+    query: 'Head Gravity Pro 2026 padel'
+  },
+  {
+    id: 'p10', img: 'img/p10.jpg',
+    brand: 'Siux', name: 'Electra Pro 2026', level: 'Avanzado',
+    stars: 5, reviews: 178, price: '239,00', badge: 'new',
+    desc: 'La pala de Franco Stupaczuk. Diseño híbrido con carbono 3K en un formato que mezcla potencia y control. Un referente en el circuito Premier Padel.',
+    specs: { Forma: 'Híbrida', Balance: 'Medio-alto', Material: 'Carbono 3K', Núcleo: 'EVA Dura' },
+    pros: ['Muy equilibrada', 'Potencia en bandeja y víbora', 'Diseño exclusivo'],
+    cons: ['Difícil de encontrar', 'No ideal para defensivos puros'],
+    verdict: 'Una joya del pádel español. Si buscas algo diferente a las marcas mainstream, Siux no defrauda.',
+    query: 'Siux Electra Pro 2026 padel'
+  },
+  {
+    id: 'p11', img: 'img/p11.jpg',
+    brand: 'Babolat', name: 'Technical Viper 3.0', level: 'Avanzado',
+    stars: 4, reviews: 223, price: '179,00', badge: null,
+    desc: 'La pala de Juan Lebrón en su versión técnica. Carbono aluminizado, núcleo de goma dura y forma diamante para golpes explosivos en la red.',
+    specs: { Forma: 'Diamante', Balance: 'Alto', Material: 'Carbono Alum', Núcleo: 'Eva Dura' },
+    pros: ['Salida de bola explosiva', 'Muy potente en remates', 'Durabilidad alta'],
+    cons: ['Dura para el brazo', 'Punto dulce pequeño'],
+    verdict: 'Para jugadores agresivos que quieren la pala de un número 1. Exige buena técnica.',
+    query: 'Babolat Technical Viper 3.0 padel'
+  },
+  {
+    id: 'p12', img: 'img/p12.jpg',
+    brand: 'Adidas', name: 'Metalbone Control 2026', level: 'Intermedio',
+    stars: 4, reviews: 134, price: '169,00', badge: null,
+    desc: 'La versión control de la familia Metalbone de Ale Galán. Forma redonda, balance equilibrado y sistema Weight & Balance para personalizar el juego. Ideal para el jugador táctico.',
+    specs: { Forma: 'Redonda', Balance: 'Equilibrado', Material: 'Carbono 16K', Núcleo: 'EVA Soft' },
+    pros: ['Control muy preciso', 'Balance ajustable', 'Sweet spot amplio'],
+    cons: ['Menos potencia en smash', 'Precio elevado para su nivel'],
+    verdict: 'La Metalbone para quienes priorizan control sobre potencia. Muy recomendable para jugadores técnicos.',
+    query: 'Adidas Metalbone Control 2026 padel'
+  },
+  {
+    id: 'p13', img: 'img/p13.jpg',
+    brand: 'Star Vie', name: 'Triton Power+ 2026', level: 'Avanzado',
+    stars: 4, reviews: 98, price: '199,00', badge: null,
+    desc: 'Pala de potencia de una de las marcas más innovadoras del mercado. Carbono 18K Hybrid, goma H-Eva Power y forma diamante para remates definitivos.',
+    specs: { Forma: 'Diamante', Balance: 'Alto', Material: 'Carbono 18K Hybrid', Núcleo: 'H-Eva Power' },
+    pros: ['Potencia extrema', 'Materiales premium', 'Gran tacto en voleas'],
+    cons: ['Muy específica para ataque', 'Poca distribución'],
+    verdict: 'Una alternativa premium a Bullpadel y Head. Si buscas algo exclusivo con potencia brutal, prueba Star Vie.',
+    query: 'Star Vie Triton Power 2026 padel'
+  },
+  {
+    id: 'p14', img: 'img/p14.jpg',
+    brand: 'Nox', name: 'ML10 Pro Cup Coorp 2026', level: 'Principiante',
+    stars: 5, reviews: 892, price: '99,00', badge: 'top',
+    desc: 'El clásico eterno de Nox. La pala más vendida de la historia del pádel vuelve con pequeños retoques estéticos pero conservando su esencia: control, comodidad y durabilidad imbatibles.',
+    specs: { Forma: 'Redonda', Balance: 'Medio', Material: 'Fibra de vidrio', Núcleo: 'HR3' },
+    pros: ['La más cómoda del mercado', 'Durabilidad excepcional', 'Control total'],
+    cons: ['Potencia limitada en smash', 'Diseño conservador'],
+    verdict: 'Si no sabes qué pala comprar, compra esta. Es la respuesta correcta para el 80% de los jugadores de nivel medio.',
+    query: 'Nox ML10 Pro Cup 2026 padel'
+  },
+  {
+    id: 'p15', img: 'img/p15.jpg',
+    brand: 'Bullpadel', name: 'Neuron 02 2026', level: 'Avanzado',
+    stars: 4, reviews: 145, price: '189,00', badge: null,
+    desc: 'La pala de Fede Chingotto es precisión pura. Forma híbrida, núcleo MultiEva y Crystal Edge para jugadores que dominan el punto con control quirúrgico.',
+    specs: { Forma: 'Híbrida', Balance: 'Medio-alto', Material: 'Carbono 3K', Núcleo: 'MultiEva' },
+    pros: ['Control milimétrico', 'Muy estable', 'Gran absorción de vibraciones'],
+    cons: ['Menos explosiva que la Vertex', 'Para perfiles muy técnicos'],
+    verdict: 'Para el jugador que construye el punto desde atrás y busca precisión antes que potencia bruta.',
+    query: 'Bullpadel Neuron 02 2026 padel'
+  },
+  {
+    id: 'p16', img: 'img/p16.jpg',
+    brand: 'Head', name: 'Coello Motion 2026', level: 'Principiante',
+    stars: 4, reviews: 312, price: '79,00', badge: null,
+    desc: 'La pala de iniciación de la familia Coello. Control Foam, Auxetic para dinamismo y forma de lágrima que facilita el aprendizaje. La puerta de entrada a la gama del número 1 del mundo.',
+    specs: { Forma: 'Lágrima', Balance: 'Bajo', Material: 'Fibra + Carbono', Núcleo: 'Control Foam' },
+    pros: ['Muy manejable', 'Buena para aprender', 'Precio razonable'],
+    cons: ['Sin opciones para subir de nivel', 'Materiales básicos'],
+    verdict: 'La pala de Head para quienes empiezan. Cómoda, manejable y con el respaldo de una marca de primer nivel.',
+    query: 'Head Coello Motion 2026 padel'
+  },
+  {
+    id: 'p17', img: 'img/p17.jpg',
+    brand: 'Wilson', name: 'Bela Pro V3', level: 'Avanzado',
+    stars: 5, reviews: 187, price: '239,00', badge: null,
+    desc: 'La pala top de Belasteguín para jugadores avanzados. Carbono en caras, EVA dura en núcleo y forma diamante. La versión más potente de la saga Bela.',
+    specs: { Forma: 'Diamante', Balance: 'Alto', Material: 'Carbono tejido', Núcleo: 'EVA Dura' },
+    pros: ['Potencia y control combinados', 'Acabado premium', 'Muy estable'],
+    cons: ['Precio muy alto', 'Solo para avanzados'],
+    verdict: 'Lo mejor de Wilson para pádel. Si quieres la pala de una leyenda con materiales de primer nivel, esta es.',
+    query: 'Wilson Bela Pro V3 padel'
+  },
+  {
+    id: 'p18', img: 'img/p18.jpg',
+    brand: 'Drop Shot', name: 'Axion 2026', level: 'Intermedio',
+    stars: 4, reviews: 89, price: '119,00', badge: null,
+    desc: 'La apuesta de Drop Shot para el jugador intermedio que quiere dar el salto. Forma diamante con balance ligeramente alto y fibra de carbono en cara para mayor potencia sin perder control.',
+    specs: { Forma: 'Diamante', Balance: 'Medio-alto', Material: 'Fibra + Carbono', Núcleo: 'EVA' },
+    pros: ['Buen salto de calidad respecto al precio', 'Compacta y manejable', 'Gran relación calidad-precio'],
+    cons: ['Marca menos conocida', 'Acabados mejorables'],
+    verdict: 'Para el jugador que quiere pasar de principiante a intermedio sin gastar demasiado. Drop Shot sorprende.',
+    query: 'Drop Shot Axion 2026 padel'
+  }
+];
+
+const zapatillas = [
+  {
+    id: 'z1', img: 'img/z1.jpg',
+    brand: 'Adidas', name: 'Crazyquick Boost 2026', level: 'Hierba artificial',
+    stars: 5, reviews: 634, price: '129,00', badge: 'top',
+    desc: 'Las zapatillas oficiales de Ale Galán para 2026. Tecnología Boost para retorno de energía constante, estructura Slingframe y suela New Padel de alto agarre.',
+    specs: { Suela: 'New Padel', Tecnología: 'Boost', Pista: 'Hierba / Moqueta', Talla: '38–48' },
+    pros: ['Amortiguación Boost excepcional', 'Excelente agarre', 'Muy estables'],
+    cons: ['Algo pesadas', 'Precio elevado'],
+    verdict: 'La referencia de Adidas para 2026. Boost + suela específica padel es una combinación ganadora.',
+    query: 'Adidas Crazyquick Boost padel 2026'
+  },
+  {
+    id: 'z2', img: 'img/z2.jpg',
+    brand: 'Babolat', name: 'Jet Premura 2 2026', level: 'Hierba artificial',
+    stars: 5, reviews: 412, price: '139,00', badge: 'new',
+    desc: 'La zapatilla de Juan Lebrón rediseñada. Dos ventanas de ventilación en el empeine, Matryx 2.0 y suela Michelin. La más ligera de las de alto rendimiento.',
+    specs: { Suela: 'Michelin Omni', Tecnología: 'Matryx 2.0', Pista: 'Hierba / Cemento', Talla: '36–48' },
+    pros: ['Muy ligeras', 'Ventilación excelente', 'Agarre Michelin superior'],
+    cons: ['Algo estrechas', 'Precio alto'],
+    verdict: 'Si priorizas la velocidad y la ligereza, la Jet Premura 2 es la mejor zapatilla del mercado.',
+    query: 'Babolat Jet Premura 2 padel 2026'
+  },
+  {
+    id: 'z3', img: 'img/z3.jpg',
+    brand: 'Bullpadel', name: 'Vertex Vibram 2026', level: 'Hierba artificial',
+    stars: 4, reviews: 287, price: '119,00', badge: null,
+    desc: 'Las zapatillas de Juan Tello con suela híbrida VIBRAM. Máxima durabilidad, sistema CATAPULT para impulso explosivo y plantilla ORTHOLITE de gran confort.',
+    specs: { Suela: 'VIBRAM híbrida', Tecnología: 'CATAPULT', Pista: 'Hierba artificial', Talla: '38–48' },
+    pros: ['Suela VIBRAM duradera', 'Muy estables', 'Gran confort en sesiones largas'],
+    cons: ['Algo pesadas para perfiles veloces', 'Diseño algo conservador'],
+    verdict: 'La opción más duradera del mercado. Si entrenas muchas horas, la inversión en VIBRAM se nota.',
+    query: 'Bullpadel Vertex Vibram padel 2026'
+  },
+  {
+    id: 'z4', img: 'img/z4.jpg',
+    brand: 'Asics', name: 'Gel-Padel Pro 6 2026', level: 'Hierba artificial',
+    stars: 4, reviews: 198, price: '99,00', badge: null,
+    desc: 'El clásico de Asics para pádel renovado. Amortiguación GEL en talón, suela de espiga y estabilizador lateral para proteger el tobillo en movimientos bruscos.',
+    specs: { Suela: 'Espiga', Tecnología: 'GEL amortiguación', Pista: 'Hierba / Moqueta', Talla: '36–47' },
+    pros: ['Amortiguación GEL excelente', 'Muy populares en clubes', 'Amplia gama de tallas'],
+    cons: ['Algo anticuadas en diseño', 'Menos ágiles que las Jet Premura'],
+    verdict: 'Un clásico fiable. Si vienes del tenis y ya usas Asics, esta transición al pádel es perfecta.',
+    query: 'Asics Gel Padel Pro padel 2026'
+  },
+  {
+    id: 'z5', img: 'img/z5.jpg',
+    brand: 'Head', name: 'Revolt Pro 4.5 2026', level: 'Hierba artificial',
+    stars: 4, reviews: 143, price: '109,00', badge: null,
+    desc: 'Nueva versión de las más vendidas de Head. Suela de espiga, refuerzo de punta en goma y malla transpirable. Una de las mejores relaciones calidad-precio del mercado.',
+    specs: { Suela: 'Espiga', Tecnología: 'Allround', Pista: 'Hierba / Moqueta', Talla: '36–48' },
+    pros: ['Excelente relación calidad-precio', 'Transpirables', 'Ligeras'],
+    cons: ['Amortiguación básica', 'Sin tecnologías premium'],
+    verdict: 'Para el jugador que quiere unas zapatillas decentes sin gastar más de 110€. Head ofrece gran fiabilidad.',
+    query: 'Head Revolt Pro padel 2026'
+  },
+  {
+    id: 'z6', img: 'img/z6.jpg',
+    brand: 'Nox', name: 'AT10 Lux 2026', level: 'Hierba artificial',
+    stars: 5, reviews: 167, price: '149,00', badge: 'new',
+    desc: 'Las zapatillas del equipo Nox para 2026. AGG Technology con talón elevado para posición de espera óptima, suela de espiga densa y gran estabilidad lateral.',
+    specs: { Suela: 'Espiga densa', Tecnología: 'AGG Technology', Pista: 'Hierba / Moqueta', Talla: '38–46' },
+    pros: ['Posición de espera óptima', 'Muy estables', 'Diseño moderno'],
+    cons: ['Pocas tallas disponibles', 'Precio alto'],
+    verdict: 'Las más técnicas del mercado en cuanto a biomecánica. La AGG Technology marca la diferencia en la posición.',
+    query: 'Nox AT10 Lux zapatillas padel 2026'
+  },
+  {
+    id: 'z7', img: 'img/z7.jpg',
+    brand: 'Wilson', name: 'Hurakn Pro V2', level: 'Multisuelo',
+    stars: 4, reviews: 112, price: '119,00', badge: null,
+    desc: 'Zapatillas de alto rendimiento de Wilson con refuerzos estratégicos en punta y laterales. Suela multiuso y gran estabilidad para movimientos intensos.',
+    specs: { Suela: 'Multiuso', Tecnología: 'Refuerzo lateral', Pista: 'Hierba / Cemento', Talla: '37–47' },
+    pros: ['Muy resistentes', 'Apoyo lateral excelente', 'Versátiles'],
+    cons: ['Algo pesadas', 'Diseño austero'],
+    verdict: 'Para jugadores que priorizan la protección sobre la velocidad. Wilson ofrece mucha durabilidad.',
+    query: 'Wilson Hurakn Pro padel zapatillas'
+  },
+  {
+    id: 'z8', img: 'img/z8.jpg',
+    brand: 'Joma', name: 'Slam Lady 2026', level: 'Hierba artificial',
+    stars: 4, reviews: 234, price: '59,00', badge: 'top',
+    desc: 'La zapatilla de mujer más vendida en España por relación calidad-precio. Suela de espiga, diseño específico para pie femenino y precio imbatible.',
+    specs: { Suela: 'Espiga', Tecnología: 'Horma mujer', Pista: 'Hierba artificial', Talla: '35–42' },
+    pros: ['Precio muy competitivo', 'Específica para mujer', 'Buena ventilación'],
+    cons: ['Sin tecnologías avanzadas', 'Menor durabilidad que gamas altas'],
+    verdict: 'La mejor opción económica para la jugadora que se inicia. Joma domina el mercado de entrada en España.',
+    query: 'Joma Slam Lady padel zapatillas 2026'
+  },
+  {
+    id: 'z9', img: 'img/z9.jpg',
+    brand: 'Adidas', name: 'Courtjam Control 3 2026', level: 'Cemento / Indoor',
+    stars: 4, reviews: 178, price: '89,00', badge: null,
+    desc: 'La alternativa de Adidas para pistas de cemento e indoor. Suela lisa de alto agarre sin espiga, muy cómoda para jugar en superficies duras.',
+    specs: { Suela: 'Lisa multisuperficie', Tecnología: 'Bounce midsole', Pista: 'Cemento / Indoor', Talla: '38–48' },
+    pros: ['Perfecta para cemento', 'Muy cómodas', 'Buena amortiguación'],
+    cons: ['No sirven para hierba artificial', 'Menos agarre en superficies húmedas'],
+    verdict: 'Si juegas principalmente en pistas de cemento o indoor, estas son la mejor opción de Adidas.',
+    query: 'Adidas Courtjam Control padel 2026'
+  }
+];
+
+const accesorios = [
+  {
+    id: 'a1', img: 'img/a1.jpg',
+    brand: 'Bullpadel', name: 'Paletero BPP26005 Ionic 2026', level: 'Paletero',
+    stars: 5, reviews: 412, price: '69,00', badge: 'top',
+    desc: 'El paletero de la temporada 2026 de Bullpadel. Capacidad para 2 palas, bolsillo térmico, compartimento ventilado para calzado y correa de hombro acolchada.',
+    specs: { Capacidad: '2 palas', Material: 'Nylon Dobby', Bolsillo: 'Térmico', Dimensiones: '60x30x40cm' },
+    pros: ['Gran relación calidad-precio', 'Bolsillo térmico útil', 'Muy resistente'],
+    cons: ['Algo rígido', 'Pocos colores disponibles'],
+    verdict: 'El paletero de referencia para el padelista de entre semana. Protege bien sin gastar demasiado.',
+    query: 'Bullpadel BPP paletero padel 2026'
+  },
+  {
+    id: 'a2', img: 'img/a2.jpg',
+    brand: 'Head', name: 'Pro Padel Ball x3', level: 'Pelotas',
+    stars: 4, reviews: 1023, price: '6,99', badge: null,
+    desc: 'Las pelotas más usadas en pistas federadas de España. Presurización estándar y rebote consistente en todas las superficies.',
+    specs: { Presión: 'Estándar', Rebote: 'Consistente', Bote: '3 pelotas', Uso: 'Competición' },
+    pros: ['Calidad homologada', 'Muy consistentes', 'Precio por bote excelente'],
+    cons: ['Despresurizan más rápido en exterior', 'Sin variante de alta altitud'],
+    verdict: 'Las pelotas que usan los clubes. Compra en pack de 3 botes para ahorrar.',
+    query: 'Head Pro Padel Ball pelotas padel'
+  },
+  {
+    id: 'a3', img: 'img/a3.jpg',
+    brand: 'NOX', name: 'Overgrip Pro x3', level: 'Accesorio',
+    stars: 4, reviews: 287, price: '8,99', badge: null,
+    desc: 'Pack de 3 overgrips profesionales. Finos, absorbentes y con buena durabilidad. Compatibles con cualquier empuñadura.',
+    specs: { Grosor: '0.6mm', Cantidad: '3 unidades', Material: 'PU absorbente', Compatibilidad: 'Universal' },
+    pros: ['Muy absorbentes', 'Precio excelente', 'Fáciles de colocar'],
+    cons: ['Se desgastan con sudor intenso', 'Duran unas 3-4 sesiones'],
+    verdict: 'Imprescindible en tu bolsa. Cambia el overgrip cada mes para un agarre óptimo.',
+    query: 'NOX overgrip padel pack 3'
+  },
+  {
+    id: 'a4', img: 'img/a4.jpg',
+    brand: 'Nox', name: 'Paletero ML10 Competition XL', level: 'Paletero',
+    stars: 5, reviews: 334, price: '89,00', badge: null,
+    desc: 'El paletero premium de Nox para competición. Capacidad para 4 palas, doble compartimento térmico ThermoTech, bolsillo circular para pelotas y compartimento ventilado.',
+    specs: { Capacidad: '4 palas', Material: 'Neopreno + poliéster', Bolsillo: 'Doble térmico', Dimensiones: '65x32x40cm' },
+    pros: ['Gran capacidad', 'Doble térmico excelente', 'Muy premium'],
+    cons: ['Precio alto', 'Grande para uso diario'],
+    verdict: 'El paletero para los más exigentes. Si vas a torneos y necesitas llevar todo el equipo, este no falla.',
+    query: 'Nox Competition XL paletero padel'
+  },
+  {
+    id: 'a5', img: 'img/a5.jpg',
+    brand: 'Bullpadel', name: 'Premium Pro Padel Ball x3', level: 'Pelotas',
+    stars: 5, reviews: 567, price: '7,99', badge: 'top',
+    desc: 'La pelota de competición de Bullpadel. Alta velocidad, núcleo de goma densa que mantiene la presión más tiempo. Elegida por jugadores que buscan el máximo rendimiento.',
+    specs: { Presión: 'Alta', Velocidad: 'Rápida', Bote: '3 pelotas', Uso: 'Competición / Entreno' },
+    pros: ['Mantiene presión más tiempo', 'Muy rápida', 'Rebote consistente'],
+    cons: ['Demasiado rápida para principiantes', 'Algo más cara'],
+    verdict: 'Si juegas 3+ veces por semana y buscas la mejor pelota, la Premium Pro es tu bote.',
+    query: 'Bullpadel Premium Pro Ball pelotas padel'
+  },
+  {
+    id: 'a6', img: 'img/a6.jpg',
+    brand: 'Wilson', name: 'Pro Overgrip x3', level: 'Accesorio',
+    stars: 5, reviews: 445, price: '7,49', badge: null,
+    desc: 'El overgrip más popular del mercado de raqueta. Suave, absorbente y con tacto premium. Los usan los profesionales de tenis y cada vez más padelistas de alto nivel.',
+    specs: { Grosor: '0.6mm', Cantidad: '3 unidades', Material: 'PU premium', Tacto: 'Muy suave' },
+    pros: ['Tacto premium', 'Muy absorbente', 'Gran durabilidad'],
+    cons: ['Algo más caro que marcas de pádel', 'Puede volverse resbaladizo con mucho sudor'],
+    verdict: 'El estándar de referencia en overgrips. Si no lo has probado, te sorprenderá la diferencia con los básicos.',
+    query: 'Wilson Pro Overgrip padel tennis'
+  },
+  {
+    id: 'a7', img: 'img/a7.jpg',
+    brand: 'Adidas', name: 'Paletero Control 3.4', level: 'Paletero',
+    stars: 4, reviews: 198, price: '54,00', badge: null,
+    desc: 'Paletero compacto de Adidas para el día a día. Diseño moderno, bolsillo térmico para 2 palas y compartimento lateral para zapatillas.',
+    specs: { Capacidad: '2 palas', Material: 'Poliéster', Bolsillo: 'Térmico', Dimensiones: '58x28x35cm' },
+    pros: ['Diseño muy moderno', 'Ligero', 'Precio competitivo'],
+    cons: ['Sin compartimento ventilado', 'Menos capacidad que otros'],
+    verdict: 'Para el padelista urbano que quiere un paletero con estilo. Adidas acierta en diseño.',
+    query: 'Adidas paletero control padel 2026'
+  },
+  {
+    id: 'a8', img: 'img/a8.jpg',
+    brand: 'Head', name: 'Xtreme Soft Overgrip x3', level: 'Accesorio',
+    stars: 4, reviews: 312, price: '6,99', badge: null,
+    desc: 'El overgrip de Head preferido por jugadores que buscan suavidad y absorción. Tacto muy cómodo y larga durabilidad en comparación con otras marcas.',
+    specs: { Grosor: '0.5mm', Cantidad: '3 unidades', Material: 'Microfibra', Tacto: 'Suave' },
+    pros: ['Muy suave al tacto', 'Buena absorción', 'Colores variados'],
+    cons: ['Algo menos agarre que Wilson', 'Se sucia antes'],
+    verdict: 'Una buena alternativa al Wilson Pro. Perfectos si prefieres un tacto suave a uno más pegajoso.',
+    query: 'Head Xtreme Soft overgrip padel'
+  },
+  {
+    id: 'a9', img: 'img/a9.jpg',
+    brand: 'Nox', name: 'Bote Pelotas P1 Titanium x3', level: 'Pelotas',
+    stars: 4, reviews: 389, price: '6,49', badge: null,
+    desc: 'La pelota de control de Nox para jugadores técnicos. Rebote predecible, buen tacto y presión estable. Perfecta para entrenamientos de técnica y partidos de control.',
+    specs: { Presión: 'Media', Velocidad: 'Media', Bote: '3 pelotas', Uso: 'Entreno / Competición' },
+    pros: ['Rebote muy predecible', 'Buena para técnica', 'Precio muy competitivo'],
+    cons: ['No tan rápida como Head o Bullpadel', 'Menos popular en competición'],
+    verdict: 'Para entrenamientos de técnica y partidos de control. Una pelota que te ayuda a construir el punto con calma.',
+    query: 'Nox P1 Titanium pelotas padel'
+  }
+];
+
+function renderStars(n) {
+  return '★'.repeat(n) + '☆'.repeat(5 - n);
+}
+
+function createCard(p) {
+  const div = document.createElement('div');
+  div.className = 'product-card'; div.style.cursor='pointer'; div.onclick = () => openModal(p.id);
+  div.dataset.level = p.level.toLowerCase();
+  div.dataset.name = (p.brand + ' ' + p.name).toLowerCase();
+  div.innerHTML = `
+    <div class="card-img">
+      ${p.badge === 'new' ? '<span class="badge-new">Nuevo</span>' : ''}
+      ${p.badge === 'top' ? '<span class="badge-top">Más vendido</span>' : ''}
+      <img src="${p.img}" alt="${p.brand} ${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${PLACEHOLDER}'">
+    </div>
+    <div class="card-body">
+      <div class="card-brand">${p.brand}</div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-level">${p.level}</div>
+      <div class="stars">${renderStars(p.stars)}<span>(${p.reviews} opiniones)</span></div>
+      <div class="card-price">${p.price} €<br><small>Precio orientativo Amazon.es</small></div>
+      <a class="btn-amazon" href="https://www.amazon.es/s?k=${encodeURIComponent(p.query)}&tag=${STORE_ID}" target="_blank" rel="noopener">
+        🛒 Ver en Amazon
+      </a>
+
+    </div>
+  `;
+  return div;
+}
+
+// Enriquecer productos con tags de búsqueda (color, tipo, etc.)
+
+// Manual color tags based on product images
+const colorTags = {
+  p1: ['blanco','blanca','negro','negra'],      // Bullpadel Vertex 05 - blanco/negro
+  p2: ['negro','negra'],                         // Adidas Metalbone Carbon - negro
+  p3: ['negro','negra','gris'],                  // Nox ML10 Ventus - negro/gris
+  p4: ['blanco','blanca','negro','negra'],       // Wilson Bela LS - blanco/negro
+  p5: ['azul','blanco','blanca'],                // Bullpadel Indiga - azul/blanco
+  p6: ['gris','rojo','roja'],                    // Head Coello Pro - gris/rojo
+  p7: ['gris','negro','negra','blanco','blanca'],// Bullpadel Hack 04 - gris/negro
+  p8: ['blanco','blanca','dorado','dorada'],     // Nox AT10 Genius - blanco/dorado
+  p9: ['negro','negra','gris'],                  // Head Gravity Pro - negro/gris
+  p10: ['negro','negra'],                        // Siux Electra Pro - negro
+  p11: ['negro','negra','rojo','roja','blanco'], // Babolat Technical Viper - negro/rojo
+  p12: ['blanco','blanca','negro','negra','naranja'], // Adidas Metalbone CTRL - blanco
+  p13: ['blanco','blanca','azul','negro','negra'],    // Star Vie Triton - blanco/azul
+  p14: ['gris','negro','negra'],                 // Nox ML10 Pro Cup - gris/negro
+  p15: ['negro','negra','dorado','dorada','naranja'], // Bullpadel Neuron - negro/dorado
+  p16: ['gris','rojo','roja'],                   // Head Coello Motion - gris/rojo
+  p17: ['negro','negra','rojo','roja'],          // Wilson Bela Pro V3 - negro/rojo
+  p18: ['negro','negra','dorado','dorada','rojo','roja'], // Drop Shot Axion - negro/dorado
+  z1: ['blanco','blanca','negro','negra','naranja'],  // Adidas Crazyquick - blanco/negro
+  z2: ['negro','negra','rojo','roja'],           // Babolat Jet Premura - negro/rojo
+  z3: ['azul','gris','blanco','blanca'],         // Bullpadel Vertex Vibram - azul/gris
+  z4: ['blanco','blanca','gris','negro','negra'],// Asics Gel-Padel - blanco/gris
+  z5: ['blanco','blanca','negro','negra'],       // Head Revolt Pro - blanco/negro
+  z6: ['beige','gris'],                          // Nox AT10 Lux - beige/gris
+  z7: ['azul','gris','blanco','blanca'],         // Bullpadel Vertex Vibram V2 - azul
+  z8: ['blanco','blanca','rosa','azul'],         // Joma Slam Lady - blanco/rosa
+  z9: ['blanco','blanca','negro','negra','naranja'],  // Adidas Courtjam - blanco
+  a1: ['azul','negro','negra'],                  // Bullpadel Paletero - azul marino
+  a2: ['negro','negra','amarillo','amarilla'],   // Head Ball - negro/amarillo
+  a3: ['negro','negra','naranja','amarillo'],    // Nox Overgrip - colores
+  a4: ['negro','negra','rojo','roja','azul'],    // Nox Paletero ML10 - negro/rojo
+  a5: ['blanco','blanca','rojo','roja','verde'], // Bullpadel Premium Pro - blanco/rojo
+  a6: ['blanco','blanca'],                       // Wilson Pro Overgrip - blanco
+  a7: ['rojo','roja','naranja','negro','negra'], // Adidas Paletero - rojo/naranja
+  a8: ['blanco','blanca','negro','negra'],       // Head Xtreme Soft - blanco
+  a9: ['negro','negra','naranja','amarillo'],    // Nox P1 Titanium - negro/naranja
+};
+
+function addTags(arr) {
+  arr.forEach(p => {
+    const text = (p.brand + ' ' + p.name + ' ' + p.desc + ' ' + p.level + ' ' +
+                  Object.values(p.specs || {}).join(' ')).toLowerCase();
+    const tags = [];
+    // Colores: del mapa manual (fiable, basado en las imágenes) + detección por texto
+    const manualColors = (typeof colorTags !== 'undefined' && colorTags[p.id]) ? colorTags[p.id] : [];
+    manualColors.forEach(c => { if (!tags.includes(c)) tags.push(c); });
+    const autoColors = ['negro','negra','blanco','blanca','rojo','roja','azul','verde','gris','naranja',
+                        'dorado','dorada','plateado','plateada','morado','morada','rosa','amarillo','amarilla','beige'];
+    autoColors.forEach(c => { if (text.includes(c) && !tags.includes(c)) tags.push(c); });
+    // Nivel
+    ['principiante','intermedio','avanzado'].forEach(n => { if (text.includes(n)) tags.push(n); });
+    // Superficie zapatillas
+    ['hierba','cemento','indoor','multisuelo','arcilla'].forEach(s => { if (text.includes(s)) tags.push(s); });
+    // Material
+    ['carbono','fibra','eva','goma','vibram','michelin','boost'].forEach(m => { if (text.includes(m)) tags.push(m); });
+    // Forma
+    ['diamante','redonda','lagrima','lágrima','híbrida','hibrida'].forEach(f => { if (text.includes(f)) tags.push(f); });
+    // Tipo accesorio
+    ['paletero','overgrip','pelota','pelotas','bote'].forEach(t => { if (text.includes(t)) tags.push(t); });
+    p.tags = tags;
+    p._searchText = text + ' ' + tags.join(' ');
+  });
+}
+// addTags called after split below
+
+// Split accesorios into subcategories
+const paleteros = accesorios.filter(p => p.level === 'Paletero');
+const pelotas   = accesorios.filter(p => p.level === 'Pelotas');
+const overgrips = accesorios.filter(p => p.level === 'Accesorio');
+
+// Enrich all arrays with searchable tags AFTER split
+[palas, zapatillas, paleteros, pelotas, overgrips].forEach(addTags);
+
+const PREVIEW = 6; // products shown before "ver todas"
+
+function renderGrid(arr, gridId, max = PREVIEW, filterFn = null) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = '';
+  const items = filterFn ? arr.filter(filterFn) : arr;
+  items.slice(0, max).forEach(p => grid.appendChild(createCard(p)));
+}
+
+function renderAll() {
+  renderGrid(palas,     'palasGrid');
+  renderGrid(zapatillas,'zapatillasGrid');
+  renderGrid(paleteros, 'paletersGrid');
+  renderGrid(pelotas,   'pelotasGrid');
+  renderGrid(overgrips, 'overgripsGrid');
+}
+
+renderAll();
+
+// Zapatillas filter
+let activeZapatFilter = 'todas';
+function setZapatFilter(value, btn) {
+  document.querySelectorAll('#zapatillasFilters .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeZapatFilter = value;
+  const fn = value === 'todas' ? null : p => p.level.toLowerCase().includes(value);
+  renderGrid(zapatillas, 'zapatillasGrid', PREVIEW, fn);
+}
+
+function setFilter(level, btn) {
+  document.querySelectorAll('#palas .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const fn = level === 'todas' ? null : p => p.level.toLowerCase().includes(level);
+  renderGrid(palas, 'palasGrid', PREVIEW, fn);
+}
+
+function filterProducts() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  if (!q) { renderAll(); filterGuides(''); return; }
+
+  const sections = [
+    { arr: palas,      gridId: 'palasGrid',      sectionId: 'palas' },
+    { arr: zapatillas, gridId: 'zapatillasGrid', sectionId: 'zapatillas' },
+    { arr: paleteros,  gridId: 'paletersGrid',   sectionId: 'paleteros' },
+    { arr: pelotas,    gridId: 'pelotasGrid',     sectionId: 'pelotas' },
+    { arr: overgrips,  gridId: 'overgripsGrid',   sectionId: 'overgrips' },
+  ];
+
+  let firstHitSection = null;
+  sections.forEach(({ arr, gridId, sectionId }) => {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    grid.innerHTML = '';
+    const matched = arr.filter(p => (p._searchText || '').includes(q));
+    if (matched.length) {
+      matched.forEach(p => grid.appendChild(createCard(p)));
+      if (!firstHitSection) firstHitSection = document.getElementById(sectionId);
+    } else {
+      grid.innerHTML = '<p style="color:var(--gray-4);padding:0.5rem 0;font-size:0.85rem;">Sin resultados</p>';
+    }
+  });
+
+  // Filtrar guías también
+  filterGuides(q);
+
+  // Scroll a la primera sección con resultados (solo al pulsar Buscar, no al escribir)
+  if (firstHitSection && window._searchScrollPending) {
+    firstHitSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window._searchScrollPending = false;
+  }
+}
+
+function filterGuides(q) {
+  const cards = document.querySelectorAll('.guide-card');
+  let shown = 0;
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (!q || text.includes(q)) {
+      card.classList.remove('guide-hidden');
+      shown++;
+    } else {
+      card.classList.add('guide-hidden');
+    }
+  });
+}
+
+
+function openModal(id) {
+  const product = [...palas, ...zapatillas, ...accesorios].find(p => p.id === id);
+  if (!product) return;
+  const imgEl = document.getElementById('modalImg');
+  imgEl.src = product.img;
+  imgEl.alt = product.brand + ' ' + product.name;
+  imgEl.setAttribute('referrerpolicy', 'no-referrer');
+  imgEl.onerror = function() { this.onerror=null; this.src = PLACEHOLDER; };
+  document.getElementById('modalBrand').textContent = product.brand;
+  document.getElementById('modalName').textContent = product.name;
+  document.getElementById('modalStars').innerHTML = `${renderStars(product.stars)} <span>${product.reviews} valoraciones en Amazon</span>`;
+  document.getElementById('modalDesc').textContent = product.desc;
+  document.getElementById('modalSpecs').innerHTML = Object.entries(product.specs).map(([k,v]) =>
+    `<div class="spec-row"><div class="spec-key">${k}</div><div class="spec-val">${v}</div></div>`
+  ).join('');
+  document.getElementById('modalProsCons').innerHTML = `
+    <div class="pros"><h4>✓ Puntos fuertes</h4><ul>${product.pros.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    <div class="cons"><h4>✗ A mejorar</h4><ul>${product.cons.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+  `;
+  document.getElementById('modalVerdict').innerHTML = `<strong>Nuestro veredicto</strong>${product.verdict}`;
+  document.getElementById('modalPrice').innerHTML = `${product.price} € <small>aprox. en Amazon.es</small>`;
+  document.getElementById('modalAmazonBtn').href = `https://www.amazon.es/s?k=${encodeURIComponent(product.query)}&tag=${STORE_ID}`;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+
+
+
+const guides = {
+  g1: {
+    cat: 'Guía de compra', meta: 'Actualizado junio 2026 · 8 min lectura',
+    title: 'Cómo elegir tu primera pala de pádel en 2026',
+    body: `<p>Empezar en el pádel puede ser confuso: hay cientos de palas en el mercado y los precios van de 30€ a más de 300€. La buena noticia es que para un principiante <strong>el precio no es lo que más importa</strong>.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. La forma lo es todo</h4>
+<p>Las palas tienen tres formas básicas: <strong>redonda</strong> (punto dulce amplio, ideal para control y principiantes), <strong>lágrima</strong> (equilibrio entre control y potencia) y <strong>diamante</strong> (balance alto, mucha potencia, difícil de manejar). Si empiezas, busca siempre forma redonda o lágrima.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. El material del núcleo</h4>
+<p>El núcleo de EVA blanda (SoftEva) es más cómodo para el brazo y perdona mejor los golpes mal dados. El EVA duro da más potencia pero puede causar molestias si no tienes técnica todavía.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. El presupuesto ideal</h4>
+<p>Para un principiante, entre <strong>50€ y 90€</strong> es más que suficiente. No tiene sentido gastar 200€ en una pala de carbono avanzado si aún estás aprendiendo a volear. Cuando lleves 6 meses jugando, entonces sí tiene sentido invertir más.</p>`,
+    links: [
+      { text: 'Ver palas para principiante en Amazon', query: 'pala padel principiante' },
+      { text: 'Bullpadel Impulse PWR 2026 (mejor valorada iniciación)', query: 'Bullpadel Impulse PWR 2026' }
+    ]
+  },
+  g2: {
+    cat: 'Comparativa', meta: 'Actualizado mayo 2026 · 6 min lectura',
+    title: 'Bullpadel vs Nox: cuál va mejor según tu nivel',
+    body: `<p>Bullpadel y Nox son las dos marcas españolas más importantes del pádel mundial. Ambas tienen jugadores de élite y tecnología de primer nivel, pero tienen filosofías distintas.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Bullpadel: potencia estructurada</h4>
+<p>Bullpadel destaca por su sistema <strong>CurvAktiv</strong> y marcos reforzados que dan una gran estabilidad. Sus palas como la Vertex 05 son ideales para jugadores que buscan consistencia en el golpe y mucha pegada desde la red. El tacto es más firme y la salida de bola más directa.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Nox: control y toque</h4>
+<p>Nox apuesta por materiales como el carbono 18K o 12K en capas finas que dan una sensación de toque excepcional. La AT10 de Tapia o la ML10 de Lamperti son palas con mucho feeling, perfectas para jugadores técnicos que priman el control sobre la potencia bruta.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">¿Cuál elegir?</h4>
+<p>Si juegas en red y buscas matar bolas: <strong>Bullpadel</strong>. Si juegas desde el fondo y te gusta el juego elaborado: <strong>Nox</strong>. Ambas marcas tienen opciones en todos los rangos de precio.</p>`,
+    links: [
+      { text: 'Ver palas Bullpadel en Amazon', query: 'Bullpadel pala padel 2026' },
+      { text: 'Ver palas Nox en Amazon', query: 'Nox pala padel 2026' }
+    ]
+  },
+  g3: {
+    cat: 'Top 10', meta: 'Actualizado junio 2026 · 10 min lectura',
+    title: 'Las 10 mejores palas de pádel por menos de 100 €',
+    body: `<p>No hace falta gastarse una fortuna para disfrutar del pádel. Estas son las mejores opciones por menos de 100€ en Amazon España en 2026, analizadas por relación calidad-precio.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥇 Bullpadel Impulse PWR 2026 (~69€)</h4>
+<p>La mejor pala de iniciación del mercado. Núcleo SoftEva, forma redonda y un precio imbatible. Perfecta para los primeros meses.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥈 Head Spark Pro (~79€)</h4>
+<p>Polivalente y muy resistente. Buena para jugadores que ya tienen algo de rodaje y quieren una pala que les acompañe un par de temporadas.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥉 Dunlop Inferno Carbon (~89€)</h4>
+<p>Carbono en cara a un precio muy contenido. El punto dulce es generoso y la sensación de golpe sorprende para su rango de precio.</p>
+<p style="margin-top:1rem;">El resto de posiciones las completan modelos de Adidas, Wilson y Siux que puedes explorar en el enlace de abajo.</p>`,
+    links: [
+      { text: 'Ver todas las palas por menos de 100€ en Amazon', query: 'pala padel menos 100 euros' },
+      { text: 'Bullpadel Impulse PWR 2026 – la nº1', query: 'Bullpadel Impulse PWR 2026' }
+    ]
+  },
+  g4: {
+    cat: 'Técnica', meta: 'Actualizado abril 2026 · 5 min lectura',
+    title: 'Forma redonda vs lágrima vs diamante: qué diferencia hay',
+    body: `<p>La forma de la pala es el factor más determinante de tu experiencia en pista. Cada forma tiene un balance distinto y está pensada para un estilo de juego diferente.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">⭕ Forma redonda</h4>
+<p>Balance bajo, punto dulce amplio situado en el centro de la pala. Es la más fácil de manejar y la que menos esfuerzo exige al brazo. Recomendada para <strong>principiantes y jugadores de control</strong>. El golpe perdona más los impactos descentrados.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">💧 Forma lágrima</h4>
+<p>Balance medio, punto dulce ligeramente desplazado hacia arriba. Es la forma más versátil: combina buen control con una potencia decente. Perfecta para <strong>jugadores intermedios</strong> que quieren progresar sin sacrificar control.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">💎 Forma diamante</h4>
+<p>Balance alto, punto dulce en la parte superior de la pala. Máxima potencia en los remates pero muy exigente técnicamente. Solo recomendada para <strong>jugadores avanzados</strong> con buena técnica consolidada.</p>`,
+    links: [
+      { text: 'Ver palas redondas (control) en Amazon', query: 'pala padel redonda control' },
+      { text: 'Ver palas lágrima (versátiles) en Amazon', query: 'pala padel lagrima versatil' },
+      { text: 'Ver palas diamante (potencia) en Amazon', query: 'pala padel diamante potencia' }
+    ]
+  },
+  g5: {
+    cat: 'Guía de compra', meta: 'Actualizado mayo 2026 · 7 min lectura',
+    title: 'Las mejores zapatillas para pistas de hierba artificial',
+    body: `<p>En España, la mayoría de pistas de pádel son de <strong>hierba artificial con polvo de cuarzo</strong>. Esto hace que la elección de zapatilla sea crucial: una suela incorrecta puede hacerte resbalar o dañar tus rodillas.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">¿Qué suela necesitas?</h4>
+<p>Para hierba artificial con cuarzo necesitas una suela de <strong>espiga</strong> (también llamada "omni" en algunas marcas). Las espigas pequeñas y densas dan agarre sin clavarse en exceso en la superficie. Evita las suelas lisas (para cemento) o los tacos grandes (para tierra batida).</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Top 3 para hierba artificial</h4>
+<p><strong>1. Adidas Adizero Ubersonic 4</strong> – La referencia. Ligeras, buen agarre y disponibles en muchas tallas en Amazon.<br>
+<strong>2. Wilson Rush Pro 4.0 Clay</strong> – Muy buena estabilidad lateral. Ideal si sufres de tobillo.<br>
+<strong>3. Asics Gel-Game</strong> – Excelente amortiguación, buena relación calidad-precio para jugadores recreativos.</p>`,
+    links: [
+      { text: 'Ver zapatillas de pádel para hierba en Amazon', query: 'zapatillas padel hierba artificial espiga' },
+      { text: 'Adidas Adizero Ubersonic – la más vendida', query: 'Adidas Adizero Ubersonic padel' }
+    ]
+  },
+  g6: {
+    cat: 'Análisis', meta: 'Actualizado junio 2026 · 6 min lectura',
+    title: 'Carbono vs fibra de vidrio: qué material elegir según tu juego',
+    body: `<p>El material de las caras de la pala es uno de los factores más importantes y menos comprendidos del equipamiento de pádel. Te explicamos la diferencia real.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Fibra de vidrio (fiberglass)</h4>
+<p>Más flexible y con mayor efecto "trampolín" en la bola. Esto se traduce en <strong>más control y comodidad</strong> para el brazo, ya que absorbe mejor las vibraciones. Las palas de fibra de vidrio son más lentas en salida de bola pero muy agradecidas para el codo. Recomendadas para principiantes e intermedios o para quienes tienen problemas de codo de tenista.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Carbono</h4>
+<p>Más rígido y con mayor transmisión de energía. La bola sale más rápida y con más potencia, pero el tacto es más duro y exige mejor técnica. Las variantes de carbono (3K, 12K, 18K) indican el tejido: a mayor número, más rígido y más caro. El <strong>carbono es ideal para jugadores avanzados</strong> que ya dominan la técnica y buscan rendimiento máximo.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">¿Cuál elegir?</h4>
+<p>Si llevas menos de 2 años jugando o tienes el codo sensible: <strong>fibra de vidrio</strong>. Si ya tienes técnica consolidada y buscas más pegada: <strong>carbono</strong>.</p>`,
+    links: [
+      { text: 'Ver palas de fibra de vidrio en Amazon', query: 'pala padel fibra vidrio control' },
+      { text: 'Ver palas de carbono en Amazon', query: 'pala padel carbono 2026' }
+    ]
+  },
+  g7: {
+    cat: 'Comparativa', meta: 'Actualizado junio 2026 · 8 min lectura',
+    title: 'Adidas Metalbone vs Bullpadel Vertex 05: la batalla del año',
+    body: `<p>Las dos palas más vendidas de 2026 frente a frente. Si estás dudando entre la Metalbone de Ale Galán y la Vertex 05 de Juan Tello, esta comparativa te aclara cuál se adapta mejor a tu juego.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Adidas Metalbone 2026: personalización total</h4>
+<p>La gran novedad es el sistema Weight & Balance, que permite ajustar hasta 11,2g para subir o bajar el balance. Con carbono aluminizado 16K es rígida y muy potente, con tacto más seco que la Vertex. Para jugadores ofensivos que quieren controlar cada variable de su pala.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Bullpadel Vertex 05 2026: polivalencia total</h4>
+<p>La Vertex 05 mantiene la filosofía Total Play: una pala que rinde en todas las fases. Con Curv:Aktiv, Air Power y núcleo MultiEva, ofrece un tacto más vivo y reactivo. El corazón triangular renovado da más estabilidad sin perder maniobrabilidad.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">¿Cuál elegir?</h4>
+<p>Si juegas mayoritariamente en ataque y quieres ajustar el balance: <strong>Metalbone</strong>. Si quieres una pala que funcione bien en todos los escenarios: <strong>Vertex 05</strong>. Ambas cuestan ~200€ y las dos son excelentes.</p>`,
+    links: [
+      { text: 'Adidas Metalbone 2026 en Amazon', query: 'Adidas Metalbone 2026 padel' },
+      { text: 'Bullpadel Vertex 05 2026 en Amazon', query: 'Bullpadel Vertex 05 2026' }
+    ]
+  },
+  g8: {
+    cat: 'Top 5', meta: 'Actualizado mayo 2026 · 7 min lectura',
+    title: 'Las 5 mejores palas para jugadores con codo de tenista',
+    body: `<p>El codo de tenista afecta a muchos padelistas. La buena noticia es que la elección de pala tiene un impacto enorme en si lo sufres o no.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Qué características buscar</h4>
+<p>Una pala que protege el codo debe tener: <strong>núcleo de goma blanda</strong> (SoftEva, EVA Soft, HR3), <strong>forma redonda o lágrima</strong> (balance bajo), <strong>material de cara flexible</strong> (fibra de vidrio), y tecnologías anti-vibración como Vibradrive o Ease Vibe.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥇 Top 5</h4>
+<p><strong>1. Nox ML10 Pro Cup Coorp 2026</strong> – La más cómoda del mercado.<br>
+<strong>2. Bullpadel Indiga Control 2026</strong> – SoftEva + forma redonda + precio asequible.<br>
+<strong>3. Wilson Bela LS V3</strong> – EVA blanda + fibra de vidrio + ultraligera.<br>
+<strong>4. Head Gravity Pro 2026</strong> – Control Foam, gran absorción de vibraciones.<br>
+<strong>5. Head Coello Motion 2026</strong> – La más económica con tecnologías anti-vibración de Head.</p>`,
+    links: [
+      { text: 'Nox ML10 Pro Cup en Amazon', query: 'Nox ML10 Pro Cup 2026 padel' },
+      { text: 'Wilson Bela LS V3 en Amazon', query: 'Wilson Bela LS V3 padel' }
+    ]
+  },
+  g9: {
+    cat: 'Guía de compra', meta: 'Actualizado junio 2026 · 5 min lectura',
+    title: 'Qué paletero comprar según cuánto equipo llevas al club',
+    body: `<p>No todos necesitan el mismo paletero. La clave es saber cuánto equipo llevas y con qué frecuencia juegas.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Perfil 1: el padelista de fin de semana</h4>
+<p>Juegas 1-2 veces por semana con una pala y zapatillas. Un <strong>paletero de capacidad media con un térmico</strong> es suficiente. Presupuesto: 40-60€. Recomendamos el Bullpadel BPP26005 o el Adidas Control 3.4.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Perfil 2: el padelista habitual</h4>
+<p>Juegas 3+ veces por semana, a veces vas directo del trabajo. Necesitas espacio para ropa, dos palas y zapatillas. Un <strong>paletero grande con doble térmico y compartimento ventilado</strong>. Presupuesto: 70-100€.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Perfil 3: el competidor</h4>
+<p>Vas a torneos con varias palas, zapatillas y equipación completa. Un <strong>paletero XL de competición</strong> con máxima capacidad. Presupuesto: 100€+. El Nox Competition XL es la referencia.</p>`,
+    links: [
+      { text: 'Ver paleteros Bullpadel en Amazon', query: 'paletero Bullpadel padel 2026' },
+      { text: 'Ver paleteros Nox en Amazon', query: 'paletero Nox Competition padel' }
+    ]
+  },
+  g10: {
+    cat: 'Top 3', meta: 'Actualizado mayo 2026 · 5 min lectura',
+    title: 'Las mejores pelotas de pádel para cada tipo de jugador',
+    body: `<p>No todas las pelotas son iguales. La presión, la velocidad del rebote y la durabilidad varían mucho entre marcas.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Para jugadores de control → Head Pro Padel Ball</h4>
+<p>Rebote predecible, presión estándar y alta durabilidad. Es la pelota oficial de muchos torneos en España. La más equilibrada del mercado.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Para jugadores agresivos → Bullpadel Premium Pro</h4>
+<p>Más rápida y con mayor presión. El núcleo de goma densa la hace mantenerse firme más tiempo. Ideal para quienes quieren que el punto no se alargue.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Para entrenar técnica → Nox P1 Titanium</h4>
+<p>Rebote más lento y predecible. Da más tiempo para pensar el golpe. Perfecta para entrenamientos de técnica o para principiantes que están aprendiendo.</p>`,
+    links: [
+      { text: 'Head Pro Padel Ball en Amazon', query: 'Head Pro Padel Ball pelotas' },
+      { text: 'Bullpadel Premium Pro en Amazon', query: 'Bullpadel Premium Pro Ball pelotas padel' }
+    ]
+  },
+  g11: {
+    cat: 'Técnica', meta: 'Actualizado abril 2026 · 6 min lectura',
+    title: 'Peso de la pala: más ligera o más pesada, ¿qué te conviene?',
+    body: `<p>El peso de la pala afecta a tres aspectos clave: la potencia, la maniobrabilidad y el esfuerzo para el brazo.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Pala más pesada (375g+)</h4>
+<p>Genera más inercia → más potencia en los remates. Requiere más esfuerzo muscular y puede causar fatiga. Para jugadores fuertes que juegan en red y quieren maximizar el smash.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Pala más ligera (355-365g)</h4>
+<p>Mayor velocidad de movimiento, menos fatiga y más control en situaciones de apuro. Perfecta para jugadores defensivos o para quienes tienen el codo sensible.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">El rango estándar (365-375g)</h4>
+<p>La mayoría de palas profesionales se fabrican aquí. Equilibra bien potencia y maniobrabilidad. Si notas fatiga, baja de peso; si tus remates no tienen pegada, sube.</p>`,
+    links: [
+      { text: 'Ver palas ligeras en Amazon', query: 'pala padel ligera control 2026' },
+      { text: 'Ver palas potentes en Amazon', query: 'pala padel potencia diamante 2026' }
+    ]
+  },
+  g12: {
+    cat: 'Comparativa', meta: 'Actualizado junio 2026 · 9 min lectura',
+    title: 'Head Coello Pro vs Nox AT10 Genius: dos monstruos frente a frente',
+    body: `<p>Las dos palas más exclusivas del mercado en 2026. La firma de Arturo Coello (nº 1 del mundo) contra la firma de Agustín Tapia. ¿Cuál merece tu inversión?</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Head Coello Pro 2026: explosividad pura</h4>
+<p>Auxetic 2.0 + Power Foam roja para maximizar la potencia. Diamante con balance muy alto (272mm), 5g más ligera que la versión anterior, Extreme Spin 3D para efectos brutales. Reactiva y explosiva en cada remate.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Nox AT10 Genius 12K Alum 2026: control y efecto</h4>
+<p>Carbono 12K aluminizado con sistema Weight Balance para personalizar el peso. Núcleo MLD Eva multicapa: firme en golpes rápidos, cómodo en suaves. La superficie Dual Spin genera efectos extraordinarios. Más polivalente que la Coello.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Conclusión</h4>
+<p>Si juegas en red buscando máxima explosividad: <strong>Coello Pro</strong>. Si alternas ataque y defensa y valoras los efectos: <strong>AT10 Genius</strong>. Las dos son 10/10 para el jugador correcto.</p>`,
+    links: [
+      { text: 'Head Coello Pro 2026 en Amazon', query: 'Head Coello Pro 2026 padel' },
+      { text: 'Nox AT10 Genius 12K 2026 en Amazon', query: 'Nox AT10 Genius 12K 2026 padel' }
+    ]
+  }
+};
+
+function openAllGuides() {
+  document.querySelectorAll('.guide-card').forEach(c => c.classList.remove('guide-hidden'));
+  const btn = document.querySelector('#guias .section-header a');
+  if (btn) btn.style.display = 'none';
+}
+
+// Hide guides beyond 3 on load
+// guide-hidden applied directly in HTML
+
+// Event delegation for guide cards (robusto, evita refresh)
+document.addEventListener('click', function(e) {
+  const card = e.target.closest('.guide-card');
+  if (card && card.dataset.guide) {
+    e.preventDefault();
+    e.stopPropagation();
+    openGuideModal(card.dataset.guide);
+    return;
+  }
+  const verTodas = e.target.closest('#verTodasGuias');
+  if (verTodas) {
+    e.preventDefault();
+    openAllGuides();
+    return;
+  }
+});
+
+function openGuideModal(id) {
+  const g = guides[id];
+  if (!g) return;
+  document.getElementById('guideCat').textContent = g.cat;
+  document.getElementById('guideTitle').textContent = g.title;
+  document.getElementById('guideMeta').textContent = g.meta;
+  document.getElementById('guideBody').innerHTML = g.body;
+  document.getElementById('guideLinks').innerHTML = g.links.map(l =>
+    `<a class="btn-amazon-lg" href="https://www.amazon.es/s?k=${encodeURIComponent(l.query)}&tag=${STORE_ID}" target="_blank" rel="noopener" style="width:fit-content;">🛒 ${l.text}</a>`
+  ).join('');
+  document.getElementById('guideOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGuideModal() {
+  document.getElementById('guideOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeGuideModalOutside(e) {
+  if (e.target === document.getElementById('guideOverlay')) closeGuideModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeGuideModal(); } });
+
+
+
+const categoryConfig = {
+  palas: {
+    title: '🏓 Todas las palas 2026',
+    products: () => palas,
+    filters: [
+      { label: 'Todas', value: 'todas' },
+      { label: 'Principiante', value: 'principiante' },
+      { label: 'Intermedio', value: 'intermedio' },
+      { label: 'Avanzado', value: 'avanzado' },
+    ]
+  },
+  zapatillas: {
+    title: '👟 Todas las zapatillas 2026',
+    products: () => zapatillas,
+    filters: [
+      { label: 'Todas', value: 'todas' },
+      { label: 'Hierba artificial', value: 'hierba' },
+      { label: 'Multisuelo', value: 'multisuelo' },
+      { label: 'Cemento / Indoor', value: 'cemento' },
+    ]
+  },
+  paleteros: {
+    title: '🎒 Todos los paleteros 2026',
+    products: () => paleteros,
+    filters: [{ label: 'Todos', value: 'todas' }]
+  },
+  pelotas: {
+    title: '🎾 Todas las pelotas 2026',
+    products: () => pelotas,
+    filters: [{ label: 'Todas', value: 'todas' }]
+  },
+  overgrips: {
+    title: '🖐️ Todos los overgrips 2026',
+    products: () => overgrips,
+    filters: [{ label: 'Todos', value: 'todas' }]
+  }
+};
+
+let currentCatFilter = 'todas';
+
+function openCategory(cat) {
+  const cfg = categoryConfig[cat];
+  document.getElementById('catOverlayTitle').textContent = cfg.title;
+  currentCatFilter = 'todas';
+
+  // Build filters
+  const bar = document.getElementById('catFilterBar');
+  bar.innerHTML = cfg.filters.map((f, i) =>
+    `<button class="cat-filter-btn ${i===0?'active':''}" onclick="setCatFilter('${f.value}', this)">${f.label}</button>`
+  ).join('');
+
+  // Render all products
+  renderCatGrid(cfg.products(), 'todas');
+  document.getElementById('catOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderCatGrid(products, filter) {
+  const grid = document.getElementById('catGrid');
+  grid.innerHTML = '';
+  products.forEach(p => {
+    if (filter !== 'todas' && !p.level.toLowerCase().includes(filter)) return;
+    grid.appendChild(createCard(p));
+  });
+}
+
+function setCatFilter(value, btn) {
+  document.querySelectorAll('#catFilterBar .cat-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentCatFilter = value;
+  // Find which category is open
+  const title = document.getElementById('catOverlayTitle').textContent;
+  const cat = Object.keys(categoryConfig).find(k => categoryConfig[k].title === title);
+  if (cat) renderCatGrid(categoryConfig[cat].products(), value);
+}
+
+function closeCategoryOverlay() {
+  document.getElementById('catOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeCategoryOverlay();
+});
+
+</script>
+</body>
+</html>

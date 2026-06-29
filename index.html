@@ -942,7 +942,8 @@ function renderStars(n) {
 
 function createCard(p) {
   const div = document.createElement('div');
-  div.className = 'product-card'; div.style.cursor='pointer'; div.onclick = () => openModal(p.id);
+  div.className = 'product-card'; div.style.cursor='pointer';
+  div.onclick = (e) => { if (!e.target.closest('a')) location.href = prodPageUrl(p); };
   div.dataset.level = p.level.toLowerCase();
   div.dataset.name = (p.brand + ' ' + p.name).toLowerCase();
   div.innerHTML = `
@@ -1062,6 +1063,12 @@ function renderAll() {
 }
 
 renderAll();
+
+// Las tarjetas de guía navegan a su página propia (en vez de abrir el modal)
+document.querySelectorAll('.guide-card[data-guide]').forEach(c => {
+  c.style.cursor = 'pointer';
+  c.onclick = (e) => { if (!e.target.closest('a')) location.href = guidePageUrl(c.dataset.guide); };
+});
 
 // Zapatillas filter
 let activeZapatFilter = 'todas';

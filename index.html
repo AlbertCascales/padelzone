@@ -320,7 +320,7 @@
 
   <!-- PALAS -->
   <section id="palas">
-    <div class="section-header"><h2>🏓 Palas 2026</h2><a href="#" onclick="openCategory('palas');return false;">Ver todas →</a></div>
+    <div class="section-header"><h2>🏓 Palas 2026</h2><a href="/palas/">Ver todas →</a></div>
     <div class="filter-bar">
       <button class="filter-btn active" onclick="setFilter('todas', this)">Todas</button>
       <button class="filter-btn" onclick="setFilter('principiante', this)">Principiante</button>
@@ -332,7 +332,7 @@
 
   <!-- ZAPATILLAS -->
   <section id="zapatillas">
-    <div class="section-header"><h2>👟 Zapatillas 2026</h2><a href="#" onclick="openCategory('zapatillas');return false;">Ver todas →</a></div>
+    <div class="section-header"><h2>👟 Zapatillas 2026</h2><a href="/zapatillas/">Ver todas →</a></div>
     <div class="filter-bar" id="zapatillasFilters">
       <button class="filter-btn active" onclick="setZapatFilter('todas', this)">Todas</button>
       <button class="filter-btn" onclick="setZapatFilter('hierba', this)">Hierba artificial</button>
@@ -344,25 +344,25 @@
 
   <!-- PALETEROS -->
   <section id="paleteros">
-    <div class="section-header"><h2>🎒 Paleteros 2026</h2><a href="#" onclick="openCategory('paleteros');return false;">Ver todas →</a></div>
+    <div class="section-header"><h2>🎒 Paleteros 2026</h2><a href="/accesorios/">Ver todas →</a></div>
     <div class="product-grid" id="paletersGrid"></div>
   </section>
 
   <!-- PELOTAS -->
   <section id="pelotas">
-    <div class="section-header"><h2>🎾 Pelotas de pádel</h2><a href="#" onclick="openCategory('pelotas');return false;">Ver todas →</a></div>
+    <div class="section-header"><h2>🎾 Pelotas de pádel</h2><a href="/accesorios/">Ver todas →</a></div>
     <div class="product-grid" id="pelotasGrid"></div>
   </section>
 
   <!-- OVERGRIPS -->
   <section id="overgrips">
-    <div class="section-header"><h2>🖐️ Overgrips</h2><a href="#" onclick="openCategory('overgrips');return false;">Ver todas →</a></div>
+    <div class="section-header"><h2>🖐️ Overgrips</h2><a href="/accesorios/">Ver todas →</a></div>
     <div class="product-grid" id="overgripsGrid"></div>
   </section>
 
   <!-- GUÍAS -->
   <section id="guias">
-    <div class="section-header"><h2>📖 Guías de compra</h2><a href="#" id="verTodasGuias" onclick="openAllGuides();return false;">Ver todas →</a></div>
+    <div class="section-header"><h2>📖 Guías de compra</h2><a href="/guias/" id="verTodasGuias">Ver todas →</a></div>
     <div class="guides-grid">
       <div class="guide-card" data-guide="g1" onclick="openGuideModal('g1')">
         <div class="guide-cat">Guía de compra</div>
@@ -524,6 +524,12 @@
 
 const STORE_ID = 'albertomart09-21';
 const PLACEHOLDER = 'https://placehold.co/400x300/f5f5f3/6b6b63?text=Sin+imagen';
+
+// Helpers de URL hacia las páginas individuales (deben coincidir con tools/generate-pages.js)
+function pzSlug(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+function pzProdCat(p){return palas.includes(p)?'palas':(zapatillas.includes(p)?'zapatillas':'accesorios');}
+function prodPageUrl(p){return '/'+pzProdCat(p)+'/'+pzSlug(p.brand+' '+p.name)+'/';}
+function guidePageUrl(id){return '/guias/'+pzSlug(guides[id].title)+'/';}
 
 const palas = [
   {
@@ -951,10 +957,10 @@ function createCard(p) {
       <div class="card-level">${p.level}</div>
       <div class="stars">${renderStars(p.stars)}<span>(${p.reviews} opiniones)</span></div>
       <div class="card-price">${p.price} €<br><small>Precio orientativo Amazon.es</small></div>
-      <a class="btn-amazon" href="https://www.amazon.es/s?k=${encodeURIComponent(p.query)}&tag=${STORE_ID}" target="_blank" rel="noopener">
+      <a class="btn-amazon" href="https://www.amazon.es/s?k=${encodeURIComponent(p.query)}&tag=${STORE_ID}" target="_blank" rel="sponsored noopener">
         🛒 Ver en Amazon
       </a>
-
+      <a class="card-review" href="${prodPageUrl(p)}" onclick="event.stopPropagation()" style="display:block;text-align:center;margin-top:.55rem;font-size:.8rem;font-weight:600;color:var(--green);text-decoration:none">Ver análisis completo →</a>
     </div>
   `;
   return div;
@@ -1370,8 +1376,10 @@ function openGuideModal(id) {
   document.getElementById('guideTitle').textContent = g.title;
   document.getElementById('guideMeta').textContent = g.meta;
   document.getElementById('guideBody').innerHTML = g.body;
-  document.getElementById('guideLinks').innerHTML = g.links.map(l =>
-    `<a class="btn-amazon-lg" href="https://www.amazon.es/s?k=${encodeURIComponent(l.query)}&tag=${STORE_ID}" target="_blank" rel="noopener" style="width:fit-content;">🛒 ${l.text}</a>`
+  document.getElementById('guideLinks').innerHTML =
+    `<a href="${guidePageUrl(id)}" style="font-weight:700;color:var(--green);text-decoration:none;">📖 Leer la guía completa →</a>` +
+    g.links.map(l =>
+    `<a class="btn-amazon-lg" href="https://www.amazon.es/s?k=${encodeURIComponent(l.query)}&tag=${STORE_ID}" target="_blank" rel="sponsored noopener" style="width:fit-content;">🛒 ${l.text}</a>`
   ).join('');
   document.getElementById('guideOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';

@@ -299,75 +299,75 @@
 
   <!-- GUÍAS -->
   <section id="guias">
-    <div class="section-header"><h2>📖 Guías de compra</h2><a href="#" id="verTodasGuias">Ver todas →</a></div>
+    <div class="section-header"><h2>📖 Guías de compra</h2><a href="#" id="verTodasGuias" onclick="openAllGuides();return false;">Ver todas →</a></div>
     <div class="guides-grid">
-      <div class="guide-card" data-guide="g1">
+      <div class="guide-card" data-guide="g1" onclick="openGuideModal('g1')">
         <div class="guide-cat">Guía de compra</div>
         <div class="guide-title">Cómo elegir tu primera pala de pádel en 2026</div>
         <div class="guide-meta">Actualizado junio 2026 · 8 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card" data-guide="g2">
+      <div class="guide-card" data-guide="g2" onclick="openGuideModal('g2')">
         <div class="guide-cat">Comparativa</div>
         <div class="guide-title">Bullpadel vs Nox: cuál va mejor según tu nivel</div>
         <div class="guide-meta">Actualizado mayo 2026 · 6 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card" data-guide="g3">
+      <div class="guide-card" data-guide="g3" onclick="openGuideModal('g3')">
         <div class="guide-cat">Top 10</div>
         <div class="guide-title">Las 10 mejores palas de pádel por menos de 100 €</div>
         <div class="guide-meta">Actualizado junio 2026 · 10 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g4">
+      <div class="guide-card guide-hidden" data-guide="g4" onclick="openGuideModal('g4')">
         <div class="guide-cat">Técnica</div>
         <div class="guide-title">Forma redonda vs lágrima vs diamante: qué diferencia hay</div>
         <div class="guide-meta">Actualizado abril 2026 · 5 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g5">
+      <div class="guide-card guide-hidden" data-guide="g5" onclick="openGuideModal('g5')">
         <div class="guide-cat">Guía de compra</div>
         <div class="guide-title">Las mejores zapatillas para pistas de hierba artificial</div>
         <div class="guide-meta">Actualizado mayo 2026 · 7 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g6">
+      <div class="guide-card guide-hidden" data-guide="g6" onclick="openGuideModal('g6')">
         <div class="guide-cat">Análisis</div>
         <div class="guide-title">Carbono vs fibra de vidrio: qué material elegir según tu juego</div>
         <div class="guide-meta">Actualizado junio 2026 · 6 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g7">
+      <div class="guide-card guide-hidden" data-guide="g7" onclick="openGuideModal('g7')">
         <div class="guide-cat">Comparativa</div>
         <div class="guide-title">Adidas Metalbone vs Bullpadel Vertex 05: la batalla del año</div>
         <div class="guide-meta">Actualizado junio 2026 · 8 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g8">
+      <div class="guide-card guide-hidden" data-guide="g8" onclick="openGuideModal('g8')">
         <div class="guide-cat">Top 5</div>
         <div class="guide-title">Las 5 mejores palas para jugadores con codo de tenista</div>
         <div class="guide-meta">Actualizado mayo 2026 · 7 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g9">
+      <div class="guide-card guide-hidden" data-guide="g9" onclick="openGuideModal('g9')">
         <div class="guide-cat">Guía de compra</div>
         <div class="guide-title">Qué paletero comprar según cuánto equipas llevas al club</div>
         <div class="guide-meta">Actualizado junio 2026 · 5 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g10">
+      <div class="guide-card guide-hidden" data-guide="g10" onclick="openGuideModal('g10')">
         <div class="guide-cat">Top 3</div>
         <div class="guide-title">Las mejores pelotas de pádel para cada tipo de jugador</div>
         <div class="guide-meta">Actualizado mayo 2026 · 5 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g11">
+      <div class="guide-card guide-hidden" data-guide="g11" onclick="openGuideModal('g11')">
         <div class="guide-cat">Técnica</div>
         <div class="guide-title">Peso de la pala: más ligera o más pesada, ¿qué te conviene?</div>
         <div class="guide-meta">Actualizado abril 2026 · 6 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g12">
+      <div class="guide-card guide-hidden" data-guide="g12" onclick="openGuideModal('g12')">
         <div class="guide-cat">Comparativa</div>
         <div class="guide-title">Head Coello Pro vs Nox AT10 Genius: dos monstruos frente a frente</div>
         <div class="guide-meta">Actualizado junio 2026 · 9 min lectura</div>
@@ -1298,23 +1298,6 @@ function openAllGuides() {
 
 // Hide guides beyond 3 on load
 // guide-hidden applied directly in HTML
-
-// Event delegation for guide cards (robusto, evita refresh)
-document.addEventListener('click', function(e) {
-  const card = e.target.closest('.guide-card');
-  if (card && card.dataset.guide) {
-    e.preventDefault();
-    e.stopPropagation();
-    openGuideModal(card.dataset.guide);
-    return;
-  }
-  const verTodas = e.target.closest('#verTodasGuias');
-  if (verTodas) {
-    e.preventDefault();
-    openAllGuides();
-    return;
-  }
-});
 
 function openGuideModal(id) {
   const g = guides[id];

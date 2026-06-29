@@ -248,7 +248,7 @@
   <!-- DESTACADO -->
   <section>
     <div class="section-header"><h2>⭐ Pala del momento</h2></div>
-    <div class="featured-product">
+    <div class="featured-product" style="cursor:pointer" onclick="if(!event.target.closest('a'))location.href='/palas/nox-at10-genius-18k-2026/'">
       <div class="featured-img">
         <img src="img/p8.jpg"
              referrerpolicy="no-referrer"
@@ -267,10 +267,11 @@
           <span class="spec-pill"><strong>Material:</strong> Carbono 18K</span>
         </div>
         <div class="featured-price">169,90 €</div>
-        <a class="btn-amazon-lg" href="https://www.amazon.es/s?k=Nox+AT10+Genius+18K+2026&tag=albertomart09-21" target="_blank" rel="noopener">
+        <a class="btn-amazon-lg" href="https://www.amazon.es/s?k=Nox+AT10+Genius+18K+2026&tag=albertomart09-21" target="_blank" rel="sponsored noopener">
           🛒 Ver en Amazon
         </a>
-        
+        <a href="/palas/nox-at10-genius-18k-2026/" style="display:inline-block;margin-top:0.75rem;color:var(--lime);font-weight:600;font-size:0.85rem;text-decoration:none">Ver análisis completo →</a>
+
       </div>
     </div>
   </section>
@@ -729,6 +730,17 @@ const palas = [
     cons: ['Marca menos conocida', 'Acabados mejorables'],
     verdict: 'Para el jugador que quiere pasar de principiante a intermedio sin gastar demasiado. Drop Shot sorprende.',
     query: 'Drop Shot Axion 2026 padel'
+  },
+  {
+    id: 'p19', img: 'img/p8.jpg',
+    brand: 'Nox', name: 'AT10 Genius 18K 2026', level: 'Avanzado',
+    stars: 5, reviews: 256, price: '169,90', badge: 'top',
+    desc: 'La pala de Agustín Tapia, número 1 del mundo. Carbono 18K de máxima rigidez, núcleo MLD Black Eva y sistema SmartStrap para jugadores avanzados que buscan potencia y control en cada golpe.',
+    specs: { Forma: 'Lágrima', Balance: 'Medio-alto', Material: 'Carbono 18K', Núcleo: 'MLD Black Eva' },
+    pros: ['Potencia y rigidez de gama alta', 'Sistema SmartStrap', 'La pala del número 1 del mundo'],
+    cons: ['Exige técnica avanzada', 'Precio elevado'],
+    verdict: 'La elección para quien busca máxima potencia sin renunciar al control. Solo para jugadores avanzados con buena técnica.',
+    query: 'Nox AT10 Genius 18K 2026'
   }
 ];
 

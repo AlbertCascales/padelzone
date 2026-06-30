@@ -155,6 +155,7 @@ function shell({ title, description, canonical, jsonLd, body }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="${canonical}">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_ES">

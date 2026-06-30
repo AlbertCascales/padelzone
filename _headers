@@ -1,0 +1,9 @@
+# Caché larga para imágenes (mejora velocidad / Core Web Vitals)
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cabeceras de seguridad en todo el sitio
+/*
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff

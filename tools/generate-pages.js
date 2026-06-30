@@ -177,6 +177,7 @@ ${body}
 <footer>
 <div class="logo">Empieza<span>Padel</span></div>
 <p>Reviews honestas de equipamiento de pádel · Actualizadas en 2026.</p>
+<p style="margin-top:.6rem"><a href="/sobre-nosotros/" style="color:var(--gray-3)">Sobre nosotros</a> · <a href="/contacto/" style="color:var(--gray-3)">Contacto</a> · <a href="/privacidad/" style="color:var(--gray-3)">Privacidad</a></p>
 <p class="disclosure">Como Afiliado de Amazon, ${BRAND_NAME} obtiene ingresos por las compras adscritas.</p>
 </footer>
 </body>
@@ -393,6 +394,62 @@ writePage(gh.url, gh.html); allUrls.push(gh.url); count++;
 for (const id of Object.keys(guides)) {
   const page = renderGuidePage(id);
   writePage(page.url, page.html); allUrls.push(page.url); count++;
+}
+
+// ---------- 7b. Páginas estáticas (confianza / E-E-A-T / legal) ----------
+const CONTACT_EMAIL = 'contacto@empiezapadel.es'; // ⚠️ cámbialo por tu email real
+const staticPages = [
+  {
+    url: '/sobre-nosotros/', h1: 'Sobre EmpiezaPadel',
+    title: `Sobre nosotros | ${BRAND_NAME}`,
+    description: 'Quiénes somos y cómo analizamos el material de pádel en EmpiezaPadel: reviews honestas para ayudarte a elegir, seas principiante o avanzado.',
+    bodyHtml: `
+<p>${BRAND_NAME} nace para ayudar a quien empieza (y a quien ya lleva tiempo) a <strong>elegir bien su equipación de pádel</strong> sin perderse entre cientos de modelos y opiniones contradictorias.</p>
+<h2>Qué hacemos</h2>
+<p>Analizamos palas, zapatillas y accesorios y los resumimos en fichas claras: para quién es cada producto, sus pros y contras y un veredicto directo. Nuestro objetivo es que aciertes a la primera y compres con seguridad.</p>
+<h2>Cómo trabajamos</h2>
+<p>Seleccionamos los productos según su relación calidad-precio, las características técnicas y la valoración de los jugadores. Priorizamos la honestidad: si una pala no nos convence para un determinado nivel, lo decimos.</p>
+<h2>Transparencia</h2>
+<p>EmpiezaPadel se financia mediante enlaces de afiliado de Amazon: si compras a través de nuestros enlaces, podemos recibir una pequeña comisión <strong>sin coste adicional para ti</strong>. Esto nunca condiciona nuestras recomendaciones.</p>
+<p style="color:var(--gray-4);font-size:.85rem;margin-top:1.5rem">¿Tienes dudas o sugerencias? Escríbenos a <a href="/contacto/">contacto</a>.</p>`
+  },
+  {
+    url: '/contacto/', h1: 'Contacto',
+    title: `Contacto | ${BRAND_NAME}`,
+    description: 'Ponte en contacto con el equipo de EmpiezaPadel para dudas, sugerencias o colaboraciones.',
+    bodyHtml: `
+<p>¿Tienes una duda sobre qué pala o zapatilla comprar, una sugerencia o una propuesta de colaboración? Estaremos encantados de leerte.</p>
+<h2>Email</h2>
+<p>Escríbenos a <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> y te responderemos lo antes posible.</p>
+<p style="color:var(--gray-4);font-size:.85rem;margin-top:1.5rem">Normalmente respondemos en un plazo de 24-48 horas.</p>`
+  },
+  {
+    url: '/privacidad/', h1: 'Política de privacidad',
+    title: `Política de privacidad | ${BRAND_NAME}`,
+    description: 'Política de privacidad de EmpiezaPadel: qué datos tratamos, enlaces de afiliado de Amazon y analítica web sin cookies.',
+    bodyHtml: `
+<p style="color:var(--gray-4);font-size:.85rem"><em>Última actualización: junio de 2026. Esta página es una plantilla orientativa; revísala y adáptala a tu caso antes de publicarla definitivamente.</em></p>
+<h2>Responsable</h2>
+<p>El responsable de este sitio web (${BRAND_NAME}, ${SITE}) trata los datos conforme al Reglamento General de Protección de Datos (RGPD).</p>
+<h2>Datos que tratamos</h2>
+<p>Este sitio es informativo y <strong>no solicita ni almacena datos personales</strong> mediante formularios. Si nos escribes por email, usaremos tu dirección únicamente para responderte.</p>
+<h2>Analítica web</h2>
+<p>Usamos una herramienta de analítica que mide las visitas de forma agregada y <strong>sin cookies ni datos personales</strong>, por lo que no es posible identificarte de forma individual.</p>
+<h2>Enlaces de afiliado</h2>
+<p>${BRAND_NAME} participa en el programa de afiliados de Amazon. Algunos enlaces dirigen a Amazon y, si realizas una compra, podemos recibir una comisión sin coste adicional para ti. Al hacer clic, Amazon aplica su propia política de privacidad y de cookies.</p>
+<h2>Enlaces a terceros</h2>
+<p>No nos hacemos responsables de las políticas de privacidad de los sitios externos a los que enlazamos (Amazon u otros).</p>
+<h2>Tus derechos</h2>
+<p>Puedes ejercer tus derechos de acceso, rectificación o supresión escribiendo a <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>`
+  }
+];
+for (const sp of staticPages) {
+  const body = `${crumbs([{ name: 'Inicio', url: '/' }, { name: sp.h1, url: sp.url }])}
+<h1>${esc(sp.h1)}</h1>
+${sp.bodyHtml}`;
+  const jsonLd = [breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: sp.h1, url: sp.url }])];
+  writePage(sp.url, shell({ title: sp.title, description: sp.description, canonical: SITE + sp.url, jsonLd, body }));
+  allUrls.push(sp.url); count++;
 }
 
 // ---------- 8. Sitemap ----------

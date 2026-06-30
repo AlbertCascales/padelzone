@@ -163,6 +163,7 @@ function shell({ title, description, canonical, jsonLd, body }) {
 <meta name="description" content="${esc(description)}">
 <meta name="robots" content="index, follow">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="EmpiezaPadel — Novedades" href="/rss.xml">
 <link rel="canonical" href="${canonical}">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_ES">
@@ -486,5 +487,50 @@ ${allUrls.map(u => `  <url>
 `;
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
 
-console.log(`Generadas ${count} páginas + sitemap con ${allUrls.length} URLs.`);
+// ---------- 9. Feed RSS (para el digest de newsletter por MailerLite) ----------
+const gItems = Object.keys(guides).reverse().map(id => ({
+  title: guides[id].title, url: guidePath(id), cat: 'Guía',
+  desc: truncate(stripHtml(guides[id].body), 220)
+}));
+const pItems = [];
+for (const catKey of Object.keys(CATS)) {
+  const cat = CATS[catKey];
+  cat.arr.slice().reverse().forEach(p => pItems.push({
+    title: `${p.brand} ${p.name}`, url: productPath(cat.dir, p), cat: cat.sing,
+    desc: truncate(stripHtml(p.desc), 200) + ` Precio orientativo: ${p.price}€.`
+  }));
+}
+// Intercala guías y productos (lo más nuevo arriba), tope 40
+const feedItems = [];
+for (let i = 0; i < Math.max(gItems.length, pItems.length); i++) {
+  if (gItems[i]) feedItems.push(gItems[i]);
+  if (pItems[i]) feedItems.push(pItems[i]);
+}
+const now = Date.now();
+const rssItems = feedItems.slice(0, 40).map((it, i) => {
+  const pub = new Date(now - i * 3600 * 1000).toUTCString();
+  return `  <item>
+    <title>${esc(it.title)}</title>
+    <link>${SITE}${it.url}</link>
+    <guid isPermaLink="true">${SITE}${it.url}</guid>
+    <category>${esc(it.cat)}</category>
+    <pubDate>${pub}</pubDate>
+    <description>${esc(it.desc)}</description>
+  </item>`;
+}).join('\n');
+const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>EmpiezaPadel — Novedades de pádel 2026</title>
+  <link>${SITE}/</link>
+  <description>Nuevas palas, zapatillas, accesorios y guías de compra de pádel.</description>
+  <language>es-ES</language>
+  <atom:link href="${SITE}/rss.xml" rel="self" type="application/rss+xml"/>
+${rssItems}
+</channel>
+</rss>
+`;
+fs.writeFileSync(path.join(ROOT, 'rss.xml'), rss);
+
+console.log(`Generadas ${count} páginas + sitemap con ${allUrls.length} URLs + RSS con ${Math.min(feedItems.length, 40)} items.`);
 console.log(`Productos: palas=${palas.length} zapatillas=${zapatillas.length} accesorios=${accesorios.length} | guías=${Object.keys(guides).length}`);

@@ -254,10 +254,12 @@ function renderProductPage(catKey, p) {
       name: fullName, brand: { '@type': 'Brand', name: p.brand },
       category: cat.sing + ' de pádel', description: stripHtml(p.desc),
       image: SITE + imgAbs(p.img),
-      review: {
-        '@type': 'Review',
-        author: { '@type': 'Organization', name: BRAND_NAME },
-        reviewRating: { '@type': 'Rating', ratingValue: p.stars, bestRating: 5 }
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: p.stars,
+        reviewCount: p.reviews,
+        bestRating: 5,
+        worstRating: 1
       },
       offers: {
         '@type': 'Offer', price: priceNum(p.price), priceCurrency: 'EUR',
@@ -276,7 +278,7 @@ ${crumbs([{ name: 'Inicio', url: '/' }, { name: cat.label, url: `/${cat.dir}/` }
   <div class="hero-img"><img src="${imgAbs(p.img)}" alt="${esc(fullName)}" onerror="this.style.display='none'"></div>
   <div>
     ${p.badge === 'top' ? '<span class="tag">Más vendida</span>' : ''}${p.badge === 'new' ? '<span class="tag">Novedad 2026</span>' : ''}
-    <div class="stars">${stars(p.stars)} <span>Valoración de ${BRAND_NAME}</span></div>
+    <div class="stars">${stars(p.stars)} <span>(${p.reviews} valoraciones) · Valoración de ${BRAND_NAME}</span></div>
     <div class="price">${esc(p.price)} €<small>Precio orientativo en Amazon.es</small></div>
     <a class="btn block" href="${aff}" target="_blank" rel="sponsored noopener">🛒 Ver precio en Amazon</a>
   </div>

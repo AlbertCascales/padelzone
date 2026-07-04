@@ -4,3 +4,4 @@ node_modules/
 newsletter/
 reddit-radar/
 telegram-radar/
+.wrangler/

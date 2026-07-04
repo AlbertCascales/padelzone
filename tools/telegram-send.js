@@ -126,7 +126,7 @@ function sendPhoto(token, caption, imageUrl) {
 
 function captionFor(item, { isNew }) {
   const tag = isNew ? '🆕 Nuevo en EmpiezaPadel' : '📌 Del catálogo';
-  const icon = item.type === 'guía' ? '📖' : '🎾';
+  const icon = item.type === 'guía' ? '📖' : '🏓';
   return `${tag}\n${icon} <b>${escapeHtml(item.title)}</b>\n${escapeHtml(item.desc)}\n\n👉 ${item.url}`;
 }
 function escapeHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }

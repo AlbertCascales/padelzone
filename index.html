@@ -265,60 +265,9 @@
 
   <!-- DESTACADO -->
   <section>
-    <div class="section-header"><h2>⭐ Pala del momento</h2></div>
-    <div class="featured-product" style="cursor:pointer" onclick="if(!event.target.closest('a'))location.href='/palas/nox-at10-genius-18k-2026/'">
-      <div class="featured-img">
-        <img src="img/p8.jpg"
-             referrerpolicy="no-referrer"
-             onerror="this.onerror=null;this.src='https://placehold.co/400x300/f5f5f3/6b6b63?text=Sin+imagen'"
-             alt="Nox AT10 Genius 18K 2026">
-      </div>
-      <div>
-        <span class="featured-tag">Mejor valorada 2026</span>
-        <div class="featured-brand">Nox</div>
-        <div class="featured-name">AT10 Genius 18K 2026 – Agustín Tapia</div>
-        <div class="stars" style="margin-bottom:0.5rem">★★★★★ <span>(256 valoraciones) · Valoración de EmpiezaPadel</span></div>
-        <div class="featured-desc">La pala del número 1 del mundo. Carbono 18K de máxima rigidez, núcleo MLD Black Eva y sistema SmartStrap. Para jugadores avanzados que buscan potencia y control en cada golpe.</div>
-        <div class="featured-specs">
-          <span class="spec-pill"><strong>Forma:</strong> Lágrima</span>
-          <span class="spec-pill"><strong>Balance:</strong> Medio-alto</span>
-          <span class="spec-pill"><strong>Nivel:</strong> Avanzado</span>
-          <span class="spec-pill"><strong>Material:</strong> Carbono 18K</span>
-        </div>
-        <div class="featured-price">169,90 €</div>
-        <a class="btn-amazon-lg" href="https://www.amazon.es/s?k=Nox+AT10+Genius+18K+2026&tag=albertomart09-21" target="_blank" rel="sponsored noopener">
-          🛒 Ver en Amazon
-        </a>
-        <a href="/palas/nox-at10-genius-18k-2026/" style="display:inline-block;margin-top:0.75rem;color:var(--green);font-weight:700;font-size:0.85rem;text-decoration:none">Ver análisis completo →</a>
-
-      </div>
-    </div>
+    <div class="section-header"><h2>⭐ Producto del momento</h2></div>
+    <div class="featured-product" id="featuredProduct"></div>
   </section>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Nox AT10 Genius 18K 2026 – Agustín Tapia",
-    "brand": { "@type": "Brand", "name": "Nox" },
-    "category": "Pala de pádel",
-    "description": "La pala del número 1 del mundo. Carbono 18K de máxima rigidez, núcleo MLD Black Eva y sistema SmartStrap. Para jugadores avanzados que buscan potencia y control.",
-    "image": "https://empiezapadel.es/img/p8.jpg",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": 5,
-      "reviewCount": 256,
-      "bestRating": 5,
-      "worstRating": 1
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "169.90",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.amazon.es/s?k=Nox+AT10+Genius+18K+2026"
-    }
-  }
-  </script>
 
   <!-- CATEGORÍAS -->
   <section>
@@ -1258,6 +1207,37 @@ function renderAll() {
 }
 
 renderAll();
+
+// Producto del momento: rota cada 2 días por todo el catálogo (cualquier categoría),
+// de forma determinista según la fecha (mismo producto para todos los visitantes ese día).
+function renderFeatured() {
+  const el = document.getElementById('featuredProduct');
+  if (!el) return;
+  const pool = [...palas, ...zapatillas, ...accesorios];
+  const idx = Math.floor(Date.now() / (2 * 86400000)) % pool.length;
+  const p = pool[idx];
+  const url = prodPageUrl(p);
+  const tag = p.badge === 'top' ? 'Más vendido' : (p.badge === 'new' ? 'Novedad 2026' : 'Recomendado');
+  const specs = Object.entries(p.specs).map(([k, v]) => `<span class="spec-pill"><strong>${k}:</strong> ${v}</span>`).join('');
+  el.style.cursor = 'pointer';
+  el.onclick = (e) => { if (!e.target.closest('a')) location.href = url; };
+  el.innerHTML = `
+      <div class="featured-img">
+        <img src="${p.img}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${PLACEHOLDER}'" alt="${p.brand} ${p.name}">
+      </div>
+      <div>
+        <span class="featured-tag">${tag}</span>
+        <div class="featured-brand">${p.brand}</div>
+        <div class="featured-name">${p.name}</div>
+        <div class="stars" style="margin-bottom:0.5rem">${renderStars(p.stars)} <span>(${p.reviews} valoraciones) · Valoración de EmpiezaPadel</span></div>
+        <div class="featured-desc">${p.desc}</div>
+        <div class="featured-specs">${specs}</div>
+        <div class="featured-price">${p.price} €</div>
+        <a class="btn-amazon-lg" href="https://www.amazon.es/s?k=${encodeURIComponent(p.query)}&tag=${STORE_ID}" target="_blank" rel="sponsored noopener">🛒 Ver en Amazon</a>
+        <a href="${url}" style="display:inline-block;margin-top:0.75rem;color:var(--green);font-weight:700;font-size:0.85rem;text-decoration:none">Ver análisis completo →</a>
+      </div>`;
+}
+renderFeatured();
 
 // Las tarjetas de guía navegan a su página propia (en vez de abrir el modal)
 document.querySelectorAll('.guide-card[data-guide]').forEach(c => {

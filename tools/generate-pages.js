@@ -18,7 +18,7 @@ const ROOT = path.join(__dirname, '..');
 const SITE = 'https://empiezapadel.es';
 const STORE_ID = 'albertomart09-21';
 const BRAND_NAME = 'EmpiezaPadel';
-const TODAY = '2026-06-29';
+const TODAY = '2026-07-09';
 
 // ---------- 1. Extraer los datos desde index.html ----------
 const indexSrc = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');

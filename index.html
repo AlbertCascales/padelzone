@@ -274,7 +274,7 @@
     <div class="section-header"><h2>Explorar por categoría</h2></div>
     <div class="cat-grid">
       <div class="cat-card" onclick="scrollToSection('palas')">
-        <div class="cat-icon" style="color:var(--green)"><svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="2" width="18" height="24" rx="9" fill="currentColor"/><rect x="14" y="25" width="4" height="6" rx="1.5" fill="currentColor"/><circle cx="12" cy="9" r="1.3" fill="#fff"/><circle cx="16" cy="9" r="1.3" fill="#fff"/><circle cx="20" cy="9" r="1.3" fill="#fff"/><circle cx="12" cy="14" r="1.3" fill="#fff"/><circle cx="16" cy="14" r="1.3" fill="#fff"/><circle cx="20" cy="14" r="1.3" fill="#fff"/><circle cx="12" cy="19" r="1.3" fill="#fff"/><circle cx="16" cy="19" r="1.3" fill="#fff"/><circle cx="20" cy="19" r="1.3" fill="#fff"/></svg></div><div class="cat-name">Palas</div><div class="cat-count">23 reviews</div>
+        <div class="cat-icon" style="color:var(--green)"><svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="2" width="18" height="24" rx="9" fill="currentColor"/><rect x="14" y="25" width="4" height="6" rx="1.5" fill="currentColor"/><circle cx="12" cy="9" r="1.3" fill="#fff"/><circle cx="16" cy="9" r="1.3" fill="#fff"/><circle cx="20" cy="9" r="1.3" fill="#fff"/><circle cx="12" cy="14" r="1.3" fill="#fff"/><circle cx="16" cy="14" r="1.3" fill="#fff"/><circle cx="20" cy="14" r="1.3" fill="#fff"/><circle cx="12" cy="19" r="1.3" fill="#fff"/><circle cx="16" cy="19" r="1.3" fill="#fff"/><circle cx="20" cy="19" r="1.3" fill="#fff"/></svg></div><div class="cat-name">Palas</div><div class="cat-count">26 reviews</div>
       </div>
       <div class="cat-card" onclick="scrollToSection('zapatillas')">
         <div class="cat-icon">👟</div><div class="cat-name">Zapatillas</div><div class="cat-count">14 reviews</div>
@@ -289,7 +289,7 @@
         <div class="cat-icon">🖐️</div><div class="cat-name">Overgrips</div><div class="cat-count">4 reviews</div>
       </div>
       <div class="cat-card" onclick="scrollToSection('guias')">
-        <div class="cat-icon">📖</div><div class="cat-name">Guías</div><div class="cat-count">14 artículos</div>
+        <div class="cat-icon">📖</div><div class="cat-name">Guías</div><div class="cat-count">18 artículos</div>
       </div>
     </div>
   </section>
@@ -410,6 +410,42 @@
         <div class="guide-cat">Comparativa</div>
         <div class="guide-title">Head Coello Pro vs Nox AT10 Genius: dos monstruos frente a frente</div>
         <div class="guide-meta">Actualizado junio 2026 · 9 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g13" onclick="openGuideModal('g13')">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Zapatillas de pádel para pie ancho: qué mirar y cuáles comprar</div>
+        <div class="guide-meta">Actualizado junio 2026 · 6 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g14" onclick="openGuideModal('g14')">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Mejor pala de pádel para mujer principiante: guía de compra 2026</div>
+        <div class="guide-meta">Actualizado julio 2026 · 6 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g15" onclick="openGuideModal('g15')">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Mejores palas de control 2026: la guía para el jugador defensivo</div>
+        <div class="guide-meta">Actualizado julio 2026 · 7 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g16" onclick="openGuideModal('g16')">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Palas de potencia por menos de 150 euros: guía de compra 2026</div>
+        <div class="guide-meta">Actualizado julio 2026 · 7 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g17" onclick="openGuideModal('g17')">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Mejor overgrip de pádel según cuánto sudas: guía de compra 2026</div>
+        <div class="guide-meta">Actualizado julio 2026 · 6 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
+      <div class="guide-card guide-hidden" data-guide="g18" onclick="openGuideModal('g18')">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">Mejor pala de pádel para niños: guía de compra 2026</div>
+        <div class="guide-meta">Actualizado julio 2026 · 6 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
     </div>
@@ -807,6 +843,17 @@ const palas = [
     cons: ['No llega a la rigidez ni la salida de bola de la Metalbone', 'El carbono en cara se nota menos vivo con el uso intensivo'],
     verdict: 'La mejor puerta de entrada a una pala de potencia de verdad por debajo de 150€. Si no quieres esperar a ahorrar para una Metalbone, empieza aquí.',
     query: 'Adidas Drive 3.3 2026 padel'
+  },
+  {
+    id: 'p26', img: 'img/p5.jpg',
+    brand: 'Nox', name: 'AT10 Junior 2026', level: 'Infantil',
+    stars: 4, reviews: 76, price: '39,90', badge: null,
+    desc: 'Pala pensada para niños que empiezan en el pádel. Forma redonda con punto dulce amplio para perdonar golpes descentrados y núcleo de EVA blanda que protege el brazo en pleno crecimiento. Disponible en varias longitudes según la edad.',
+    specs: { Forma: 'Redonda', Núcleo: 'EVA Blanda', Peso: '280-320g', Longitud: '38 / 41 / 43cm según edad' },
+    pros: ['Núcleo blando que cuida el brazo del niño', 'Varias longitudes según edad y estatura', 'Precio muy accesible'],
+    cons: ['Hay que acertar la talla o se queda corta en meses', 'Materiales más básicos que en una pala de adulto'],
+    verdict: 'La opción más sensata para que un niño empiece: nada de comprarle una pala de adulto que le pesa y le queda larga. Elige la longitud según su edad, no compres "para que le dure".',
+    query: 'Nox AT10 Junior pala padel niños'
   }
 ];
 
@@ -1649,6 +1696,23 @@ const guides = {
     links: [
       { text: 'Ver overgrips de pádel en Amazon', query: 'overgrip padel pack' },
       { text: 'Babolat Syntec Pro Overgrip en Amazon', query: 'Babolat Syntec Pro Overgrip padel' }
+    ]
+  },
+  g18: {
+    cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 6 min lectura',
+    title: 'Mejor pala de pádel para niños: guía de compra 2026',
+    body: `<p>El error más habitual al comprar la primera pala de un niño es pensar en "que le dure" y llevarse una pala de adulto en talla pequeña, o directamente una de adulto normal "para que crezca con ella". Es justo al revés: una pala demasiado larga o pesada para su edad le obliga a compensar con el codo y la muñeca, y es la forma más rápida de que coja manía al pádel en vez de disfrutarlo.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. La longitud según la edad, no según lo que "le vaya a durar"</h4>
+<p>Las palas infantiles se venden en varias longitudes, no en una talla única: alrededor de <strong>38 cm para 5-7 años</strong>, <strong>41 cm para 8-10 años</strong> y <strong>43 cm para 11-13 años</strong>, antes de pasar a los 45 cm de una pala de adulto. Si compras una talla de más "para que le dure más tiempo", el niño va a tener que abrir mucho más el swing para controlarla, y eso es justo lo contrario de lo que necesita para aprender el golpe con la muñeca fija.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Núcleo blando y poco peso: no es un capricho, es para el codo</h4>
+<p>Los brazos y articulaciones de un niño están en desarrollo, así que un <strong>núcleo de EVA blanda</strong> (no una diamante dura de "potencia") y un peso bajo (280-320g frente a los 360-380g de una pala de adulto avanzada) son lo que evita las molestias en el codo cuando empiezan a golpear con más frecuencia. No busques una pala infantil "que pegue fuerte": a esa edad el objetivo es que controlen la bola, no que rematen.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Forma redonda, casi siempre</h4>
+<p>Para un niño que está aprendiendo, una <strong>forma redonda</strong> con el punto dulce centrado y amplio perdona muchos más golpes descentrados que una lágrima o diamante. Deja las formas más exigentes para cuando ya tenga varios años de pádel y una técnica consolidada; antes de eso, una diamante infantil solo le va a hacer perder confianza cada vez que falle un golpe.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Cuándo pasar a una pala de adulto (y cuánto gastar mientras tanto)</h4>
+<p>El cambio de talla suele tocar cada 2-3 años según el crecimiento, así que no tiene sentido gastar 100€+ en una pala infantil: entre 25€ y 45€ es un rango razonable para una pala que va a usar una o dos temporadas. El salto a una pala de adulto de 45 cm llega cuando el niño alcanza la estatura y la fuerza para manejarla sin perder el golpe, normalmente a partir de los 13-14 años, no antes solo porque "ya juega bien".</p>`,
+    links: [
+      { text: 'Ver palas de pádel infantiles en Amazon', query: 'pala padel infantil niños' },
+      { text: 'Nox AT10 Junior 2026 en Amazon', query: 'Nox AT10 Junior pala padel niños' }
     ]
   }
 };

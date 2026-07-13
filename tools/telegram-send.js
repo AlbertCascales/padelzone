@@ -3,7 +3,7 @@
  * y, cada día, un producto ya existente del catálogo (goteo).
  *
  * Uso:
- *   node tools/telegram-send.js announce   -> anuncia productos/guías NUEVOS desde la última ejecución
+ *   node tools/telegram-send.js announce   -> anuncia UN (1) producto/guía NUEVO desde la última ejecución (el más antiguo pendiente); el resto queda en cola para los próximos días
  *   node tools/telegram-send.js daily      -> publica el siguiente producto del catálogo (rotación)
  */
 
@@ -150,16 +150,18 @@ async function cmdAnnounce() {
     return;
   }
 
+  // Publica solo UNA novedad por ejecución (la más antigua pendiente) y deja el resto
+  // en cola para los próximos días, igual que el backfill de EmpiezaLibros.
+  const item = nuevos[0];
+  const restantes = nuevos.length - 1;
   const token = readToken();
-  for (const item of nuevos) {
-    try {
-      await sendPhoto(token, captionFor(item, { isNew: true }), item.image);
-      known[item.key] = true;
-      saveJson(KNOWN_PATH, known); // guarda tras cada envío por si algo falla a mitad
-      console.log('Anunciado:', item.title, '->', item.url);
-    } catch (e) {
-      console.error('ERROR anunciando', item.title, ':', e.message);
-    }
+  try {
+    await sendPhoto(token, captionFor(item, { isNew: true }), item.image);
+    known[item.key] = true;
+    saveJson(KNOWN_PATH, known);
+    console.log('Anunciado:', item.title, '->', item.url, restantes ? `(quedan ${restantes} novedades en cola)` : '(cola de novedades al día)');
+  } catch (e) {
+    console.error('ERROR anunciando', item.title, ':', e.message, '(no se marca como conocido, se reintentará en la próxima ejecución)');
   }
 }
 

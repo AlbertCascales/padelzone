@@ -1,10 +1,14 @@
 /*
- * Publica en el canal de Telegram @Empiezapadel las novedades de la web
- * y, cada día, un producto ya existente del catálogo (goteo).
+ * Publica en el canal de Telegram @Empiezapadel UN (1) elemento pendiente al día.
+ *
+ * Rutina INDEPENDIENTE de la generación de contenido de la web: cada ejecución mira
+ * qué hay publicado en la web (index.html) y qué NO se ha publicado todavía en
+ * Telegram (según telegram-radar/known.json), y publica el primero pendiente.
+ * No tiene por qué ser el generado ese mismo día: se va vaciando la cola poco a poco.
  *
  * Uso:
- *   node tools/telegram-send.js announce   -> anuncia UN (1) producto/guía NUEVO desde la última ejecución (el más antiguo pendiente); el resto queda en cola para los próximos días
- *   node tools/telegram-send.js daily      -> publica el siguiente producto del catálogo (rotación)
+ *   node tools/telegram-send.js publish   -> publica 1 elemento pendiente (el más antiguo en cola)
+ *   node tools/telegram-send.js status    -> muestra cuántos quedan pendientes, sin publicar nada
  */
 
 const fs = require('fs');
@@ -17,7 +21,6 @@ const CHANNEL = '@Empiezapadel';
 const TOKEN_PATH = 'C:\\Users\\marti\\.empiezapadel-secrets\\telegram-bot.token';
 const STATE_DIR = path.join(ROOT, 'telegram-radar');
 const KNOWN_PATH = path.join(STATE_DIR, 'known.json');
-const ROTATION_PATH = path.join(STATE_DIR, 'rotation.json');
 
 function readToken() {
   if (!fs.existsSync(TOKEN_PATH)) throw new Error('Falta el token en ' + TOKEN_PATH);
@@ -124,68 +127,60 @@ function sendPhoto(token, caption, imageUrl) {
   });
 }
 
-function captionFor(item, { isNew }) {
-  const tag = isNew ? '🆕 Nuevo en EmpiezaPadel' : '📌 Del catálogo';
+function captionFor(item) {
   const icon = item.type === 'guía' ? '📖' : '🏓';
-  return `${tag}\n${icon} <b>${escapeHtml(item.title)}</b>\n${escapeHtml(item.desc)}\n\n👉 ${item.url}`;
+  return `${icon} <b>${escapeHtml(item.title)}</b>\n${escapeHtml(item.desc)}\n\n👉 ${item.url}`;
 }
 function escapeHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-async function cmdAnnounce() {
-  ensureStateDir();
-  const catalog = buildCatalog();
-  const bootstrap = !fs.existsSync(KNOWN_PATH);
+// Elementos que están en la web pero todavía no se han publicado en Telegram.
+function pendientes() {
   const known = loadJson(KNOWN_PATH, {});
+  return buildCatalog().filter((it) => !known[it.key]);
+}
 
-  if (bootstrap) {
-    catalog.forEach((it) => (known[it.key] = true));
-    saveJson(KNOWN_PATH, known);
-    console.log(`Primera ejecución: se ha marcado el catálogo actual (${catalog.length} elementos) como ya conocido. No se anuncia nada retroactivamente. A partir de ahora solo se anunciarán las novedades reales.`);
+async function cmdPublish() {
+  ensureStateDir();
+  const cola = pendientes();
+  if (!cola.length) {
+    console.log('Nada pendiente: todo el contenido de la web ya está publicado en Telegram.');
     return;
   }
 
-  const nuevos = catalog.filter((it) => !known[it.key]);
-  if (!nuevos.length) {
-    console.log('Sin novedades desde la última ejecución.');
-    return;
-  }
-
-  // Publica solo UNA novedad por ejecución (la más antigua pendiente) y deja el resto
-  // en cola para los próximos días, igual que el backfill de EmpiezaLibros.
-  const item = nuevos[0];
-  const restantes = nuevos.length - 1;
+  // Publica UNO por ejecución (el más antiguo pendiente); el resto queda en cola.
+  const item = cola[0];
+  const restantes = cola.length - 1;
   const token = readToken();
   try {
-    await sendPhoto(token, captionFor(item, { isNew: true }), item.image);
+    await sendPhoto(token, captionFor(item), item.image);
+    const known = loadJson(KNOWN_PATH, {});
     known[item.key] = true;
     saveJson(KNOWN_PATH, known);
-    console.log('Anunciado:', item.title, '->', item.url, restantes ? `(quedan ${restantes} novedades en cola)` : '(cola de novedades al día)');
+    console.log('Publicado:', item.title, '->', item.url,
+      restantes ? `(quedan ${restantes} pendientes en cola)` : '(cola vacía: web y Telegram al día)');
   } catch (e) {
-    console.error('ERROR anunciando', item.title, ':', e.message, '(no se marca como conocido, se reintentará en la próxima ejecución)');
+    console.error('ERROR publicando', item.title, ':', e.message,
+      '(no se marca como publicado; se reintentará en la próxima ejecución)');
+    process.exit(1);
   }
 }
 
-async function cmdDaily() {
-  ensureStateDir();
+function cmdStatus() {
   const catalog = buildCatalog();
-  if (!catalog.length) { console.log('Catálogo vacío, nada que publicar.'); return; }
-  const rotation = loadJson(ROTATION_PATH, { index: 0 });
-  const idx = ((rotation.index % catalog.length) + catalog.length) % catalog.length;
-  const item = catalog[idx];
-
-  const token = readToken();
-  await sendPhoto(token, captionFor(item, { isNew: false }), item.image);
-  rotation.index = idx + 1;
-  saveJson(ROTATION_PATH, rotation);
-  console.log('Publicado del catálogo:', item.title, '->', item.url, `(posición ${idx + 1}/${catalog.length})`);
+  const cola = pendientes();
+  console.log(`Catálogo en la web: ${catalog.length} elementos`);
+  console.log(`Ya publicados en Telegram: ${catalog.length - cola.length}`);
+  console.log(`Pendientes de publicar: ${cola.length}`);
+  cola.slice(0, 5).forEach((it, i) => console.log(`  ${i + 1}. ${it.title}`));
+  if (cola.length > 5) console.log(`  … y ${cola.length - 5} más`);
 }
 
 const cmd = process.argv[2];
 (async () => {
   try {
-    if (cmd === 'announce') await cmdAnnounce();
-    else if (cmd === 'daily') await cmdDaily();
-    else { console.error('Uso: node tools/telegram-send.js <announce|daily>'); process.exit(1); }
+    if (cmd === 'publish') await cmdPublish();
+    else if (cmd === 'status') cmdStatus();
+    else { console.error('Uso: node tools/telegram-send.js <publish|status>'); process.exit(1); }
   } catch (e) {
     console.error('ERROR:', e.message);
     process.exit(1);

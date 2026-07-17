@@ -254,12 +254,7 @@
   </div>
 </div>
 
-<div class="stats-bar">
-  <div class="stat"><div class="stat-n">35+</div><div class="stat-l">Palas analizadas</div></div>
-  <div class="stat"><div class="stat-n">2026</div><div class="stat-l">Modelos actualizados</div></div>
-  <div class="stat"><div class="stat-n">12 marcas</div><div class="stat-l">Principales del mercado</div></div>
-  <div class="stat"><div class="stat-n">+12.000</div><div class="stat-l">Lectores al mes</div></div>
-</div>
+<div class="stats-bar" id="statsBar"></div>
 
 <main>
 
@@ -1351,6 +1346,27 @@ function renderFeatured() {
       </div>`;
 }
 renderFeatured();
+
+// Las cifras de la barra salen de los propios arrays, no a mano: la rutina diaria
+// añade un producto cada 24h, así que cualquier número escrito a mano queda desfasado
+// al día siguiente (decía "35+ palas" con 26 y "12 marcas" con 15).
+function renderStats() {
+  const el = document.getElementById('statsBar');
+  if (!el) return;
+  const prods = [...palas, ...zapatillas, ...accesorios];
+  // Normaliza la grafía para no contar dos veces la misma marca (Nox/NOX, StarVie/Star Vie).
+  // Solo para contar: renombrarlas en los datos cambiaría los slugs, que salen de brand+name,
+  // y rompería URLs ya indexadas.
+  const marcas = new Set(prods.map(p => p.brand.toLowerCase().replace(/\s+/g, '')));
+  const stats = [
+    [prods.length, 'Productos analizados'],
+    ['2026', 'Modelos actualizados'],
+    [marcas.size + ' marcas', 'Principales del mercado']
+  ];
+  el.innerHTML = stats.map(([n, l]) =>
+    `<div class="stat"><div class="stat-n">${n}</div><div class="stat-l">${l}</div></div>`).join('');
+}
+renderStats();
 
 // Las tarjetas de guía navegan a su página propia (en vez de abrir el modal)
 document.querySelectorAll('.guide-card[data-guide]').forEach(c => {

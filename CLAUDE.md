@@ -24,6 +24,20 @@ Tag de afiliado Amazon: `albertomart09-21` (constante `STORE_ID` en `index.html`
 |---|---|
 | `generate-pages.js` | Regenera páginas y sitemap desde `index.html`. Ejecutar tras cada cambio de contenido. |
 | `telegram-send.js` | `publish` publica 1 elemento pendiente en `@Empiezapadel`; `status` muestra cuántos quedan sin publicar nada. |
+| `indexnow-send.js` | Avisa a IndexNow de las URLs con `lastmod` de hoy. Ejecutar **después** de `generate-pages.js`. `--dry` para ver qué enviaría. |
+
+### Fechas: se sacan de git, no del reloj
+
+`lastmod` (sitemap) y `datePublished`/`dateModified` (JSON-LD de guías) salen del historial de git
+de cada página generada: primer commit = publicación, último commit = modificación. Es deliberado y
+frágil de tocar:
+
+- **Con la fecha de hoy sin más, el sitemap anunciaría las 85 URLs como "modificadas hoy" cada día**
+  y Google acabaría ignorando el `lastmod`. Antes estaba hardcodeada a un día fijo, que es el otro
+  extremo: páginas nuevas nacían diciendo que no se tocaban desde antes de existir.
+- `datePublished` **no puede depender del reloj**: al regenerar a diario, reescribiría la fecha, el
+  fichero quedaría sucio otra vez y se recommitearía solo en bucle. Por eso es el primer commit.
+- La mtime del fichero no vale: el generador reescribe los 84 ficheros en cada ejecución.
 
 ## Estado de las rutinas (dentro del repo, en `.gitignore`)
 
@@ -32,6 +46,16 @@ Tag de afiliado Amazon: `albertomart09-21` (constante `STORE_ID` en `index.html`
   Ojo: el arranque inicial marcó todo el catálogo como "ya conocido" sin publicarlo de verdad, así que
   hay elementos antiguos que nunca saldrán en el canal. Es intencionado (evita inundarlo de golpe).
 - `reddit-radar/vistos.txt` — hilos de Reddit ya procesados.
+
+## Indexación
+
+- **IndexNow**: la clave es `38f885e5cfd8d972588aa9d2ec5e4f2b`, servida en
+  `/38f885e5cfd8d972588aa9d2ec5e4f2b.txt` (ese fichero **debe estar publicado** o IndexNow rechaza el
+  envío). No es un secreto: es pública por diseño. **Google no usa IndexNow** — solo Bing y compañía;
+  para Google el único canal sigue siendo el sitemap.
+- El cuello de botella no es técnico: Search Console reportaba (17/07/2026) 53 URLs en
+  **"Descubierta: actualmente sin indexar"** — Google las conoce y elige no rastrearlas. Eso es señal
+  de valor percibido del contenido, no de configuración; no se arregla con sitemaps ni con pings.
 
 ## Secretos
 

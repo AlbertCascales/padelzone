@@ -13,12 +13,50 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const SITE = 'https://empiezapadel.es';
 const STORE_ID = 'albertomart09-21';
 const BRAND_NAME = 'EmpiezaPadel';
-const TODAY = '2026-07-09';
+const TODAY = new Date().toISOString().slice(0, 10);
+
+// Fechas reales de cada página, sacadas del historial de git. El generador reescribe
+// todos los ficheros en cada ejecución, así que la mtime no sirve; git solo registra
+// fecha cuando el contenido cambió de verdad. Sin esto el sitemap anunciaría "modificado
+// hoy" en las 85 URLs a diario y Google dejaría de fiarse del lastmod.
+const git = (args) => execFileSync('git', args, {
+  cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore']
+}).trim();
+
+function relPath(url) {
+  return path.relative(ROOT, path.join(ROOT, url.replace(/^\/|\/$/g, ''), 'index.html'))
+    .replace(/\\/g, '/');
+}
+
+// Fecha del primer commit del fichero. Es lo que va en datePublished: si aquí se usara
+// la fecha de hoy, cada regeneración diaria reescribiría la fecha, el fichero quedaría
+// sucio de nuevo y se recommitearía solo cada día en bucle.
+function gitCreated(url) {
+  try {
+    const out = git(['log', '--diff-filter=A', '--format=%as', '--', relPath(url)]);
+    return out.split('\n').filter(Boolean).pop() || TODAY; // sin commit aún: es de hoy
+  } catch {
+    return TODAY; // sin git disponible: no romper la generación
+  }
+}
+
+function gitLastMod(url) {
+  const rel = relPath(url);
+  try {
+    // Regenerada con cambios sin commitear (p. ej. un hub al añadir un producto):
+    // el contenido cambió hoy aunque el último commit sea antiguo.
+    if (git(['status', '--porcelain', '--', rel])) return TODAY;
+    return git(['log', '-1', '--format=%as', '--', rel]) || TODAY;
+  } catch {
+    return TODAY;
+  }
+}
 
 // ---------- 1. Extraer los datos desde index.html ----------
 const indexSrc = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
@@ -346,7 +384,7 @@ function renderGuidePage(id) {
       image: SITE + '/img/og-cover.jpg',
       author: { '@type': 'Organization', name: BRAND_NAME },
       publisher: { '@type': 'Organization', name: BRAND_NAME },
-      datePublished: TODAY, dateModified: TODAY,
+      datePublished: gitCreated(url), dateModified: gitLastMod(url),
       mainEntityOfPage: canonical
     },
     breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: 'Guías', url: '/guias/' }, { name: g.title, url }])
@@ -491,7 +529,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allUrls.map(u => `  <url>
     <loc>${SITE}${u}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${gitLastMod(u)}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${u === '/' ? '1.0' : '0.8'}</priority>
   </url>`).join('\n')}

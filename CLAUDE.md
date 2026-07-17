@@ -98,9 +98,10 @@ del momento" NO es una tarea: se calcula en el JS de la página (ver Convencione
   con lo visible en la página** (por eso las fichas muestran el nº de valoraciones).
   El bloque "producto del momento" de la home **no lleva JSON-LD** a propósito: al ser rotativo por JS,
   cualquier schema estático se desincronizaría del contenido visible.
-- **`_redirects` de Cloudflare Pages no hace redirecciones por dominio** (solo por ruta). El
-  www→apex no está montado; lo cubre el `canonical`. Si se quiere de verdad, es una Redirect Rule
-  del panel de Cloudflare, no un archivo del repo.
+- **`_redirects` de Cloudflare Pages no hace redirecciones por dominio** (solo por ruta): eso se monta
+  como Redirect Rule en el panel de Cloudflare, no con un archivo del repo. Ya está hecho y
+  funcionando (verificado 17/07/2026): `www` → 301 → `https://empiezapadel.es/`, y `http` → 301 →
+  `https`. No hay `_redirects` en el repo y no hace falta.
 - **Dominio y correo**: dominio en DonDominio pero **DNS y hosting en Cloudflare** (los nameservers
   apuntan allí; DonDominio ya no gestiona el DNS). El dominio está autenticado en MailerLite y el
   remitente verificado es `newsletter@empiezapadel.es`.

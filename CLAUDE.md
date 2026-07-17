@@ -93,9 +93,17 @@ del momento" NO es una tarea: se calcula en el JS de la página (ver Convencione
 
 ## Trampas ya pisadas (no repetirlas)
 
-- **Datos estructurados**: Google descarta las `review` cuyo `author` es la propia `Organization`
-  (autorreseña) → Search Console las reporta como ausentes. Usar `aggregateRating`, y que **coincida
-  con lo visible en la página** (por eso las fichas muestran el nº de valoraciones).
+- **Datos estructurados: las fichas NO llevan `aggregateRating`, y no es un olvido.** Google descarta
+  las `review` cuyo `author` es la propia `Organization` (autorreseña) y Search Console las reporta
+  como ausentes. El arreglo que se aplicó entonces —pasar a `aggregateRating` con un `reviewCount`
+  inventado para que "coincidiera con lo visible"— **fue mucho peor que el problema**: convirtió una
+  opinión propia (que Google solo ignoraba) en la afirmación de que N usuarios reales habían valorado
+  el producto, o sea, dato fabricado y violación de las políticas de spam. Se revirtió el 17/07/2026:
+  fuera el `aggregateRating` y fuera el campo `reviews` de los 56 productos.
+  `stars` es **la nota editorial**: se muestra como "Nuestra valoración" y no se marca con schema.
+  No hay forma legítima de expresar "la nota que le ponemos nosotros" en `aggregateRating`; si la
+  ausencia de estrellas en el SERP vuelve a picar, la respuesta es que no se marca — no buscar otro
+  campo con el que colarlo.
   El bloque "producto del momento" de la home **no lleva JSON-LD** a propósito: al ser rotativo por JS,
   cualquier schema estático se desincronizaría del contenido visible.
 - **`_redirects` de Cloudflare Pages no hace redirecciones por dominio** (solo por ruta): eso se monta

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://empiezapadel.es/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -260,7 +260,7 @@
   </url>
   <url>
     <loc>https://empiezapadel.es/accesorios/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -367,8 +367,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezapadel.es/accesorios/mcdavid-munequera-451-con-ferula-para-tendinitis-de-muneca/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezapadel.es/guias/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -501,6 +507,12 @@
   <url>
     <loc>https://empiezapadel.es/guias/grip-base-de-pala-de-padel-que-es-y-cuando-cambiarlo-no-es-lo-mismo-que-el-overgrip/</loc>
     <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezapadel.es/guias/munequera-de-padel-para-la-tendinitis-de-muneca-cuando-usarla-y-cual-comprar/</loc>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

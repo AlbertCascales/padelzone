@@ -45,7 +45,7 @@ frágil de tocar:
   cola: los pendientes se calculan cruzando esto con lo que hay en `index.html`.
   Ojo: el arranque inicial marcó todo el catálogo como "ya conocido" sin publicarlo de verdad, así que
   hay elementos antiguos que nunca saldrán en el canal. Es intencionado (evita inundarlo de golpe).
-- `reddit-radar/vistos.txt` — hilos de Reddit ya procesados.
+- `reddit-radar/vistos.txt` — residuo del radar de Reddit, ya eliminado (ver abajo). No lo lee nadie.
 
 ## Indexación
 
@@ -71,7 +71,12 @@ En `C:\Users\marti\.claude\scheduled-tasks\`. Son **independientes entre sí**; 
 |---|---|---|
 | `empiezapadel-contenido-auto` | 04:00 diario | Añade 1 producto + 1 guía a `index.html`, regenera y hace push. Termina ahí: no toca Telegram. |
 | `empiezapadel-telegram-auto` | 05:00 diario | Publica en `@Empiezapadel` 1 elemento de la web que aún no esté en `known.json`. No tiene por qué ser el del día. |
-| `empiezapadel-reddit-radar` | diario | Vigila r/Padelracket y r/padel; **solo prepara borradores**, nunca publica. |
+
+Hubo un `empiezapadel-reddit-radar` (vigilaba r/Padelracket y r/padel y preparaba borradores sin
+publicar nunca). **Eliminado el 19/07/2026**: llevaba tiempo sin estar registrado en el programador
+aunque su carpeta seguía en disco, así que no corría. Lo mismo pasa con `empiezapadel-newsletter-auto`.
+Ojo con esto al auditar: **que exista una carpeta en `.claude\scheduled-tasks\` no significa que la
+tarea esté activa** — la lista real es la que devuelve `list_scheduled_tasks`.
 
 Ambas rutinas de padel refrescan al final `node "C:\Users\marti\Downloads\cuadro-mando\generar.js"`
 (cuadro de mando de solo lectura, paso no crítico).

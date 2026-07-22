@@ -73,7 +73,7 @@ En `C:\Users\marti\.claude\scheduled-tasks\`. Son **independientes entre sí**; 
 | Rutina | Hora | Qué hace |
 |---|---|---|
 | `empiezapadel-contenido-auto` | 04:00 diario | **PAUSADA el 22/07/2026** (`enabled: false`). Añadía 1 producto + 1 guía a `index.html`, regeneraba y hacía push. Se paró porque estaba metiendo páginas que Google no indexa (8 de 95 URLs indexadas; ver [[gsc-indexacion-critica]] en memoria) y solo diluían el dominio. No borrada: reactivar con `update_scheduled_task enabled:true` cuando el sitio remonte indexación y haya con qué aportar valor real. |
-| `empiezapadel-telegram-auto` | 05:00 diario | Activa. Publica en `@Empiezapadel` 1 elemento de la web que aún no esté en `known.json`. No añade páginas, así que no afecta a la indexación. |
+| `empiezapadel-telegram-auto` | 05:00 diario | **PAUSADA el 22/07/2026** (`enabled: false`) a petición del usuario. Publicaba en `@Empiezapadel` 1 elemento de la web que aún no estuviera en `known.json`. No añade páginas ni afecta a la indexación; se paró para dejar toda la automatización de padel en pausa mientras el sitio remonta. Reactivar con `update_scheduled_task enabled:true`. |
 
 Hubo un `empiezapadel-reddit-radar` (vigilaba r/Padelracket y r/padel y preparaba borradores sin
 publicar nunca). **Eliminado el 19/07/2026**: llevaba tiempo sin estar registrado en el programador

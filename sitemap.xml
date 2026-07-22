@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://empiezapadel.es/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -266,7 +266,7 @@
   </url>
   <url>
     <loc>https://empiezapadel.es/accesorios/</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -385,8 +385,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezapadel.es/accesorios/adidas-protour-backpack-3-2/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezapadel.es/guias/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -537,6 +543,12 @@
   <url>
     <loc>https://empiezapadel.es/guias/mejores-zapatillas-de-padel-para-mujer-guia-de-compra-2026/</loc>
     <lastmod>2026-07-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezapadel.es/guias/mochila-de-padel-vs-paletero-cual-te-conviene/</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

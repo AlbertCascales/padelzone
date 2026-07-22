@@ -25,6 +25,7 @@ Tag de afiliado Amazon: `albertomart09-21` (constante `STORE_ID` en `index.html`
 | `generate-pages.js` | Regenera páginas y sitemap desde `index.html`. Ejecutar tras cada cambio de contenido. |
 | `telegram-send.js` | `publish` publica 1 elemento pendiente en `@Empiezapadel`; `status` muestra cuántos quedan sin publicar nada. |
 | `indexnow-send.js` | Avisa a IndexNow de las URLs con `lastmod` de hoy. Ejecutar **después** de `generate-pages.js`. `--dry` para ver qué enviaría. |
+| `gsc-report.js` | Informe de Search Console (solo lectura). `--perf` rendimiento (rápido), `--index` estado URL a URL (~95 llamadas, lento), sin flag ambos. Sin dependencias: JWT RS256 con módulos nativos. |
 
 ### Fechas: se sacan de git, no del reloj
 
@@ -59,9 +60,11 @@ frágil de tocar:
 
 ## Secretos
 
-Fuera del repo, en `C:\Users\marti\.empiezapadel-secrets\`: `telegram-bot.token` y `mailerlite.key`.
-Nunca imprimirlos ni commitearlos. Los scripts los leen solos de esa ruta; no hace falta pasarlos por
-el chat.
+Fuera del repo, en `C:\Users\marti\.empiezapadel-secrets\`: `telegram-bot.token`, `mailerlite.key` y
+`gsc-service-account.json` (cuenta de servicio de Google, lectura de Search Console; la cuenta
+`gsc-lector@empiezapadel-gsc.iam.gserviceaccount.com` está añadida como usuario en la propiedad, que
+es **de dominio**: `sc-domain:empiezapadel.es`). Nunca imprimirlos ni commitearlos. Los scripts los
+leen solos de esa ruta; no hace falta pasarlos por el chat.
 
 ## Rutinas programadas
 

@@ -264,39 +264,44 @@
     <div class="featured-product" id="featuredProduct"></div>
   </section>
 
-  <!-- EMPIEZA POR TU PRESUPUESTO -->
+  <!-- MATERIAL POR NIVEL -->
   <style>
-    #presupuesto .tier-intro{max-width:760px;margin:-.4rem 0 1.4rem;color:#6b6b63;font-size:1rem;line-height:1.5}
-    #presupuesto .tier{margin-bottom:1.8rem}
-    #presupuesto .tier-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.5rem;border-bottom:2px solid #eee}
-    #presupuesto .tier-price{font-weight:900;font-size:1.3rem;color:#111}
-    #presupuesto .tier-price .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:10px;vertical-align:middle}
-    #presupuesto .tier-green .dot{background:#1a7a4a}
-    #presupuesto .tier-amber .dot{background:#e0a400}
-    #presupuesto .tier-label{font-weight:700;color:#1a7a4a;font-size:.95rem}
-    #presupuesto .tier-callout{background:#fff7f2;border:1px solid #f3d9c9;border-radius:16px;padding:1.4rem 1.6rem}
-    #presupuesto .tier-callout h3{margin:0 0 .5rem;font-size:1.2rem;color:#111}
-    #presupuesto .tier-callout p{margin:0;color:#444;line-height:1.55}
-    #presupuesto .tier-callout a{color:#1a7a4a;font-weight:700;text-decoration:none;white-space:nowrap}
+    .nivel{margin-bottom:2.4rem}
+    .nivel-intro{max-width:800px;margin:-.4rem 0 1.2rem;color:#6b6b63;font-size:1rem;line-height:1.5}
+    .nivel .nivel-sub{margin:1.4rem 0 .8rem;font-size:1.05rem;color:#111;font-weight:800;letter-spacing:.2px}
+    .nivel .section-header h2 .dot{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:12px;vertical-align:middle}
+    .dot-green{background:#1a7a4a}.dot-amber{background:#e0a400}.dot-red{background:#d9534f}
+    .nivel-callout{background:#fff7f2;border:1px solid #f3d9c9;border-radius:14px;padding:1.1rem 1.4rem;margin:.2rem 0 .4rem}
+    .nivel-callout p{margin:0;color:#444;line-height:1.55}
   </style>
-  <section id="presupuesto">
-    <div class="section-header"><h2>💶 Empieza por tu presupuesto</h2></div>
-    <p class="tier-intro">Para empezar no necesitas gastar mucho. Estas son las palas con las que arrancar según lo que te quieras gastar, ordenadas por nuestra valoración.</p>
 
-    <div class="tier">
-      <div class="tier-head tier-green"><span class="tier-price"><span class="dot"></span>Menos de 100&nbsp;€</span><span class="tier-label">Tu primera pala</span></div>
-      <div class="product-grid" id="tier1Grid"></div>
-    </div>
+  <section id="nivel-principiante" class="nivel">
+    <div class="section-header"><h2><span class="dot dot-green"></span>Para empezar · Principiante</h2></div>
+    <p class="nivel-intro">Todo lo que necesitas para tus primeros meses, con buena calidad y sin gastar de más. La pala mejor valorada para empezar cuesta menos de 100&nbsp;€.</p>
+    <h3 class="nivel-sub">Palas para empezar</h3>
+    <div class="product-grid" id="palasPrinc"></div>
+    <h3 class="nivel-sub">Zapatillas de entrada</h3>
+    <div class="product-grid" id="zapaPrinc"></div>
+    <h3 class="nivel-sub">Lo básico para empezar a jugar</h3>
+    <div class="product-grid" id="basicosPrinc"></div>
+  </section>
 
-    <div class="tier">
-      <div class="tier-head tier-amber"><span class="tier-price"><span class="dot"></span>100&ndash;150&nbsp;€</span><span class="tier-label">Cuando ya coges nivel</span></div>
-      <div class="product-grid" id="tier2Grid"></div>
-    </div>
+  <section id="nivel-intermedio" class="nivel">
+    <div class="section-header"><h2><span class="dot dot-amber"></span>Cuando ya coges nivel · Intermedio</h2></div>
+    <p class="nivel-intro">Ya juegas con regularidad y quieres dar un paso. Palas más exigentes y zapatillas con mejor sujeción, sin irte a lo de competición.</p>
+    <h3 class="nivel-sub">Palas</h3>
+    <div class="product-grid" id="palasInter"></div>
+    <h3 class="nivel-sub">Zapatillas</h3>
+    <div class="product-grid" id="zapaInter"></div>
+  </section>
 
-    <div class="tier tier-callout">
-      <h3>¿Y las palas de 200&nbsp;€ o más?</h3>
-      <p>Esas son de nivel avanzado, las que usan los pros. Para empezar <strong>no te ayudan</strong>: perdonan menos los fallos y pueden cargarte el brazo. Cuando progreses, ya hablaremos. <a href="/palas/">Ver todas las palas →</a></p>
-    </div>
+  <section id="nivel-avanzado" class="nivel">
+    <div class="section-header"><h2><span class="dot dot-red"></span>Juegas en serio · Avanzado</h2></div>
+    <div class="nivel-callout"><p><strong>Si estás empezando, esta sección todavía no es para ti.</strong> Son palas de nivel alto: potentes y exigentes, perdonan menos los fallos y pueden cargarte el brazo. Están aquí para quien ya tiene técnica — no porque "más caro" signifique "mejor".</p></div>
+    <h3 class="nivel-sub">Palas</h3>
+    <div class="product-grid" id="palasAvanz"></div>
+    <h3 class="nivel-sub">Zapatillas</h3>
+    <div class="product-grid" id="zapaAvanz"></div>
   </section>
 
   <!-- CATEGORÍAS -->
@@ -1406,24 +1411,41 @@ function renderAll() {
 
 renderAll();
 
-// "Empieza por tu presupuesto": filtra las palas aptas para empezar en tramos de precio,
-// ordenadas por nuestra valoración. Es un filtro transparente del catálogo, no una lista a mano:
-// se mantiene solo al añadir o cambiar palas.
-function renderBudgetTiers() {
+// Material por nivel. Filtro transparente del catálogo (no listas a mano): se mantiene solo.
+// OJO con los datos: solo las PALAS tienen nivel de habilidad real (campo level). Las
+// zapatillas solo llevan tipo de suela, así que se ordenan por PRECIO (entrada/media/alta).
+// Los accesorios son consumibles sin nivel (pelotas, overgrips ~7€): van como "lo básico
+// para empezar" en la sección de principiante, no repartidos por nivel de forma inventada.
+function renderLevels() {
   const num = p => parseFloat(String(p.price).replace(/\./g, '').replace(',', '.')) || 0;
   const byValue = (a, b) => (b.stars - a.stars) || (num(a) - num(b));
-  const tiers = {
-    tier1Grid: palas.filter(p => /Principiante/i.test(p.level || '') && num(p) < 100),
-    tier2Grid: palas.filter(p => { const n = num(p); return n >= 100 && n <= 150 && !/^Avanzado$/i.test((p.level || '').trim()); })
-  };
-  for (const id of Object.keys(tiers)) {
+  const fill = (id, arr, max) => {
     const g = document.getElementById(id);
-    if (!g) continue;
+    if (!g) return;
     g.innerHTML = '';
-    tiers[id].sort(byValue).forEach(p => g.appendChild(createCard(p)));
-  }
+    arr.slice().sort(byValue).slice(0, max || 99).forEach(p => g.appendChild(createCard(p)));
+  };
+
+  // Palas por su nivel real
+  fill('palasPrinc', palas.filter(p => /Principiante/i.test(p.level || '')), 8);
+  fill('palasInter', palas.filter(p => /Intermedio/i.test(p.level || '')), 8);
+  fill('palasAvanz', palas.filter(p => /^Avanzado$/i.test((p.level || '').trim())), 8);
+
+  // Zapatillas por precio (no hay nivel de habilidad en los datos, solo tipo de suela)
+  fill('zapaPrinc', zapatillas.filter(p => num(p) < 90), 8);
+  fill('zapaInter', zapatillas.filter(p => num(p) >= 90 && num(p) < 120), 8);
+  fill('zapaAvanz', zapatillas.filter(p => num(p) >= 120), 8);
+
+  // Lo básico para empezar: pelotas + un overgrip + el paletero más asequible (consumibles sin nivel)
+  const basicos = [
+    ...accesorios.filter(p => /Pelotas/i.test(p.level || '')).sort((a, b) => num(a) - num(b)).slice(0, 2),
+    ...accesorios.filter(p => /^Accesorio$/i.test((p.level || '').trim())).sort(byValue).slice(0, 1),
+    ...accesorios.filter(p => /Paletero/i.test(p.level || '')).sort((a, b) => num(a) - num(b)).slice(0, 1)
+  ];
+  const gb = document.getElementById('basicosPrinc');
+  if (gb) { gb.innerHTML = ''; basicos.forEach(p => gb.appendChild(createCard(p))); }
 }
-renderBudgetTiers();
+renderLevels();
 
 // Producto del momento: rota cada 2 días por todo el catálogo (cualquier categoría),
 // de forma determinista según la fecha (mismo producto para todos los visitantes ese día).

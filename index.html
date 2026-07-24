@@ -264,6 +264,41 @@
     <div class="featured-product" id="featuredProduct"></div>
   </section>
 
+  <!-- EMPIEZA POR TU PRESUPUESTO -->
+  <style>
+    #presupuesto .tier-intro{max-width:760px;margin:-.4rem 0 1.4rem;color:#6b6b63;font-size:1rem;line-height:1.5}
+    #presupuesto .tier{margin-bottom:1.8rem}
+    #presupuesto .tier-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.5rem;border-bottom:2px solid #eee}
+    #presupuesto .tier-price{font-weight:900;font-size:1.3rem;color:#111}
+    #presupuesto .tier-price .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:10px;vertical-align:middle}
+    #presupuesto .tier-green .dot{background:#1a7a4a}
+    #presupuesto .tier-amber .dot{background:#e0a400}
+    #presupuesto .tier-label{font-weight:700;color:#1a7a4a;font-size:.95rem}
+    #presupuesto .tier-callout{background:#fff7f2;border:1px solid #f3d9c9;border-radius:16px;padding:1.4rem 1.6rem}
+    #presupuesto .tier-callout h3{margin:0 0 .5rem;font-size:1.2rem;color:#111}
+    #presupuesto .tier-callout p{margin:0;color:#444;line-height:1.55}
+    #presupuesto .tier-callout a{color:#1a7a4a;font-weight:700;text-decoration:none;white-space:nowrap}
+  </style>
+  <section id="presupuesto">
+    <div class="section-header"><h2>💶 Empieza por tu presupuesto</h2></div>
+    <p class="tier-intro">Para empezar no necesitas gastar mucho. Estas son las palas con las que arrancar según lo que te quieras gastar, ordenadas por nuestra valoración.</p>
+
+    <div class="tier">
+      <div class="tier-head tier-green"><span class="tier-price"><span class="dot"></span>Menos de 100&nbsp;€</span><span class="tier-label">Tu primera pala</span></div>
+      <div class="product-grid" id="tier1Grid"></div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head tier-amber"><span class="tier-price"><span class="dot"></span>100&ndash;150&nbsp;€</span><span class="tier-label">Cuando ya coges nivel</span></div>
+      <div class="product-grid" id="tier2Grid"></div>
+    </div>
+
+    <div class="tier tier-callout">
+      <h3>¿Y las palas de 200&nbsp;€ o más?</h3>
+      <p>Esas son de nivel avanzado, las que usan los pros. Para empezar <strong>no te ayudan</strong>: perdonan menos los fallos y pueden cargarte el brazo. Cuando progreses, ya hablaremos. <a href="/palas/">Ver todas las palas →</a></p>
+    </div>
+  </section>
+
   <!-- CATEGORÍAS -->
   <section>
     <div class="section-header"><h2>Explorar por categoría</h2></div>
@@ -1370,6 +1405,25 @@ function renderAll() {
 }
 
 renderAll();
+
+// "Empieza por tu presupuesto": filtra las palas aptas para empezar en tramos de precio,
+// ordenadas por nuestra valoración. Es un filtro transparente del catálogo, no una lista a mano:
+// se mantiene solo al añadir o cambiar palas.
+function renderBudgetTiers() {
+  const num = p => parseFloat(String(p.price).replace(/\./g, '').replace(',', '.')) || 0;
+  const byValue = (a, b) => (b.stars - a.stars) || (num(a) - num(b));
+  const tiers = {
+    tier1Grid: palas.filter(p => /Principiante/i.test(p.level || '') && num(p) < 100),
+    tier2Grid: palas.filter(p => { const n = num(p); return n >= 100 && n <= 150 && !/^Avanzado$/i.test((p.level || '').trim()); })
+  };
+  for (const id of Object.keys(tiers)) {
+    const g = document.getElementById(id);
+    if (!g) continue;
+    g.innerHTML = '';
+    tiers[id].sort(byValue).forEach(p => g.appendChild(createCard(p)));
+  }
+}
+renderBudgetTiers();
 
 // Producto del momento: rota cada 2 días por todo el catálogo (cualquier categoría),
 // de forma determinista según la fecha (mismo producto para todos los visitantes ese día).

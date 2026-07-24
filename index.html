@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="EmpiezaPadel — Novedades" href="/rss.xml">
-<title>Mejores palas y zapatillas de pádel 2026 · Guías de compra | EmpiezaPadel</title>
-<meta name="description" content="Reviews y guías de compra de pádel 2026: qué pala, zapatilla, pelotas y accesorios comprar según tu nivel. Análisis honestos para principiantes y avanzados.">
+<title>Empieza en el pádel: qué material comprar sin gastar de más | EmpiezaPadel</title>
+<meta name="description" content="Qué pala, zapatillas y equipo comprar para empezar a jugar al pádel con buena calidad y sin pagar de más. Te decimos qué necesitas de verdad y qué NO. Análisis honestos, sin postureo.">
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://empiezapadel.es/">
@@ -15,8 +15,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="EmpiezaPadel">
-<meta property="og:title" content="Mejores palas y zapatillas de pádel 2026 · Guías de compra">
-<meta property="og:description" content="Reviews y guías de compra de pádel: qué pala, zapatilla y accesorios comprar según tu nivel.">
+<meta property="og:title" content="Empieza en el pádel sin que te timen · Material calidad-precio para principiantes">
+<meta property="og:description" content="Qué comprar para empezar con buena calidad y sin pagar de más — y qué no necesitas todavía. Sin postureo.">
 <meta property="og:url" content="https://empiezapadel.es/">
 <meta property="og:image" content="https://empiezapadel.es/img/og-cover.jpg">
 
@@ -246,8 +246,8 @@
 <div class="hero">
   <div class="hero-wordmark">Empieza<span>Padel</span></div>
   <div class="hero-season">Temporada 2026</div>
-  <h1>Qué pala, zapatilla y accesorios de <em>pádel</em> comprar en 2026</h1>
-  <p>Analizamos las mejores palas, zapatillas y accesorios para que compres con seguridad, seas principiante o avanzado.</p>
+  <h1>Empieza en el <em>pádel</em> con el material adecuado, sin gastar de más</h1>
+  <p>Te decimos qué pala, zapatillas y equipo comprar para empezar a jugar con buena calidad y a buen precio — y, sobre todo, qué <strong>no</strong> necesitas todavía. Análisis honestos, sin postureo y sin empujarte a lo más caro.</p>
   <div class="hero-search">
     <input type="text" placeholder="Busca una pala, marca…" id="searchInput" oninput="window._searchScrollPending=false; filterProducts()" onkeydown="if(event.key==='Enter'){window._searchScrollPending=true; filterProducts();}" />
     <button onclick="window._searchScrollPending=true; filterProducts()">Buscar</button>
@@ -260,7 +260,7 @@
 
   <!-- DESTACADO -->
   <section>
-    <div class="section-header"><h2>⭐ Producto del momento</h2></div>
+    <div class="section-header"><h2>⭐ Para empezar sin equivocarte</h2></div>
     <div class="featured-product" id="featuredProduct"></div>
   </section>
 
@@ -1376,7 +1376,9 @@ renderAll();
 function renderFeatured() {
   const el = document.getElementById('featuredProduct');
   if (!el) return;
-  const pool = [...palas, ...zapatillas, ...accesorios];
+  // El sitio va de empezar bien y barato: no destacamos palas de nivel avanzado
+  // (contradiría el mensaje). Zapatillas y accesorios entran todos.
+  const pool = [...palas, ...zapatillas, ...accesorios].filter(p => !/Avanzado/.test(p.level || ''));
   const idx = Math.floor(Date.now() / (2 * 86400000)) % pool.length;
   const p = pool[idx];
   const url = prodPageUrl(p);

@@ -6,6 +6,19 @@ Repo: `https://github.com/AlbertCascales/padelzone.git` · Deploy: Cloudflare Pa
 
 Es el mismo patrón que `empiezalibros.es` (en `Downloads/empiezalibros`) aplicado a pádel.
 
+## Enfoque: quien empieza en el pádel, con presupuesto ajustado
+
+**Toda decisión de contenido, diseño y curación se juzga contra esto:** el sitio ayuda a alguien que
+**empieza en el pádel a comprar buen material sin gastar de más**. Nicho = principiante + calidad-precio +
+**voz honesta anti-postureo** ("qué NO necesitas todavía", "no compres la pala de pro"). Encaja con el
+propio nombre (EmpiezaPadel) y es el único activo que la competencia (padelnuestro.com, Amazon) no puede
+copiar, porque decir "no te gastes de más" va contra su interés. **No** volver a ser un catálogo genérico
+"para todos": eso es indistinguible de una tienda y es parte de por qué Google no indexa (ver
+[[gsc-indexacion-critica]] y [[posicionamiento-nicho]] en memoria). Al añadir o reordenar: priorizar lo
+asequible y de nivel entrada, tratar lo caro/avanzado como contexto ("esto usan los pros y por qué no lo
+necesitas"), y **nunca inventar datos** (ni reseñas, ni imágenes de otra marca, ni niveles que los datos
+no soportan — las palas tienen nivel real; zapatillas/accesorios no).
+
 ## Arquitectura: index.html es la única fuente de la verdad
 
 Los datos de **productos y guías viven dentro de `index.html`**, en literales JavaScript. No hay base

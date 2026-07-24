@@ -282,6 +282,7 @@
     <div class="product-grid" id="palasPrinc"></div>
     <h3 class="nivel-sub">Zapatillas de entrada</h3>
     <div class="product-grid" id="zapaPrinc"></div>
+    <p style="margin:.6rem 0 0;font-size:.9rem;color:#6b6b63">¿Buscas modelo de mujer? Los tienes en el <a href="/zapatillas/" style="color:#1a7a4a;font-weight:700;text-decoration:none">catálogo completo de zapatillas →</a></p>
     <h3 class="nivel-sub">Lo básico para empezar a jugar</h3>
     <div class="product-grid" id="basicosPrinc"></div>
   </section>
@@ -1431,10 +1432,15 @@ function renderLevels() {
   fill('palasInter', palas.filter(p => /Intermedio/i.test(p.level || '')), 8);
   fill('palasAvanz', palas.filter(p => /^Avanzado$/i.test((p.level || '').trim())), 8);
 
-  // Zapatillas por precio (no hay nivel de habilidad en los datos, solo tipo de suela)
-  fill('zapaPrinc', zapatillas.filter(p => num(p) < 90), 8);
-  fill('zapaInter', zapatillas.filter(p => num(p) >= 90 && num(p) < 120), 8);
-  fill('zapaAvanz', zapatillas.filter(p => num(p) >= 120), 8);
+  // Zapatillas: no hay nivel de habilidad en los datos (solo tipo de suela), así que se
+  // ordenan por valoración y precio. Los modelos específicos de mujer ("Lady") se sacan de
+  // estas filas generales — si no, al ser los más baratos copaban la de principiante — y se
+  // ven en el catálogo completo (enlace bajo la fila). El corte no es solo el precio.
+  const esMujer = p => /lady|woman|mujer/i.test((p.brand || '') + ' ' + (p.name || ''));
+  const zapaHombre = zapatillas.filter(p => !esMujer(p));
+  fill('zapaPrinc', zapaHombre.filter(p => num(p) < 100), 8);
+  fill('zapaInter', zapaHombre.filter(p => num(p) >= 100 && num(p) < 125), 8);
+  fill('zapaAvanz', zapaHombre.filter(p => num(p) >= 125), 8);
 
   // Lo básico para empezar: pelotas + un overgrip + el paletero más asequible (consumibles sin nivel)
   const basicos = [

@@ -951,7 +951,7 @@ const zapatillas = [
     query: 'Babolat Movea Padel'
   },
   {
-    id: 'z15', img: 'img/z15.jpg',
+    id: 'z15', mujer: true, img: 'img/z15.jpg',
     brand: 'Bullpadel', name: 'Performance Comfort 26V Rosa', level: 'Hierba artificial',
     stars: 4, price: '74,00', badge: null,
     desc: 'La zapatilla de Bullpadel con horma específica de mujer: más estrecha en el talón y con menos volumen en el empeine que una talla reducida de zapatilla de hombre. Suela de espiga y plantilla acolchada pensada para sesiones de 1-2 horas.',
@@ -1327,7 +1327,7 @@ function renderLevels() {
   // ordenan por valoración y precio. Los modelos específicos de mujer ("Lady") se sacan de
   // estas filas generales — si no, al ser los más baratos copaban la de principiante — y se
   // ven en el catálogo completo (enlace bajo la fila). El corte no es solo el precio.
-  const esMujer = p => /lady|woman|mujer/i.test((p.brand || '') + ' ' + (p.name || ''));
+  const esMujer = p => p.mujer === true || /lady|woman|mujer/i.test((p.brand || '') + ' ' + (p.name || ''));
   const zapaHombre = zapatillas.filter(p => !esMujer(p));
   fill('zapaPrinc', zapaHombre.filter(p => num(p) < 100), 8);
   fill('zapaInter', zapaHombre.filter(p => num(p) >= 100 && num(p) < 125), 8);
@@ -1715,7 +1715,7 @@ const guides = {
 <p>Mide siempre por la tarde (el pie se hincha durante el día y puede variar medio número). Si la marca que quieres no tiene horma ancha, sube media talla solo en longitud y compensa con un cordón más suelto en el empeine, nunca al revés. Y si después de todo esto la zapatilla sigue rozando, una plantilla más fina suele liberar más espacio lateral que comprar una talla extra.</p>`,
     links: [
       { text: 'Ver zapatillas de horma ancha en Amazon', query: 'zapatillas padel horma ancha' },
-      { text: 'Mizuno Wave Stealth Neo Padel en Amazon', query: 'Mizuno Wave Stealth Neo Padel' }
+      { text: 'Asics Gel-Padel Pro 6 2026 en Amazon', query: 'Asics Gel-Padel Pro 6 2026 padel' }
     ]
   },
   g14: {
@@ -1741,12 +1741,12 @@ const guides = {
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Qué hace que una pala sea "de control" y no de potencia</h4>
 <p>Tres cosas, en este orden de importancia. Primero, la <strong>forma</strong>: redonda (balance bajo, punto dulce centrado) o como mucho lágrima suave; olvídate de la forma diamante. Segundo, el <strong>núcleo</strong>: EVA blanda (a veces llamada SoftEva, Control Foam o similar según la marca), que absorbe el golpe en vez de devolverlo con violencia. Tercero, el <strong>balance</strong>: bajo o bajo-medio, con el peso concentrado cerca del mango, lo que hace la pala mucho más manejable en la volea rápida y en defensa desde el fondo de pista.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Tres modelos concretos según presupuesto</h4>
-<p><strong>StarVie Metheora 2026</strong> (~179€): la referencia histórica de control, forma redonda pura y tacto muy suave, pensada para construir el punto con paciencia. <strong>Adidas Metalbone Control 2026</strong> (~169€): balance ajustable con el sistema Weight & Balance, sweet spot muy amplio, para quien quiere control pero sin renunciar del todo a algo de pegada cuando toca rematar. <strong>Nox ML10 Ventus Control 3K 2026</strong> (~149€): forma redonda con carbono 3K, un punto intermedio muy versátil si vienes de una pala de iniciación y quieres dar el salto sin perder la comodidad.</p>
+<p><strong>Bullpadel Neuron 02 2026</strong> (~189€): la pala de Fede Chingotto, orientada al control de precisión — forma híbrida y núcleo MultiEva que premian colocar la bola con exactitud antes que pegar fuerte. <strong>Adidas Metalbone Control 2026</strong> (~169€): balance ajustable con el sistema Weight & Balance, sweet spot muy amplio, para quien quiere control pero sin renunciar del todo a algo de pegada cuando toca rematar. <strong>Nox ML10 Ventus Control 3K 2026</strong> (~149€): forma redonda con carbono 3K, un punto intermedio muy versátil si vienes de una pala de iniciación y quieres dar el salto sin perder la comodidad.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Errores típicos al comprar una pala de control</h4>
 <p>El más común es dejarse convencer por una pala "de firma" de un jugador ofensivo porque "es la que usa el número 1": esas palas suelen ser diamante y núcleo duro, justo lo contrario de lo que necesita un perfil defensivo. El segundo error es fijarse solo en el peso e ignorar el balance: una pala ligera pero con balance alto sigue siendo incómoda para un jugador de control. Y el tercero es infravalorar el precio de una pala de control pensando que "como no pega tanto, debería ser más barata": la tecnología de absorción de vibración de gama alta (paneles auxéticos, EVA multicapa) cuesta lo mismo fabricarla que la de una pala de potencia, así que no descartes modelos de 150-180€ solo por su perfil defensivo.</p>`,
     links: [
       { text: 'Ver palas de control en Amazon', query: 'pala padel control 2026' },
-      { text: 'StarVie Metheora 2026 en Amazon', query: 'StarVie Metheora 2026 padel' }
+      { text: 'Bullpadel Neuron 02 2026 en Amazon', query: 'Bullpadel Neuron 02 2026 padel' }
     ]
   },
   g16: {
@@ -1758,12 +1758,12 @@ const guides = {
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. En qué se nota realmente el salto de precio de 140€ a 220€</h4>
 <p>No es marketing: hay tres diferencias tangibles. El <strong>gramaje de carbono</strong> (3K o 12K en la gama de entrada frente a 16K-18K en la gama alta) afecta a la rigidez y por tanto a cuánta energía devuelve la pala en el impacto. El <strong>punto dulce</strong> suele ser más pequeño en las palas baratas, así que un golpe descentrado pierde más potencia y control que en una pala premium. Y la <strong>durabilidad del carbono en cara</strong> se degrada algo antes con uso intensivo (3-4 sesiones/semana) en la gama de entrada. Para un jugador que juega 1-2 veces por semana, ninguna de las tres diferencias justifica pagar 80€ más.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Tres opciones concretas por debajo de 150€</h4>
-<p><strong>Adidas Drive 3.3 2026</strong> (~139€): diamante, balance alto, núcleo EVA de alta densidad. La opción más equilibrada entre pegada y punto dulce en esta franja. <strong>Drop Shot Axion 2026</strong> (~119€): diamante con balance medio-alto y fibra de carbono en cara; algo más manejable que la Drive, buena opción si vienes de una pala de iniciación. <strong>Bullpadel Indiga Power 2026</strong> (~69€): si tu presupuesto es aún más ajustado, esta lágrima-diamante da un primer paso hacia la potencia sin el compromiso de una diamante pura.</p>
+<p><strong>Adidas Drive 3.5 2026</strong> (~139€): diamante, balance alto, núcleo EVA de alta densidad. La opción más equilibrada entre pegada y punto dulce en esta franja. <strong>Drop Shot Axion 2026</strong> (~119€): diamante con balance medio-alto y fibra de carbono en cara; algo más manejable que la Drive, buena opción si vienes de una pala de iniciación. <strong>Bullpadel Indiga Power 2026</strong> (~69€): si tu presupuesto es aún más ajustado, esta lágrima-diamante da un primer paso hacia la potencia sin el compromiso de una diamante pura.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. El error más caro: comprar potencia sin tener aún la técnica</h4>
 <p>Una pala de potencia con balance alto castiga mucho más los golpes mal dados que una de control, y eso se nota igual de mal en una pala de 140€ que en una de 220€. Si llevas menos de un año jugando y aún no tienes el golpe de derecha consolidado, una diamante te va a generar más molestias en el codo que ganancia real en el remate: en ese caso compensa más una lágrima con balance medio (como la Axion) que una diamante pura.</p>`,
     links: [
       { text: 'Ver palas de potencia por menos de 150€ en Amazon', query: 'pala padel potencia diamante menos 150 euros' },
-      { text: 'Adidas Drive 3.3 2026 en Amazon', query: 'Adidas Drive 3.3 2026 padel' }
+      { text: 'Adidas Drive 3.5 2026 en Amazon', query: 'Adidas Drive 3.5 2026 padel' }
     ]
   },
   g17: {
@@ -1795,7 +1795,7 @@ const guides = {
 <p>El cambio de talla suele tocar cada 2-3 años según el crecimiento, así que no tiene sentido gastar 100€+ en una pala infantil: entre 25€ y 45€ es un rango razonable para una pala que va a usar una o dos temporadas. El salto a una pala de adulto de 45 cm llega cuando el niño alcanza la estatura y la fuerza para manejarla sin perder el golpe, normalmente a partir de los 13-14 años, no antes solo porque "ya juega bien".</p>`,
     links: [
       { text: 'Ver palas de pádel infantiles en Amazon', query: 'pala padel infantil niños' },
-      { text: 'Nox AT10 Junior 2026 en Amazon', query: 'Nox AT10 Junior pala padel niños' }
+      { text: 'Nox AT10 Genius Junior 2026 en Amazon', query: 'Nox AT10 Genius Junior pala padel niños' }
     ]
   },
   g19: {
@@ -1863,7 +1863,7 @@ const guides = {
 <p>Se retira el viejo tirando desde el extremo, se limpia el mango de restos de adhesivo, y se enrolla el nuevo en diagonal desde la base hacia la punta, solapando ligeramente cada vuelta, y se remata con el hilo o la cinta que trae. La primera vez casi siempre queda alguna arruga; si no te fías del resultado o la pala es de gama alta, la mayoría de tiendas de pádel lo cambian por un par de euros en el momento, y así te aseguras un acabado sin bultos que sí afecta al agarre.</p>`,
     links: [
       { text: 'Ver grips base de pádel en Amazon', query: 'grip base pala padel' },
-      { text: 'Bullpadel Grip GR-1210 en Amazon', query: 'Bullpadel GR-1210 grip base pala padel' }
+      { text: 'Ver grips base de pádel en Amazon', query: 'grip base pala padel' }
     ]
   },
   g23: {
@@ -1905,18 +1905,18 @@ const guides = {
     title: 'Mejores zapatillas de pádel para mujer: guía de compra 2026',
     body: `<p>Buscar "zapatillas de pádel mujer" en vez de "zapatillas de pádel" a secas no es capricho: la horma femenina no es una zapatilla de hombre en talla pequeña. Cambia la anchura del talón, el volumen del empeine y, en muchos modelos, hasta la densidad de la amortiguación.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Por qué importa la horma y no solo la talla</h4>
-<p>Un pie de mujer tiene, de media, el talón más estrecho respecto al ancho del antepié que un pie de hombre de la misma longitud. Si compras una zapatilla de hombre en talla pequeña, el largo puede cuadrar pero el talón te queda holgado: eso se traduce en rozaduras y en menos sujeción justo en los cambios de dirección bruscos, que es donde más se lesiona el tobillo. Las zapatillas con horma de mujer (como la Joma Slam Lady o la Bullpadel Comfort Lady) están cortadas sobre un molde distinto, no reescalado.</p>
+<p>Un pie de mujer tiene, de media, el talón más estrecho respecto al ancho del antepié que un pie de hombre de la misma longitud. Si compras una zapatilla de hombre en talla pequeña, el largo puede cuadrar pero el talón te queda holgado: eso se traduce en rozaduras y en menos sujeción justo en los cambios de dirección bruscos, que es donde más se lesiona el tobillo. Las zapatillas con horma de mujer (como la Joma Slam Lady o la Bullpadel Performance Comfort 26V Rosa) están cortadas sobre un molde distinto, no reescalado.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Qué mirar según cuánto juegas</h4>
 <p>Para 1-2 sesiones por semana, prioriza precio y comodidad de primeras: no hace falta pagar por tecnologías de amortiguación premium que no vas a exprimir. Para 3 o más sesiones semanales, sí merece la pena invertir en una suela más duradera y una amortiguación específica, porque el desgaste y la fatiga en articulaciones se nota mucho antes con horma incorrecta o gama de entrada.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. La suela sigue mandando sobre el género</h4>
 <p>Da igual que sea horma de mujer: si tu pista es de hierba artificial con arena de sílice necesitas suela de espiga, y si es cemento o indoor necesitas suela lisa o multisuperficie. Elegir primero por "modelo de mujer" y luego ignorar la superficie de tu club es el error más habitual; la suela equivocada desliza o se clava mal independientemente de la horma.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Dos opciones concretas por presupuesto</h4>
 <p><strong>Entrada (~59€):</strong> Joma Slam Lady 2026 — la más vendida en España en su franja de precio, horma de mujer y suela de espiga para hierba artificial.<br>
-<strong>Uso regular (~74€):</strong> Bullpadel Comfort Lady 2026 — mejor sujeción de talón y plantilla más acolchada para quien ya juega con cierta continuidad.</p>`,
+<strong>Uso regular (~74€):</strong> Bullpadel Performance Comfort 26V Rosa — mejor sujeción de talón y plantilla más acolchada para quien ya juega con cierta continuidad.</p>`,
     links: [
       { text: 'Ver zapatillas de pádel para mujer en Amazon', query: 'zapatillas padel mujer' },
       { text: 'Joma Slam Lady 2026 en Amazon', query: 'Joma Slam Lady padel zapatillas 2026' },
-      { text: 'Bullpadel Comfort Lady 2026 en Amazon', query: 'Bullpadel Comfort Lady zapatillas padel mujer' }
+      { text: 'Bullpadel Performance Comfort 26V Rosa en Amazon', query: 'Bullpadel Performance Comfort 26V Rosa zapatillas padel mujer' }
     ]
   },
   g26: {

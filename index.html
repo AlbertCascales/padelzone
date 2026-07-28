@@ -289,8 +289,6 @@
     <h3 class="nivel-sub">Zapatillas de entrada</h3>
     <div class="product-grid" id="zapaPrinc"></div>
     <p style="margin:.6rem 0 0;font-size:.9rem;color:#6b6b63">¿Buscas modelo de mujer? Los tienes en el <a href="/zapatillas/" style="color:#1a7a4a;font-weight:700;text-decoration:none">catálogo completo de zapatillas →</a></p>
-    <h3 class="nivel-sub">Lo básico para empezar a jugar</h3>
-    <div class="product-grid" id="basicosPrinc"></div>
   </section>
 
   <section id="nivel-intermedio" class="nivel">
@@ -311,22 +309,11 @@
     <div class="product-grid" id="zapaAvanz"></div>
   </section>
 
-  <!-- PALETEROS -->
-  <section id="paleteros">
-    <div class="section-header"><h2>🎒 Paleteros 2026</h2><a href="/accesorios/">Ver todas →</a></div>
-    <div class="product-grid" id="paletersGrid"></div>
-  </section>
-
-  <!-- PELOTAS -->
-  <section id="pelotas">
-    <div class="section-header"><h2 style="display:flex;align-items:center;gap:8px"><svg width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="14" fill="#FFD400"/><path d="M4 9 A14 14 0 0 1 4 23" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M28 9 A14 14 0 0 0 28 23" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Pelotas de pádel</h2><a href="/accesorios/">Ver todas →</a></div>
-    <div class="product-grid" id="pelotasGrid"></div>
-  </section>
-
-  <!-- OVERGRIPS -->
-  <section id="overgrips">
-    <div class="section-header"><h2>🖐️ Overgrips</h2><a href="/accesorios/">Ver todas →</a></div>
-    <div class="product-grid" id="overgripsGrid"></div>
+  <!-- ACCESORIOS (todos juntos: independientes del nivel) -->
+  <section id="accesorios">
+    <div class="section-header"><h2>🎒 Accesorios</h2><a href="/accesorios/">Ver todas →</a></div>
+    <p class="nivel-intro">Pelotas, paleteros, overgrips, protecciones, coderas… lo que necesitas al margen de tu nivel de juego.</p>
+    <div class="product-grid" id="accesoriosGrid"></div>
   </section>
 
   <!-- GUÍAS -->
@@ -1294,11 +1281,9 @@ function renderGrid(arr, gridId, max = PREVIEW, filterFn = null) {
 }
 
 function renderAll() {
-  renderGrid(palas,     'palasGrid');
-  renderGrid(zapatillas,'zapatillasGrid');
-  renderGrid(paleteros, 'paletersGrid');
-  renderGrid(pelotas,   'pelotasGrid');
-  renderGrid(overgrips, 'overgripsGrid');
+  // Accesorios todos juntos (independientes del nivel): pelotas, paleteros, overgrips,
+  // protectores, coderas, muñequeras, etc. Sin límite: es su sección dedicada.
+  renderGrid(accesorios, 'accesoriosGrid', accesorios.length);
 }
 
 renderAll();
@@ -1332,15 +1317,6 @@ function renderLevels() {
   fill('zapaPrinc', zapaHombre.filter(p => num(p) < 100), 8);
   fill('zapaInter', zapaHombre.filter(p => num(p) >= 100 && num(p) < 125), 8);
   fill('zapaAvanz', zapaHombre.filter(p => num(p) >= 125), 8);
-
-  // Lo básico para empezar: pelotas + un overgrip + el paletero más asequible (consumibles sin nivel)
-  const basicos = [
-    ...accesorios.filter(p => /Pelotas/i.test(p.level || '')).sort((a, b) => num(a) - num(b)).slice(0, 2),
-    ...accesorios.filter(p => /^Accesorio$/i.test((p.level || '').trim())).sort(byValue).slice(0, 1),
-    ...accesorios.filter(p => /Paletero/i.test(p.level || '')).sort((a, b) => num(a) - num(b)).slice(0, 1)
-  ];
-  const gb = document.getElementById('basicosPrinc');
-  if (gb) { gb.innerHTML = ''; basicos.forEach(p => gb.appendChild(createCard(p))); }
 }
 renderLevels();
 
@@ -1432,9 +1408,7 @@ function filterProducts() {
     document.getElementById('nivel-principiante'),
     document.getElementById('nivel-intermedio'),
     document.getElementById('nivel-avanzado'),
-    document.getElementById('paleteros'),
-    document.getElementById('pelotas'),
-    document.getElementById('overgrips')
+    document.getElementById('accesorios')
   ].filter(Boolean);
 
   if (!q) {

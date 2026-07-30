@@ -88,6 +88,7 @@ En `C:\Users\marti\.claude\scheduled-tasks\`. Son **independientes entre sí**; 
 |---|---|---|
 | `empiezapadel-contenido-auto` | 04:00 diario | **PAUSADA el 22/07/2026** (`enabled: false`). Añadía 1 producto + 1 guía a `index.html`, regeneraba y hacía push. Se paró porque estaba metiendo páginas que Google no indexa (8 de 95 URLs indexadas; ver [[gsc-indexacion-critica]] en memoria) y solo diluían el dominio. No borrada: reactivar con `update_scheduled_task enabled:true` cuando el sitio remonte indexación y haya con qué aportar valor real. |
 | `empiezapadel-telegram-auto` | 05:00 diario | **PAUSADA el 22/07/2026** (`enabled: false`) a petición del usuario. Publicaba en `@Empiezapadel` 1 elemento de la web que aún no estuviera en `known.json`. No añade páginas ni afecta a la indexación; se paró para dejar toda la automatización de padel en pausa mientras el sitio remonta. Reactivar con `update_scheduled_task enabled:true`. |
+| `empiezapadel-tiktok-video` | 10:06 diario | **ACTIVA (creada 30/07/2026).** Genera el vídeo de TikTok que toca según `plan-tiktok/calendario-tiktok.txt` (1 cada 3 días): cada día busca el vídeo de menor nº con fecha <= hoy no listado en `plan-tiktok/generados.txt`; si no hay, no hace nada. Genera autónomamente con `tools/scaffold-video.js` + workers HyperFrames + render, entrega el MP4 + caption y marca el nº en `generados.txt`. No sube a TikTok (manual) ni hace commit (los vídeos están en `.gitignore`). No añade páginas a la web, así que no afecta a la indexación. Ver [[calendario-tiktok]] y [[tiktok-video-pipeline]] en memoria. |
 
 Hubo un `empiezapadel-reddit-radar` (vigilaba r/Padelracket y r/padel y preparaba borradores sin
 publicar nunca). **Eliminado el 19/07/2026**: llevaba tiempo sin estar registrado en el programador
@@ -135,9 +136,11 @@ del momento" NO es una tarea: se calcula en el JS de la página (ver Convencione
 - **Dominio y correo**: dominio en DonDominio pero **DNS y hosting en Cloudflare** (los nameservers
   apuntan allí; DonDominio ya no gestiona el DNS). El dominio está autenticado en MailerLite y el
   remitente verificado es `newsletter@empiezapadel.es`.
-- **Newsletter**: el formulario de MailerLite sigue vivo en la web y capta suscriptores, pero la rutina
-  de envío automático se eliminó a petición del usuario. Si se retoma, el grupo es `SuscriptoresPadel`
-  y RSS-to-email es de pago (el plan gratuito solo tiene campaña regular y A/B).
+- **Newsletter y Telegram**: **ocultos en la web el 30/07/2026** (aún no listos), comentados en
+  `index.html` y en la plantilla de `generate-pages.js` — reactivar = quitar el comentario. No se
+  borró nada: el formulario de MailerLite y el canal `@Empiezapadel` siguen existiendo. Si se retoma
+  la newsletter, el grupo es `SuscriptoresPadel` y RSS-to-email es de pago (el plan gratuito solo tiene
+  campaña regular y A/B).
 
 ## Mantenimiento de este fichero
 

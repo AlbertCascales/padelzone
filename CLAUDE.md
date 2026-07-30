@@ -39,6 +39,7 @@ Tag de afiliado Amazon: `albertomart09-21` (constante `STORE_ID` en `index.html`
 | `telegram-send.js` | `publish` publica 1 elemento pendiente en `@Empiezapadel`; `status` muestra cuántos quedan sin publicar nada. |
 | `indexnow-send.js` | Avisa a IndexNow de las URLs con `lastmod` de hoy. Ejecutar **después** de `generate-pages.js`. `--dry` para ver qué enviaría. |
 | `gsc-report.js` | Informe de Search Console (solo lectura). `--perf` rendimiento (rápido), `--index` estado URL a URL (~95 llamadas, lento), sin flag ambos. Sin dependencias: JWT RS256 con módulos nativos. |
+| `scaffold-video.js` | `node tools/scaffold-video.js <idGuía>` genera en `videos/<slug>/` un proyecto de vídeo TikTok (HyperFrames faceless-explainer) con storyboard+guion+diseño ya rellenos desde la guía (gancho + N puntos + CTA, estética blockframe lima/negro, voz Mateo). `--list` lista guías. NO produce el MP4 solo: los frames los construye un agente (workers HyperFrames); el script imprime los pasos restantes (voz→frames→ensamblar→render). El borrador de gancho/VO hay que repasarlo. `videos/` está en `.gitignore`. Ver [[tiktok-video-pipeline]] en memoria. |
 
 ### Fechas: se sacan de git, no del reloj
 

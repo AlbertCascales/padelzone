@@ -320,6 +320,12 @@
   <section id="guias">
     <div class="section-header"><h2>📖 Guías de compra</h2><a href="/guias/" id="verTodasGuias">Ver todas →</a></div>
     <div class="guides-grid">
+      <div class="guide-card" data-guide="g27" onclick="openGuideModal('g27')">
+        <div class="guide-cat">Guía de compra</div>
+        <div class="guide-title">5 errores de principiante en pádel: en qué NO gastar tu dinero al empezar</div>
+        <div class="guide-meta">Actualizado julio 2026 · 7 min lectura</div>
+        <div class="guide-arrow">Leer guía →</div>
+      </div>
       <div class="guide-card" data-guide="g1" onclick="openGuideModal('g1')">
         <div class="guide-cat">Guía de compra</div>
         <div class="guide-title">Cómo elegir tu primera pala de pádel en 2026</div>
@@ -1910,6 +1916,28 @@ const guides = {
       { text: 'Ver mochilas de pádel en Amazon', query: 'mochila padel' },
       { text: 'Adidas Protour Backpack 3.2 en Amazon', query: 'Adidas Protour Backpack padel mochila' },
       { text: 'Ver paleteros de pádel en Amazon', query: 'paletero padel' }
+    ]
+  },
+  g27: {
+    cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 7 min lectura',
+    title: '5 errores de principiante en pádel: en qué NO gastar tu dinero al empezar',
+    body: `<p>Cuando empiezas en el pádel, casi todo el mundo te empuja a gastar de más: el compañero que jura por su pala de 250€, el vendedor que quiere colocarte la gama alta y los anuncios con jugadores profesionales. La verdad incómoda es que <strong>al empezar, gastar más no te hace jugar mejor; a menudo es al revés</strong>. Estos son los cinco errores que más dinero cuestan a quien empieza, y qué hacer en su lugar.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Comprar la pala de tu jugador favorito</h4>
+<p>La pala que usa un profesional está diseñada para su técnica: forma <strong>diamante</strong>, balance alto, carbono rígido. En manos de un principiante eso significa menos control, más errores y más riesgo de codo de tenista. No es que seas malo: es que la herramienta trabaja en tu contra. Empieza con una pala <strong>redonda</strong>, de núcleo <strong>blando (SoftEva)</strong>, entre 50€ y 90€. Cuando lleves seis meses y notes que la pala te "frena", entonces sí toca subir.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Gastarte todo en la pala y jugar con cualquier zapatilla</h4>
+<p>Es el error de reparto más caro. La pala no te va a lesionar; la zapatilla equivocada, sí. En España casi todas las pistas son de <strong>hierba artificial con arena</strong>, y ahí necesitas suela de <strong>espiga</strong>. Jugar con zapatillas de running o de calle es la vía rápida a un resbalón o a una torcedura de tobillo. Si tienes que recortar en algo, recorta en la pala, no en el calzado.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Caer en el "kit completo" de gran superficie</h4>
+<p>Los packs de pala + paletero + pelotas a 40€ que ves en hipermercados suelen llevar palas de plástico rígido sin punto dulce real: castigan el brazo y no perdonan ni un golpe descentrado. Acabas comprando una pala de verdad a los dos meses, así que has pagado dos veces. Una única pala de <strong>iniciación de marca reconocida</strong> te sale más a cuenta que el pack entero.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Ignorar los accesorios de 10€ que sí cambian tu juego</h4>
+<p>Mucha gente duda entre dos gamas de pala y se olvida de lo que de verdad nota cada partido: un <strong>overgrip</strong> nuevo (mejor agarre, menos ampollas) y un <strong>protector de marco</strong> que evita que un roce contra el suelo te destroce la pala nueva. Son menos de 10€ cada uno y tienen más impacto en tu experiencia real que subir 50€ de gama. Es donde mejor invertido está el dinero cuando empiezas.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">5. Comprar por marca, estética o lo que diga el vendedor</h4>
+<p>El color, el jugador que la anuncia o "es la que más se vende" no te dicen nada sobre si esa pala te conviene a ti. Solo importan tres cosas al empezar: <strong>forma redonda</strong>, <strong>núcleo blando</strong> y <strong>presupuesto contenido</strong>. Si una pala cumple eso, es buena para ti aunque no la use ningún pro. Ignora el hype: es literalmente lo que las tiendas no quieren que hagas.</p>
+<p style="margin-top:1rem;"><strong>Resumen:</strong> al empezar, la pala barata-correcta + buena zapatilla + overgrip gana casi siempre a la pala cara + calzado improvisado. Guárdate el dinero de la gama alta para cuando de verdad la necesites.</p>`,
+    links: [
+      { text: 'Ver palas de iniciación (redonda, blanda) en Amazon', query: 'pala padel principiante redonda blanda' },
+      { text: 'Bullpadel Impulse PWR 2026 (mejor iniciación)', query: 'Bullpadel Impulse PWR 2026' },
+      { text: 'Ver zapatillas de pádel con suela de espiga en Amazon', query: 'zapatillas padel espiga hierba artificial' },
+      { text: 'Ver overgrips de pádel en Amazon', query: 'overgrip padel' }
     ]
   }
 };

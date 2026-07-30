@@ -5,3 +5,6 @@ newsletter/
 reddit-radar/
 telegram-radar/
 .wrangler/
+
+# Proyectos de vídeo HyperFrames (trabajo local, no se despliega)
+videos/

@@ -1442,11 +1442,31 @@ function filterProducts() {
   }
 }
 
+// Texto buscable de cada guía: título + categoría + cuerpo (sin HTML) + textos de enlaces.
+// Se cachea la primera vez porque el cuerpo de las guías no cambia en runtime.
+const _guideSearchCache = {};
+function guideSearchText(id) {
+  if (_guideSearchCache[id] != null) return _guideSearchCache[id];
+  const g = (typeof guides !== 'undefined') && guides[id];
+  let text;
+  if (g) {
+    const body = (g.body || '').replace(/<[^>]+>/g, ' ');
+    const linkText = (g.links || []).map(l => (l.text || '') + ' ' + (l.query || '')).join(' ');
+    text = [g.title, g.cat, g.meta, body, linkText].join(' ');
+  } else {
+    text = '';
+  }
+  _guideSearchCache[id] = text.toLowerCase();
+  return _guideSearchCache[id];
+}
+
 function filterGuides(q) {
   const cards = document.querySelectorAll('.guide-card');
   let shown = 0;
   cards.forEach(card => {
-    const text = card.textContent.toLowerCase();
+    const id = card.getAttribute('data-guide');
+    // Buscamos en el contenido completo de la guía, no solo en el texto visible de la tarjeta.
+    const text = (guideSearchText(id) || card.textContent.toLowerCase());
     if (!q || text.includes(q)) {
       card.classList.remove('guide-hidden');
       shown++;

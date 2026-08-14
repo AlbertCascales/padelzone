@@ -133,6 +133,13 @@ del momento" NO es una tarea: se calcula en el JS de la página (ver Convencione
   como Redirect Rule en el panel de Cloudflare, no con un archivo del repo. Ya está hecho y
   funcionando (verificado 17/07/2026): `www` → 301 → `https://empiezapadel.es/`, y `http` → 301 →
   `https`. No hay `_redirects` en el repo y no hace falta.
+- **`404.html` es obligatorio para que las rutas inexistentes den 404 de verdad.** Sin él, Cloudflare
+  Pages servía la home con **200** para cualquier ruta no encontrada (soft-404): al podar páginas,
+  Google no las dejaba caer y las veía como duplicados de la home. Se añadió `404.html` (raíz, con
+  `noindex`) el 14/08/2026 y verificado que las rutas borradas pasan a 404. **Al borrar páginas, además
+  del 404.html hay que purgar la caché de Cloudflare** (panel → Caching → Purge, por URL o todo): las
+  copias viejas quedan cacheadas en el edge hasta 7 días (`s-maxage=604800`) y siguen dando 200 aunque
+  el origen ya devuelva 404. No hay token de API de Cloudflare en los secretos: el purge es manual.
 - **Dominio y correo**: dominio en DonDominio pero **DNS y hosting en Cloudflare** (los nameservers
   apuntan allí; DonDominio ya no gestiona el DNS). El dominio está autenticado en MailerLite y el
   remitente verificado es `newsletter@empiezapadel.es`.

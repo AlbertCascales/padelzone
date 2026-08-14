@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Página no encontrada · EmpiezaPadel</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:#0d0d0d; --green-d:#0f4f2f; --green:#1a7a4a; --green-l:#e6f4ec;
+      --lime:#c8f135; --lime-d:#9ec22a; --text:#1a1a18; --white:#ffffff;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body { height:100%; }
+    body {
+      font-family:'DM Sans', system-ui, sans-serif;
+      color:var(--text); background:var(--green-l);
+      display:flex; align-items:center; justify-content:center;
+      min-height:100vh; padding:1.5rem; text-align:center;
+    }
+    .card {
+      background:var(--white); border-radius:20px; padding:3rem 2rem;
+      max-width:560px; width:100%; box-shadow:0 12px 40px rgba(15,79,47,.12);
+    }
+    .code {
+      font-family:'DM Serif Display', serif; font-size:5.5rem; line-height:1;
+      color:var(--green); letter-spacing:-2px;
+    }
+    .code span { color:var(--lime-d); }
+    h1 {
+      font-family:'DM Serif Display', serif; font-size:1.6rem;
+      color:var(--black); margin:.6rem 0 .4rem;
+    }
+    p { font-size:1.02rem; color:#555; margin-bottom:1.6rem; }
+    .links { display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; }
+    a.btn {
+      display:inline-block; text-decoration:none; font-weight:700;
+      padding:.7rem 1.2rem; border-radius:12px; font-size:.95rem;
+      transition:transform .12s ease;
+    }
+    a.btn:hover { transform:translateY(-2px); }
+    a.primary { background:var(--lime); color:var(--black); }
+    a.ghost { background:var(--green-l); color:var(--green-d); border:1.5px solid var(--green); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="code">4<span>0</span>4</div>
+    <h1>Esta página se fue a por bolas</h1>
+    <p>El enlace que buscas ya no existe o se ha movido. Pero seguimos aquí para ayudarte a empezar en el pádel sin gastar de más.</p>
+    <div class="links">
+      <a class="btn primary" href="/">Ir al inicio</a>
+      <a class="btn ghost" href="/palas/">Ver palas</a>
+      <a class="btn ghost" href="/zapatillas/">Zapatillas</a>
+      <a class="btn ghost" href="/guias/">Guías</a>
+    </div>
+  </div>
+</body>
+</html>

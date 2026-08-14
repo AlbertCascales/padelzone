@@ -368,12 +368,6 @@
         <div class="guide-meta">Actualizado junio 2026 · 8 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
-      <div class="guide-card guide-hidden" data-guide="g8" onclick="openGuideModal('g8')">
-        <div class="guide-cat">Top 5</div>
-        <div class="guide-title">Las 5 mejores palas para jugadores con codo de tenista</div>
-        <div class="guide-meta">Actualizado mayo 2026 · 7 min lectura</div>
-        <div class="guide-arrow">Leer guía →</div>
-      </div>
       <div class="guide-card guide-hidden" data-guide="g9" onclick="openGuideModal('g9')">
         <div class="guide-cat">Guía de compra</div>
         <div class="guide-title">Qué paletero comprar según cuánto equipas llevas al club</div>
@@ -408,12 +402,6 @@
         <div class="guide-cat">Guía de compra</div>
         <div class="guide-title">Mejor pala de pádel para mujer principiante: guía de compra 2026</div>
         <div class="guide-meta">Actualizado julio 2026 · 6 min lectura</div>
-        <div class="guide-arrow">Leer guía →</div>
-      </div>
-      <div class="guide-card guide-hidden" data-guide="g15" onclick="openGuideModal('g15')">
-        <div class="guide-cat">Guía de compra</div>
-        <div class="guide-title">Mejores palas de control 2026: la guía para el jugador defensivo</div>
-        <div class="guide-meta">Actualizado julio 2026 · 7 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
       <div class="guide-card guide-hidden" data-guide="g16" onclick="openGuideModal('g16')">
@@ -656,28 +644,6 @@ const palas = [
     query: 'Head Gravity Pro 2026 padel'
   },
   {
-    id: 'p10', img: 'img/p10.jpg',
-    brand: 'Siux', name: 'Electra Pro 2026', level: 'Avanzado',
-    stars: 5, price: '239,00', badge: 'new',
-    desc: 'La pala de Franco Stupaczuk. Diseño híbrido con carbono 3K en un formato que mezcla potencia y control. Un referente en el circuito Premier Padel.',
-    specs: { Forma: 'Híbrida', Balance: 'Medio-alto', Material: 'Carbono 3K', Núcleo: 'EVA Dura' },
-    pros: ['Muy equilibrada', 'Potencia en bandeja y víbora', 'Diseño exclusivo'],
-    cons: ['Difícil de encontrar', 'No ideal para defensivos puros'],
-    verdict: 'Una joya del pádel español. Si buscas algo diferente a las marcas mainstream, Siux no defrauda.',
-    query: 'Siux Electra Pro 2026 padel'
-  },
-  {
-    id: 'p11', img: 'img/p11.jpg',
-    brand: 'Babolat', name: 'Technical Viper 3.0', level: 'Avanzado',
-    stars: 4, price: '179,00', badge: null,
-    desc: 'La pala de Juan Lebrón en su versión técnica. Carbono aluminizado, núcleo de goma dura y forma diamante para golpes explosivos en la red.',
-    specs: { Forma: 'Diamante', Balance: 'Alto', Material: 'Carbono Alum', Núcleo: 'Eva Dura' },
-    pros: ['Salida de bola explosiva', 'Muy potente en remates', 'Durabilidad alta'],
-    cons: ['Dura para el brazo', 'Punto dulce pequeño'],
-    verdict: 'Para jugadores agresivos que quieren la pala de un número 1. Exige buena técnica.',
-    query: 'Babolat Technical Viper 3.0 padel'
-  },
-  {
     id: 'p12', img: 'img/p12.jpg',
     brand: 'Adidas', name: 'Metalbone Control 2026', level: 'Intermedio',
     stars: 4, price: '169,00', badge: null,
@@ -687,17 +653,6 @@ const palas = [
     cons: ['Menos potencia en smash', 'Precio elevado para su nivel'],
     verdict: 'La Metalbone para quienes priorizan control sobre potencia. Muy recomendable para jugadores técnicos.',
     query: 'Adidas Metalbone Control 2026 padel'
-  },
-  {
-    id: 'p13', img: 'img/p13.jpg',
-    brand: 'Star Vie', name: 'Triton Power+ 2026', level: 'Avanzado',
-    stars: 4, price: '199,00', badge: null,
-    desc: 'Pala de potencia de una de las marcas más innovadoras del mercado. Carbono 18K Hybrid, goma H-Eva Power y forma diamante para remates definitivos.',
-    specs: { Forma: 'Diamante', Balance: 'Alto', Material: 'Carbono 18K Hybrid', Núcleo: 'H-Eva Power' },
-    pros: ['Potencia extrema', 'Materiales premium', 'Gran tacto en voleas'],
-    cons: ['Muy específica para ataque', 'Poca distribución'],
-    verdict: 'Una alternativa premium a Bullpadel y Head. Si buscas algo exclusivo con potencia brutal, prueba Star Vie.',
-    query: 'Star Vie Triton Power 2026 padel'
   },
   {
     id: 'p14', img: 'img/p14.jpg',
@@ -711,17 +666,6 @@ const palas = [
     query: 'Nox ML10 Pro Cup 2026 padel'
   },
   {
-    id: 'p15', img: 'img/p15.jpg',
-    brand: 'Bullpadel', name: 'Neuron 02 2026', level: 'Avanzado',
-    stars: 4, price: '189,00', badge: null,
-    desc: 'La pala de Fede Chingotto es precisión pura. Forma híbrida, núcleo MultiEva y Crystal Edge para jugadores que dominan el punto con control quirúrgico.',
-    specs: { Forma: 'Híbrida', Balance: 'Medio-alto', Material: 'Carbono 3K', Núcleo: 'MultiEva' },
-    pros: ['Control milimétrico', 'Muy estable', 'Gran absorción de vibraciones'],
-    cons: ['Menos explosiva que la Vertex', 'Para perfiles muy técnicos'],
-    verdict: 'Para el jugador que construye el punto desde atrás y busca precisión antes que potencia bruta.',
-    query: 'Bullpadel Neuron 02 2026 padel'
-  },
-  {
     id: 'p16', img: 'img/p16.jpg',
     brand: 'Head', name: 'Coello Motion 2026', level: 'Principiante',
     stars: 4, price: '79,00', badge: null,
@@ -731,17 +675,6 @@ const palas = [
     cons: ['Sin opciones para subir de nivel', 'Materiales básicos'],
     verdict: 'La pala de Head para quienes empiezan. Cómoda, manejable y con el respaldo de una marca de primer nivel.',
     query: 'Head Coello Motion 2026 padel'
-  },
-  {
-    id: 'p17', img: 'img/p17.jpg',
-    brand: 'Wilson', name: 'Bela Pro V3', level: 'Avanzado',
-    stars: 5, price: '239,00', badge: null,
-    desc: 'La pala top de Belasteguín para jugadores avanzados. Carbono en caras, EVA dura en núcleo y forma diamante. La versión más potente de la saga Bela.',
-    specs: { Forma: 'Diamante', Balance: 'Alto', Material: 'Carbono tejido', Núcleo: 'EVA Dura' },
-    pros: ['Potencia y control combinados', 'Acabado premium', 'Muy estable'],
-    cons: ['Precio muy alto', 'Solo para avanzados'],
-    verdict: 'Lo mejor de Wilson para pádel. Si quieres la pala de una leyenda con materiales de primer nivel, esta es.',
-    query: 'Wilson Bela Pro V3 padel'
   },
   {
     id: 'p18', img: 'img/p18.jpg',
@@ -764,17 +697,6 @@ const palas = [
     cons: ['Exige técnica avanzada', 'Precio elevado'],
     verdict: 'La elección para quien busca máxima potencia sin renunciar al control. Solo para jugadores avanzados con buena técnica.',
     query: 'Nox AT10 Genius 18K 2026'
-  },
-  {
-    id: 'p21', img: 'img/p21.jpg',
-    brand: 'Head', name: 'Extreme Pro 2026', level: 'Avanzado',
-    stars: 5, price: '229,00', badge: 'new',
-    desc: 'La pala de Paquito Navarro para la temporada 2026. Forma diamante con balance muy alto, carbono Graphene y superficie rugosa Tack Tech para efectos agresivos en el saque y el resto.',
-    specs: { Forma: 'Diamante', Balance: 'Muy alto', Material: 'Graphene Carbon', Superficie: 'Tack Tech' },
-    pros: ['Potencia máxima en el remate', 'Efectos muy pronunciados', 'Acabado premium'],
-    cons: ['Exige muy buena técnica', 'Punto dulce reducido'],
-    verdict: 'Solo para jugadores avanzados que rematan mucho y controlan bien el balance alto. Pegada de las que asustan.',
-    query: 'Head Extreme Pro 2026 padel'
   },
   {
     id: 'p22', img: 'img/p22.jpg',
@@ -970,17 +892,6 @@ const accesorios = [
     query: 'Bullpadel BPP paletero padel 2026'
   },
   {
-    id: 'a2', img: 'img/a2.jpg',
-    brand: 'Head', name: 'Pro Padel Ball x3', level: 'Pelotas',
-    stars: 4, price: '6,99', badge: null,
-    desc: 'Las pelotas más usadas en pistas federadas de España. Presurización estándar y rebote consistente en todas las superficies.',
-    specs: { Presión: 'Estándar', Rebote: 'Consistente', Bote: '3 pelotas', Uso: 'Competición' },
-    pros: ['Calidad homologada', 'Muy consistentes', 'Precio por bote excelente'],
-    cons: ['Despresurizan más rápido en exterior', 'Sin variante de alta altitud'],
-    verdict: 'Las pelotas que usan los clubes. Compra en pack de 3 botes para ahorrar.',
-    query: 'Head Pro Padel Ball pelotas padel'
-  },
-  {
     id: 'a3', img: 'img/a3.jpg',
     brand: 'NOX', name: 'Overgrip Pro x3', level: 'Accesorio',
     stars: 4, price: '8,99', badge: null,
@@ -1047,28 +958,6 @@ const accesorios = [
     query: 'Head Xtreme Soft overgrip padel'
   },
   {
-    id: 'a9', img: 'img/a9.jpg',
-    brand: 'Nox', name: 'Bote Pelotas P1 Titanium x3', level: 'Pelotas',
-    stars: 4, price: '6,49', badge: null,
-    desc: 'La pelota de control de Nox para jugadores técnicos. Rebote predecible, buen tacto y presión estable. Perfecta para entrenamientos de técnica y partidos de control.',
-    specs: { Presión: 'Media', Velocidad: 'Media', Bote: '3 pelotas', Uso: 'Entreno / Competición' },
-    pros: ['Rebote muy predecible', 'Buena para técnica', 'Precio muy competitivo'],
-    cons: ['No tan rápida como Head o Bullpadel', 'Menos popular en competición'],
-    verdict: 'Para entrenamientos de técnica y partidos de control. Una pelota que te ayuda a construir el punto con calma.',
-    query: 'Nox P1 Titanium pelotas padel'
-  },
-  {
-    id: 'a10', img: 'img/a10.jpg',
-    brand: 'Adidas', name: 'Bote de 3 Pelotas Speed RX', level: 'Pelotas',
-    stars: 4, price: '6,99', badge: null,
-    desc: 'Pelotas homologadas por la FIP, con fieltro resistente y presión media-alta pensada para competición. Buen equilibrio entre velocidad y control en todo tipo de pistas.',
-    specs: { Presión: 'Media-alta', Velocidad: 'Media-alta', Bote: '3 pelotas', Uso: 'Competición' },
-    pros: ['Homologadas para torneos', 'Fieltro muy resistente', 'Buen bote constante'],
-    cons: ['Precio algo más alto que otras marcas', 'Pierden presión tras varias sesiones'],
-    verdict: 'Una apuesta segura si juegas ligas o torneos y necesitas pelotas homologadas de confianza.',
-    query: 'Adidas Speed RX bote 3 pelotas padel'
-  },
-  {
     id: 'a11', img: 'img/a11.jpg',
     brand: 'Bullpadel', name: 'Overgrip BPP Pro x3', level: 'Accesorio',
     stars: 4, price: '7,99', badge: 'new',
@@ -1113,17 +1002,6 @@ const accesorios = [
     query: 'Bullpadel protector marco pala padel pack 3'
   },
   {
-    id: 'a15', img: 'img/a15b.jpg',
-    brand: 'McDavid', name: 'Codera 489 para Codo de Tenista', level: 'Codera',
-    stars: 4, price: '13,95', badge: null,
-    desc: 'Cincha de compresión con almohadilla que se coloca unos centímetros por debajo del codo para descargar el tendón extensor. Es el accesorio que recomiendan muchos fisios a jugadores de pádel con molestias de codo de tenista (epicondilitis) por el impacto repetido de bandejas, víboras y remates.',
-    specs: { Tipo: 'Cincha de compresión con almohadilla', Ajuste: 'Velcro regulable', Talla: 'Universal (18-40cm de contorno)', Uso: 'Codo de tenista / epicondilitis' },
-    pros: ['Alivio notable desde la primera sesión en molestias leves-moderadas', 'Ajuste universal con velcro, vale para brazos finos y anchos', 'Se puede llevar bajo manga larga sin bultos'],
-    cons: ['No sustituye al fisio si el dolor es fuerte o constante', 'Hay que reajustarla cada 20-30 min porque el velcro cede con el sudor'],
-    verdict: 'Si notas molestias en la parte externa del codo tras varias sesiones de bandeja o víbora, esta cincha es el primer paso barato antes de plantearte cambiar de pala o parar a hacer fisio.',
-    query: 'McDavid 489 codera codo tenista'
-  },
-  {
     id: 'a16', img: 'img/a16.jpg',
     brand: 'Bullpadel', name: 'Ease Vibe Antivibrador x4', level: 'Antivibrador',
     stars: 4, price: '14,95', badge: null,
@@ -1133,28 +1011,6 @@ const accesorios = [
     cons: ['Con palas ya de por sí blandas el cambio se nota poco', 'Alguno se puede salir del agujero si la pala recibe un golpe fuerte contra el suelo'],
     verdict: 'No sustituye a una pala más blanda ni a la codera si ya tienes molestias, pero por menos de 15€ es el primer paso para quitarle dureza al golpe si notas el brazo cargado al terminar de jugar.',
     query: 'Bullpadel Ease Vibe antivibrador padel'
-  },
-  {
-    id: 'a18', img: 'img/a18.jpg',
-    brand: 'McDavid', name: 'Muñequera 451 con Férula para Tendinitis de Muñeca', level: 'Muñequera',
-    stars: 4, price: '16,95', badge: null,
-    desc: 'Muñequera de compresión con férula rígida extraíble, pensada para tendinitis de muñeca y esguinces leves. A diferencia de la codera, que protege el codo, esta pieza inmoviliza la articulación de la muñeca en los golpes de volea y bandeja donde se fuerza más el gesto.',
-    specs: { Tipo: 'Muñequera con férula rígida extraíble', Ajuste: 'Velcro regulable', Talla: 'Única (14-23cm de contorno)', Uso: 'Tendinitis de muñeca / esguince leve' },
-    pros: ['Inmoviliza la muñeca en voleas y bandejas sin frenar el resto del brazo', 'Férula extraíble para adaptar la rigidez según el dolor', 'Transpirable, aguanta varias horas de juego sin agobiar'],
-    cons: ['Limita el recorrido de la muñeca en golpes con efecto o slice', 'La férula rígida se nota bajo manga larga'],
-    verdict: 'Si el dolor está en la muñeca y no en el codo, esta es la pieza correcta: la codera no hace nada aquí. Quítale la férula para entrenar toque fino y guárdala para los partidos donde ya notas molestia.',
-    query: 'McDavid muñequera padel tendinitis'
-  },
-  {
-    id: 'a19', img: 'img/a19.jpg',
-    brand: 'Bullpadel', name: 'Gorra Team', level: 'Gorra',
-    stars: 4, price: '15,95', badge: null,
-    desc: 'Gorra de pádel con visera curva rígida y cierre trasero regulable. Pensada para partidos al aire libre a mediodía, cuando el sol bajo dificulta ver la bola en el saque y en los globos altos.',
-    specs: { Material: 'Poliéster transpirable', Ajuste: 'Cierre trasero regulable', Visera: 'Curva rígida', Uso: 'Protección solar en pista' },
-    pros: ['Corta bien el sol en saques y globos altos', 'Ajuste regulable cómodo para varias tallas de cabeza', 'Ligera, no molesta en remates ni en carrera lateral'],
-    cons: ['Sin ventilación superior en días de mucho calor', 'La visera curva no es ideal si prefieres campo de visión más amplio'],
-    verdict: 'Si juegas a menudo en pistas exteriores al mediodía, una gorra de pádel cuesta menos de 20€ y evita el deslumbramiento justo en los golpes donde más falta hace ver bien la bola: el saque y el globo.',
-    query: 'Bullpadel gorra padel'
   },
   {
     id: 'a20', img: 'img/a20.jpg',
@@ -1627,23 +1483,6 @@ const guides = {
       { text: 'Bullpadel Vertex 05 2026 en Amazon', query: 'Bullpadel Vertex 05 2026' }
     ]
   },
-  g8: {
-    cat: 'Top 5', meta: 'Actualizado mayo 2026 · 7 min lectura',
-    title: 'Las 5 mejores palas para jugadores con codo de tenista',
-    body: `<p>El codo de tenista afecta a muchos padelistas. La buena noticia es que la elección de pala tiene un impacto enorme en si lo sufres o no.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Qué características buscar</h4>
-<p>Una pala que protege el codo debe tener: <strong>núcleo de goma blanda</strong> (SoftEva, EVA Soft, HR3), <strong>forma redonda o lágrima</strong> (balance bajo), <strong>material de cara flexible</strong> (fibra de vidrio), y tecnologías anti-vibración como Vibradrive o Ease Vibe.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥇 Top 5</h4>
-<p><strong>1. Nox ML10 Pro Cup Coorp 2026</strong> – La más cómoda del mercado.<br>
-<strong>2. Bullpadel Indiga Control 2026</strong> – SoftEva + forma redonda + precio asequible.<br>
-<strong>3. Wilson Bela LS V3</strong> – EVA blanda + fibra de vidrio + ultraligera.<br>
-<strong>4. Head Gravity Pro 2026</strong> – Control Foam, gran absorción de vibraciones.<br>
-<strong>5. Head Coello Motion 2026</strong> – La más económica con tecnologías anti-vibración de Head.</p>`,
-    links: [
-      { text: 'Nox ML10 Pro Cup en Amazon', query: 'Nox ML10 Pro Cup 2026 padel' },
-      { text: 'Wilson Bela LS V3 en Amazon', query: 'Wilson Bela LS V3 padel' }
-    ]
-  },
   g9: {
     cat: 'Guía de compra', meta: 'Actualizado junio 2026 · 5 min lectura',
     title: 'Qué paletero comprar según cuánto equipo llevas al club',
@@ -1735,21 +1574,6 @@ const guides = {
       { text: 'Nox ML10 Woman 2026 en Amazon', query: 'Nox ML10 Woman 2026 padel' }
     ]
   },
-  g15: {
-    cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 7 min lectura',
-    title: 'Mejores palas de control 2026: la guía para el jugador defensivo',
-    body: `<p>No todo el mundo quiere una pala que "pegue fuerte". Si tu juego se basa en colocar la bola, jugar globos con precisión y esperar el error del rival, una pala de potencia con balance alto te va a jugar en contra: te obliga a un esfuerzo técnico que no necesitas y te penaliza en cualquier golpe que no salga perfecto. Esto es lo que de verdad distingue a una pala de control.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Qué hace que una pala sea "de control" y no de potencia</h4>
-<p>Tres cosas, en este orden de importancia. Primero, la <strong>forma</strong>: redonda (balance bajo, punto dulce centrado) o como mucho lágrima suave; olvídate de la forma diamante. Segundo, el <strong>núcleo</strong>: EVA blanda (a veces llamada SoftEva, Control Foam o similar según la marca), que absorbe el golpe en vez de devolverlo con violencia. Tercero, el <strong>balance</strong>: bajo o bajo-medio, con el peso concentrado cerca del mango, lo que hace la pala mucho más manejable en la volea rápida y en defensa desde el fondo de pista.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Tres modelos concretos según presupuesto</h4>
-<p><strong>Bullpadel Neuron 02 2026</strong> (~189€): la pala de Fede Chingotto, orientada al control de precisión — forma híbrida y núcleo MultiEva que premian colocar la bola con exactitud antes que pegar fuerte. <strong>Adidas Metalbone Control 2026</strong> (~169€): balance ajustable con el sistema Weight & Balance, sweet spot muy amplio, para quien quiere control pero sin renunciar del todo a algo de pegada cuando toca rematar. <strong>Nox ML10 Ventus Control 3K 2026</strong> (~149€): forma redonda con carbono 3K, un punto intermedio muy versátil si vienes de una pala de iniciación y quieres dar el salto sin perder la comodidad.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Errores típicos al comprar una pala de control</h4>
-<p>El más común es dejarse convencer por una pala "de firma" de un jugador ofensivo porque "es la que usa el número 1": esas palas suelen ser diamante y núcleo duro, justo lo contrario de lo que necesita un perfil defensivo. El segundo error es fijarse solo en el peso e ignorar el balance: una pala ligera pero con balance alto sigue siendo incómoda para un jugador de control. Y el tercero es infravalorar el precio de una pala de control pensando que "como no pega tanto, debería ser más barata": la tecnología de absorción de vibración de gama alta (paneles auxéticos, EVA multicapa) cuesta lo mismo fabricarla que la de una pala de potencia, así que no descartes modelos de 150-180€ solo por su perfil defensivo.</p>`,
-    links: [
-      { text: 'Ver palas de control en Amazon', query: 'pala padel control 2026' },
-      { text: 'Bullpadel Neuron 02 2026 en Amazon', query: 'Bullpadel Neuron 02 2026 padel' }
-    ]
-  },
   g16: {
     cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 7 min lectura',
     title: 'Palas de potencia por menos de 150 euros: guía de compra 2026',
@@ -1816,23 +1640,6 @@ const guides = {
       { text: 'Bullpadel Protector Frame Pack x3 en Amazon', query: 'Bullpadel protector marco pala padel pack 3' }
     ]
   },
-  g20: {
-    cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 6 min lectura',
-    title: 'Codera para el codo de tenista en pádel: cuándo usarla y cómo elegirla',
-    body: `<p>El codo de tenista (epicondilitis lateral) es la lesión por sobreuso más común en pádel, sobre todo si juegas mucha bandeja, víbora o globo con la muñeca fija. Antes de plantearte parar semanas o cambiar de pala, hay un accesorio de menos de 15€ que muchos fisios recomiendan probar primero: la cincha o codera de compresión.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Qué es y por qué funciona (y qué no es)</h4>
-<p>No es una manga ni una rodillera de neopreno que "calienta" la zona: es una <strong>cincha estrecha con una almohadilla de gel o silicona</strong> que se ajusta unos 3-4 centímetros por debajo del pliegue del codo, sobre el vientre muscular del antebrazo. Al comprimir ahí, redistribuye la tensión que normalmente se concentra toda en el tendón extensor inflamado (el epicóndilo), así que golpeas con menos dolor mientras el tendón se recupera. Una manga elástica genérica no hace esto: solo da calor, no descarga el punto exacto.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Señales de que te conviene probarla</h4>
-<p>Si notas un dolor puntual y localizado en la parte externa del codo (no en toda la articulación) que aparece o empeora después de bandejas, víboras o remates, y que mejora con el reposo de un par de días, es el perfil clásico de codo de tenista leve-moderado en el que la cincha ayuda más. Si el dolor es difuso, afecta a toda la articulación, te despierta por la noche o va a más aunque descanses, eso ya no lo resuelve una cincha: toca fisio y valorar la pala (revisa nuestra guía de <strong>palas para codo de tenista</strong> si el problema viene de una pala demasiado rígida o mal balanceada).</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Cómo colocarla bien (el error que la hace inútil)</h4>
-<p>El fallo más habitual es ponerla demasiado alta, pegada al pliegue del codo: ahí no comprime nada útil y solo molesta al doblar el brazo. Colócala 2-3 dedos por debajo del pliegue, sobre la parte más gruesa del antebrazo, y ajusta el velcro con tensión firme pero sin cortar la circulación (si se te duermen los dedos, está demasiado apretada). Póntela antes de calentar, no a media sesión cuando ya duele.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Cuándo la cincha no es suficiente</h4>
-<p>Úsala como parche mientras identificas la causa real: overgrip demasiado grueso que te obliga a apretar más, pala más pesada o rígida de lo que tu brazo aguanta, o técnica con demasiada muñeca en el golpe de bandeja. La cincha quita el síntoma un par de meses; si el dolor vuelve en cuanto dejas de llevarla, el problema sigue ahí y conviene combinarla con ejercicios de fisio y revisar el equipo.</p>`,
-    links: [
-      { text: 'Ver coderas para codo de tenista en Amazon', query: 'codera codo tenista padel' },
-      { text: 'McDavid 489 Codera en Amazon', query: 'McDavid 489 codera codo tenista' }
-    ]
-  },
   g21: {
     cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 6 min lectura',
     title: 'Antivibrador de pala de pádel: para qué sirve y cuál comprar',
@@ -1865,40 +1672,6 @@ const guides = {
     links: [
       { text: 'Ver grips base de pádel en Amazon', query: 'grip base pala padel' },
       { text: 'Ver grips base de pádel en Amazon', query: 'grip base pala padel' }
-    ]
-  },
-  g23: {
-    cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 6 min lectura',
-    title: 'Muñequera de pádel para la tendinitis de muñeca: cuándo usarla y cuál comprar',
-    body: `<p>El codo de tenista acapara toda la atención, pero en pádel hay otra zona que se lleva castigo silencioso: la <strong>muñeca</strong>. El golpe de bandeja frena en seco con la muñeca fija, la víbora la fuerza en extensión y el remate exige un latigazo final que, repetido sesión tras sesión, acaba pasando factura a un tendón que no está pensado para tanto volumen.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Muñeca o codo: no es lo mismo y no se arreglan con lo mismo</h4>
-<p>Si el dolor está en la <strong>cara externa del codo</strong> y se irradia hacia el antebrazo con el remate, es la típica epicondilitis y ahí la pieza es la <strong>codera de compresión</strong>. Si el dolor está <strong>en la propia muñeca</strong>, sobre todo al bloquear una volea alta o al frenar una bandeja, una codera no hace nada porque no toca esa articulación: necesitas una muñequera. Muchos jugadores se compran la pieza equivocada por comprar "algo para el brazo" sin localizar bien dónde duele.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Elástica simple vs con férula</h4>
-<p>Las muñequeras elásticas simples dan calor y compresión ligera, útiles como prevención si no hay dolor real. Si ya tienes molestia diagnosticada o recurrente, una <strong>con férula rígida extraíble</strong> aporta bastante más: la férula limita el movimiento de extensión que es justo el que más castiga el tendón en la bandeja, mientras la compresión de tela reduce la inflamación general. La férula se puede sacar para los días sin dolor y dejar solo la compresión.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Cuándo ponértela y cuándo no</h4>
-<p>Con dolor activo, tiene sentido llevarla puesta en el partido, sobre todo con la férula. Pero para <strong>entrenar técnica fina</strong> (globos, bajadas de pared, dejadas) es mejor jugar sin ella si el dolor lo permite: la férula limita la sensibilidad de muñeca que necesitas para esos golpes, y depender de ella todo el año sin descanso puede debilitar la musculatura de la zona en vez de protegerla. Es un apoyo puntual, no una solución permanente.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Qué mirar al comprar una</h4>
-<p>Ajuste por velcro regulable, no talla fija: la muñeca cambia de grosor entre jugadores mucho más que el codo, y una talla única mal ajustada no comprime donde toca. Si el dolor es real y no solo molestia leve, prioriza que incluya férula extraíble en vez de una banda elástica básica: cuesta unos euros más pero es la diferencia entre aliviar y solo "sentir que llevas algo puesto".</p>`,
-    links: [
-      { text: 'Ver muñequeras de pádel en Amazon', query: 'muñequera padel tendinitis' },
-      { text: 'McDavid Muñequera 451 en Amazon', query: 'McDavid muñequera padel tendinitis' }
-    ]
-  },
-  g24: {
-    cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 5 min lectura',
-    title: 'Gorra o visera de pádel: cuál elegir y por qué importa',
-    body: `<p>Es el accesorio que casi nadie mira al empezar y el primero que se compra en cuanto juega un par de partidos exteriores a mediodía con el sol bajo. En pádel, además del calor, el sol te da de frente justo en los dos golpes donde más necesitas ver bien la bola: el saque y el globo.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Por qué hace más falta que en otros deportes</h4>
-<p>La pista de pádel es pequeña y el juego se levanta constantemente en globos y bandejas: pasas mucho más tiempo con la cabeza hacia arriba que en tenis o pádbol de suelo. Si el sol te da de cara en ese momento, no es solo incomodidad, es perder de vista la bola en el instante del impacto. Cubrirte la cabeza no es estética, es visión.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Gorra vs visera: no cortan el sol igual</h4>
-<p>La <strong>gorra</strong> cubre toda la coronilla: protege más del sol directo (útil si tienes poco pelo o juegas muchas horas seguidas) pero acumula más calor arriba. La <strong>visera</strong> deja la parte superior de la cabeza al aire, así que ventila mejor en pleno verano, pero no protege el cuero cabelludo del sol directo. Si sudas mucho de cabeza y juegas en horario de máximo calor, la visera se agradece; si te preocupa más la protección solar total, la gorra gana.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Qué mirar al comprar una</h4>
-<p>Cierre trasero regulable (velcro o hebilla) en vez de talla fija: la cabeza varía más de lo que parece entre jugadores. Material transpirable para que el sudor no quede atrapado en un partido de una hora y pico. Y si juegas con coleta o moño, comprueba que el hueco trasero de la gorra o visera tiene espacio suficiente antes de comprar: es la queja más habitual una vez recibido el producto.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Cuándo no la necesitas</h4>
-<p>En pistas cubiertas o indoor no aporta nada salvo absorber sudor, así que no es imprescindible tenerla puesta ahí. Resérvala para exterior, sobre todo en las franjas de sol bajo (última hora de la mañana y última de la tarde), que es cuando más deslumbra en el saque.</p>`,
-    links: [
-      { text: 'Ver gorras y viseras de pádel en Amazon', query: 'gorra visera padel' },
-      { text: 'Bullpadel Gorra Team en Amazon', query: 'Bullpadel gorra padel' }
     ]
   },
   g25: {

@@ -116,6 +116,15 @@ del momento" NO es una tarea: se calcula en el JS de la página (ver Convencione
 
 ## Trampas ya pisadas (no repetirlas)
 
+- **Verificar con WebSearch la variante exacta de cada producto antes de publicarlo.** La guía g3
+  recomendó durante semanas la **Bullpadel Impulse PWR 2026** como "mejor pala de iniciación" cuando
+  es diamante / balance muy alto / nivel medio-avanzado; la de principiantes es la **Impulse Ctrl
+  2026** (misma marca, misma gama, misma temporada, otra variante). También nombraba un "Head Spark
+  Pro" inexistente. El error llegó al vídeo 7 de TikTok **ya publicado** (17/08/2026), imposible de
+  corregir sin regrabar. Un nombre plausible no basta: confirmar forma, nivel y precio reales, y
+  **cuál variante de la gama** (PWR/Ctrl, Elite/Extreme/Pro…) encaja con lo que el texto afirma.
+  Recomendar a un principiante una pala avanzada es justo el postureo que el sitio dice combatir.
+
 - **Datos estructurados: las fichas NO llevan `aggregateRating`, y no es un olvido.** Google descarta
   las `review` cuyo `author` es la propia `Organization` (autorreseña) y Search Console las reporta
   como ausentes. El arreglo que se aplicó entonces —pasar a `aggregateRating` con un `reviewCount`

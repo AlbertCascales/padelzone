@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://empiezapadel.es/</loc>
-    <lastmod>2026-08-14</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://empiezapadel.es/palas/</loc>
-    <lastmod>2026-08-14</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -111,6 +111,24 @@
   <url>
     <loc>https://empiezapadel.es/palas/nox-at10-genius-junior-2026/</loc>
     <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezapadel.es/palas/bullpadel-impulse-ctrl-2026/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezapadel.es/palas/head-graphene-xt-spark-control-2/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezapadel.es/palas/dunlop-inferno-carbon-elite/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -290,7 +308,7 @@
   </url>
   <url>
     <loc>https://empiezapadel.es/guias/como-elegir-tu-primera-pala-de-padel-en-2026/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -302,7 +320,7 @@
   </url>
   <url>
     <loc>https://empiezapadel.es/guias/las-10-mejores-palas-de-padel-por-menos-de-100/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -416,7 +434,7 @@
   </url>
   <url>
     <loc>https://empiezapadel.es/guias/5-errores-de-principiante-en-padel-en-que-no-gastar-tu-dinero-al-empezar/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

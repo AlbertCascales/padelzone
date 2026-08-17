@@ -105,7 +105,11 @@ function stripHtml(s) { return String(s).replace(/<[^>]+>/g, ' ').replace(/\s+/g
 function truncate(s, n) { s = s.trim(); return s.length <= n ? s : s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…'; }
 function priceNum(p) { return String(p).replace(/\./g, '').replace(',', '.'); }
 function amazon(query) { return `${SITE.replace('https://empiezapadel.es','https://www.amazon.es')}/s?k=${encodeURIComponent(query)}&tag=${STORE_ID}`; }
-function amazonUrl(query) { return `https://www.amazon.es/s?k=${encodeURIComponent(query)}&tag=${STORE_ID}`; }
+// Con asin (10 chars alfanuméricos) enlaza directo a la ficha; si falta, cae a la búsqueda por texto.
+function amazonUrl(query, asin) {
+  if (asin && /^[A-Z0-9]{10}$/.test(asin)) return `https://www.amazon.es/dp/${asin}?tag=${STORE_ID}`;
+  return `https://www.amazon.es/s?k=${encodeURIComponent(query)}&tag=${STORE_ID}`;
+}
 function imgAbs(img) { return '/' + String(img).replace(/^\/+/, ''); }
 function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
 
@@ -275,7 +279,7 @@ function renderProductPage(catKey, p) {
   const slug = productSlug(p);
   const url = productPath(cat.dir, p);
   const canonical = SITE + url;
-  const aff = amazonUrl(p.query);
+  const aff = amazonUrl(p.query, p.asin);
   const fullName = `${p.brand} ${p.name}`;
   const title = `${fullName}: análisis y opinión 2026 | ${BRAND_NAME}`;
   const description = truncate(`Análisis de la ${fullName} (${p.level}). ${stripHtml(p.desc)} Precio orientativo ${p.price}€.`, 158);
@@ -366,7 +370,7 @@ function renderGuidePage(id) {
   const description = truncate(stripHtml(g.body), 158);
 
   const linksHtml = (g.links || []).map(l =>
-    `<a class="btn block" style="margin-bottom:.6rem" href="${amazonUrl(l.query)}" target="_blank" rel="sponsored noopener">🛒 ${esc(l.text)}</a>`
+    `<a class="btn block" style="margin-bottom:.6rem" href="${amazonUrl(l.query, l.asin)}" target="_blank" rel="sponsored noopener">🛒 ${esc(l.text)}</a>`
   ).join('');
 
   // Otras guías

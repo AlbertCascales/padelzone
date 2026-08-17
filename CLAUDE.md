@@ -31,6 +31,13 @@ editar a mano las páginas generadas.
 
 Tag de afiliado Amazon: `albertomart09-21` (constante `STORE_ID` en `index.html`).
 
+Los enlaces a Amazon se construyen con `amazonUrl(query, asin)` (definida en `index.html` **y** en
+`generate-pages.js`, deben coincidir): con `asin` válido (10 chars) va directo a `/dp/ASIN?tag=…`; sin
+él cae a búsqueda `/s?k=query`. Cada producto (y cada `link` de guía) puede llevar `asin`. **El asin
+debe ser el de esa variante/año exactos, verificado en amazon.es — nunca inventado** (ver
+[[verificar-datos-producto]]): si no se confirma, se deja sin `asin` y funciona igual por búsqueda. Es
+el mismo patrón que empiezalibros.
+
 ## Scripts (`tools/`)
 
 | Script | Qué hace |

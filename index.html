@@ -543,6 +543,14 @@ function pzProdCat(p){return palas.includes(p)?'palas':(zapatillas.includes(p)?'
 function prodPageUrl(p){return '/'+pzProdCat(p)+'/'+pzSlug(p.brand+' '+p.name)+'/';}
 function guidePageUrl(id){return '/guias/'+pzSlug(guides[id].title)+'/';}
 
+// Enlace a Amazon: con asin (10 caracteres alfanuméricos) va directo a la ficha del producto; si
+// falta, cae a la búsqueda por texto. El asin solo quita fricción (menos pasos hasta comprar y sin
+// riesgo de mostrar otra variante). NUNCA poner un asin sin verificar que es esa pala exacta.
+function amazonUrl(query, asin){
+  if(asin && /^[A-Z0-9]{10}$/.test(asin)) return 'https://www.amazon.es/dp/'+asin+'?tag='+STORE_ID;
+  return 'https://www.amazon.es/s?k='+encodeURIComponent(query)+'&tag='+STORE_ID;
+}
+
 const palas = [
   {
     id: 'p1', img: 'img/p1.jpg',
@@ -553,7 +561,7 @@ const palas = [
     pros: ['Potencia brutal en smash', 'Gran durabilidad', 'Diseño muy atractivo'],
     cons: ['Punto dulce pequeño', 'No apta para principiantes'],
     verdict: 'La mejor opción si juegas en posición de ataque y buscas pegar fuerte. Exige técnica.',
-    query: 'Bullpadel Vertex 05 2026'
+    query: 'Bullpadel Vertex 05 2026', asin: 'B0FPT66NNF'
   },
   {
     id: 'p2', img: 'img/p2.jpg',
@@ -564,7 +572,7 @@ const palas = [
     pros: ['Balance personalizable', 'Texturizado excelente para efectos', 'Gran rigidez'],
     cons: ['Precio elevado', 'Manejo exige experiencia'],
     verdict: 'Referente absoluto en su categoría. Si llevas años jugando y buscas rendimiento profesional, esta es tu pala.',
-    query: 'Adidas Metalbone Carbon 2026 padel'
+    query: 'Adidas Metalbone Carbon 2026 padel', asin: 'B0FZWVS59J'
   },
   {
     id: 'p3', img: 'img/p3.jpg',
@@ -575,7 +583,7 @@ const palas = [
     pros: ['Muy versátil', 'Fácil manejo', 'Gran relación calidad-precio'],
     cons: ['Menos potencia que modelos diamante', 'Acabado mejorable'],
     verdict: 'Perfecta para el jugador intermedio-avanzado que quiere mejorar sin gastar 200€. Muy buena compra.',
-    query: 'Nox ML10 Ventus Control 3K 2026'
+    query: 'Nox ML10 Ventus Control 3K 2026', asin: 'B0DHSYHXM3'
   },
   {
     id: 'p4', img: 'img/p4.jpg',
@@ -586,7 +594,7 @@ const palas = [
     pros: ['Punto dulce generoso', 'Muy manejable', 'Precio competitivo'],
     cons: ['Menos potencia bruta', 'Algo pesada para algunos'],
     verdict: 'Una opción muy sólida en la franja de precio intermedia. La firma Belasteguín garantiza calidad contrastada.',
-    query: 'Wilson Bela LS V3 padel'
+    query: 'Wilson Bela LS V3 padel', asin: 'B0F2W3DBTS'
   },
   {
     id: 'p5', img: 'img/p5.jpg',
@@ -597,7 +605,7 @@ const palas = [
     pros: ['Excelente precio', 'Muy cómoda', 'Control sencillo'],
     cons: ['Potencia limitada', 'Materiales básicos'],
     verdict: 'La elección más inteligente si empiezas desde cero. No malgastes dinero en una pala avanzada todavía.',
-    query: 'Bullpadel Indiga Power 2026'
+    query: 'Bullpadel Indiga Power 2026', asin: 'B0FV1256XK'
   },
   {
     id: 'p6', img: 'img/p6.jpg',
@@ -652,7 +660,7 @@ const palas = [
     pros: ['Control muy preciso', 'Balance ajustable', 'Sweet spot amplio'],
     cons: ['Menos potencia en smash', 'Precio elevado para su nivel'],
     verdict: 'La Metalbone para quienes priorizan control sobre potencia. Muy recomendable para jugadores técnicos.',
-    query: 'Adidas Metalbone Control 2026 padel'
+    query: 'Adidas Metalbone Control 2026 padel', asin: 'B0FZWPWLSD'
   },
   {
     id: 'p14', img: 'img/p14.jpg',
@@ -696,7 +704,7 @@ const palas = [
     pros: ['Potencia y rigidez de gama alta', 'Sistema SmartStrap', 'La pala del número 1 del mundo'],
     cons: ['Exige técnica avanzada', 'Precio elevado'],
     verdict: 'La elección para quien busca máxima potencia sin renunciar al control. Solo para jugadores avanzados con buena técnica.',
-    query: 'Nox AT10 Genius 18K 2026'
+    query: 'Nox AT10 Genius 18K 2026', asin: 'B0FX4M8T89'
   },
   {
     id: 'p22', img: 'img/p22.jpg',
@@ -740,7 +748,7 @@ const palas = [
     pros: ['Muy manejable, perdona fallos', 'Punto dulce amplio', 'Precio real de entrada'],
     cons: ['Potencia limitada si buscas rematar fuerte', 'No es una pala para crecer mucho de nivel'],
     verdict: 'Si vas a comprar tu primera pala de la familia Impulse, es esta y no la PWR. La PWR es para pegar; esta es para aprender.',
-    query: 'Bullpadel Impulse Ctrl 2026'
+    query: 'Bullpadel Impulse Ctrl 2026', asin: 'B0GLHJWLKZ'
   },
   {
     id: 'p28', img: 'img/p28.jpg',
@@ -751,7 +759,7 @@ const palas = [
     pros: ['Muy cómoda para el brazo y el codo', 'Punto dulce grande', 'Buen control para defender y sacar globos'],
     cons: ['Potencia limitada', 'No es la pala si buscas rematar fuerte'],
     verdict: 'Buena opción si vienes con molestias de codo o priorizas el control sobre pegar fuerte, aunque ya no es la pala más básica de la casa.',
-    query: 'Head Graphene XT Spark Control 2 padel'
+    query: 'Head Graphene XT Spark Control 2 padel', asin: 'B083ZGDZXR'
   },
   {
     id: 'p29', img: 'img/p29.jpg',
@@ -762,7 +770,7 @@ const palas = [
     pros: ['Carbono a un precio muy contenido', 'Buena estabilidad en el golpe (Tribar)', 'Sensación de golpe por encima de su precio'],
     cons: ['Balance alto: exige algo de técnica', 'No pensada para el primer día en pista'],
     verdict: 'No es una pala de iniciación pese al precio bajo: está hecha para pegar. Si ya tienes algo de nivel y quieres carbono barato, cumple.',
-    query: 'Dunlop Inferno Carbon Elite padel'
+    query: 'Dunlop Inferno Carbon Elite padel', asin: 'B09X778JQS'
   }
 ];
 
@@ -1080,7 +1088,7 @@ function createCard(p) {
       <div class="card-level">${p.level}</div>
       <div class="stars">${renderStars(p.stars)}<span>Nuestra valoración</span></div>
       <div class="card-price">${p.price} €<br><small>Precio orientativo Amazon.es</small></div>
-      <a class="btn-amazon" href="https://www.amazon.es/s?k=${encodeURIComponent(p.query)}&tag=${STORE_ID}" target="_blank" rel="sponsored noopener">
+      <a class="btn-amazon" href="${amazonUrl(p.query, p.asin)}" target="_blank" rel="sponsored noopener">
         🛒 Ver en Amazon
       </a>
       <a class="card-review" href="${prodPageUrl(p)}" onclick="event.stopPropagation()" style="display:block;text-align:center;margin-top:.55rem;font-size:.8rem;font-weight:600;color:var(--green);text-decoration:none">Ver análisis completo →</a>
@@ -1243,7 +1251,7 @@ function renderFeatured() {
         <div class="featured-desc">${p.desc}</div>
         <div class="featured-specs">${specs}</div>
         <div class="featured-price">${p.price} €</div>
-        <a class="btn-amazon-lg" href="https://www.amazon.es/s?k=${encodeURIComponent(p.query)}&tag=${STORE_ID}" target="_blank" rel="sponsored noopener">🛒 Ver en Amazon</a>
+        <a class="btn-amazon-lg" href="${amazonUrl(p.query, p.asin)}" target="_blank" rel="sponsored noopener">🛒 Ver en Amazon</a>
         <a href="${url}" style="display:inline-block;margin-top:0.75rem;color:var(--green);font-weight:700;font-size:0.85rem;text-decoration:none">Ver análisis completo →</a>
       </div>`;
 }
@@ -1387,7 +1395,7 @@ function openModal(id) {
   `;
   document.getElementById('modalVerdict').innerHTML = `<strong>Nuestro veredicto</strong>${product.verdict}`;
   document.getElementById('modalPrice').innerHTML = `${product.price} € <small>aprox. en Amazon.es</small>`;
-  document.getElementById('modalAmazonBtn').href = `https://www.amazon.es/s?k=${encodeURIComponent(product.query)}&tag=${STORE_ID}`;
+  document.getElementById('modalAmazonBtn').href = amazonUrl(product.query, product.asin);
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -1421,7 +1429,7 @@ const guides = {
 <p>Para un principiante, entre <strong>50€ y 90€</strong> es más que suficiente. No tiene sentido gastar 200€ en una pala de carbono avanzado si aún estás aprendiendo a volear. Cuando lleves 6 meses jugando, entonces sí tiene sentido invertir más.</p>`,
     links: [
       { text: 'Ver palas para principiante en Amazon', query: 'pala padel principiante' },
-      { text: 'Bullpadel Impulse Ctrl 2026 (mejor valorada iniciación)', query: 'Bullpadel Impulse Ctrl 2026' }
+      { text: 'Bullpadel Impulse Ctrl 2026 (mejor valorada iniciación)', query: 'Bullpadel Impulse Ctrl 2026', asin: 'B0GLHJWLKZ' }
     ]
   },
   g2: {
@@ -1452,7 +1460,7 @@ const guides = {
 <p style="margin-top:1rem;">El resto de posiciones las completan modelos de Adidas, Wilson y Siux que puedes explorar en el enlace de abajo.</p>`,
     links: [
       { text: 'Ver todas las palas por menos de 100€ en Amazon', query: 'pala padel menos 100 euros' },
-      { text: 'Bullpadel Impulse Ctrl 2026 – la nº1', query: 'Bullpadel Impulse Ctrl 2026' }
+      { text: 'Bullpadel Impulse Ctrl 2026 – la nº1', query: 'Bullpadel Impulse Ctrl 2026', asin: 'B0GLHJWLKZ' }
     ]
   },
   g4: {
@@ -1762,7 +1770,7 @@ const guides = {
 <p style="margin-top:1rem;"><strong>Resumen:</strong> al empezar, la pala barata-correcta + buena zapatilla + overgrip gana casi siempre a la pala cara + calzado improvisado. Guárdate el dinero de la gama alta para cuando de verdad la necesites.</p>`,
     links: [
       { text: 'Ver palas de iniciación (redonda, blanda) en Amazon', query: 'pala padel principiante redonda blanda' },
-      { text: 'Bullpadel Impulse Ctrl 2026 (mejor iniciación)', query: 'Bullpadel Impulse Ctrl 2026' },
+      { text: 'Bullpadel Impulse Ctrl 2026 (mejor iniciación)', query: 'Bullpadel Impulse Ctrl 2026', asin: 'B0GLHJWLKZ' },
       { text: 'Ver zapatillas de pádel con suela de espiga en Amazon', query: 'zapatillas padel espiga hierba artificial' },
       { text: 'Ver overgrips de pádel en Amazon', query: 'overgrip padel' }
     ]
@@ -1811,7 +1819,7 @@ function openGuideModal(id) {
   document.getElementById('guideLinks').innerHTML =
     `<a href="${guidePageUrl(id)}" style="font-weight:700;color:var(--green);text-decoration:none;">📖 Leer la guía completa →</a>` +
     g.links.map(l =>
-    `<a class="btn-amazon-lg" href="https://www.amazon.es/s?k=${encodeURIComponent(l.query)}&tag=${STORE_ID}" target="_blank" rel="sponsored noopener" style="width:fit-content;">🛒 ${l.text}</a>`
+    `<a class="btn-amazon-lg" href="${amazonUrl(l.query, l.asin)}" target="_blank" rel="sponsored noopener" style="width:fit-content;">🛒 ${l.text}</a>`
   ).join('');
   document.getElementById('guideOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';

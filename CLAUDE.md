@@ -104,6 +104,10 @@ del momento" NO es una tarea: se calcula en el JS de la página (ver Convencione
 
 ## Convenciones
 
+- **Si una guía o un vídeo nombra un producto concreto, ese producto debe existir como ficha propia**
+  (`/palas/<slug>/`…), no solo como texto con un enlace de búsqueda a Amazon: las fichas son las que
+  capturan las búsquedas de marca+modelo. Al añadirla, foto real y propia (nunca prestada de otro
+  producto) y datos verificados.
 - Commits en español, en imperativo, describiendo el efecto ("Añadir pala X y guía sobre Y").
 - El **"producto del momento"** (home) rota cada 2 días entre cualquier categoría. Es JS en la propia
   página (`renderFeatured()`), determinista por fecha: `Math.floor(Date.now()/(2*86400000)) % pool`.

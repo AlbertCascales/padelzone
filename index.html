@@ -413,7 +413,7 @@
       <div class="guide-card guide-hidden" data-guide="g17" onclick="openGuideModal('g17')">
         <div class="guide-cat">Guía de compra</div>
         <div class="guide-title">Mejor overgrip de pádel según cuánto sudas: guía de compra 2026</div>
-        <div class="guide-meta">Actualizado julio 2026 · 6 min lectura</div>
+        <div class="guide-meta">Actualizado septiembre 2026 · 6 min lectura</div>
         <div class="guide-arrow">Leer guía →</div>
       </div>
       <div class="guide-card guide-hidden" data-guide="g18" onclick="openGuideModal('g18')">
@@ -634,7 +634,7 @@ const palas = [
     brand: 'Nox', name: 'AT10 Genius 12K 2026', level: 'Avanzado',
     stars: 5, price: '199,00', badge: null,
     desc: 'La pala de Agustín Tapia en versión 12K. Carbono aluminizado, sistema Weight Balance y superficie Dual Spin para un control milimétrico con efectos devastadores.',
-    specs: { Forma: 'Redonda', Balance: 'Medio', Material: 'Carbono 12K Alum', Núcleo: 'MLD Eva' },
+    specs: { Forma: 'Lágrima', Balance: 'Medio', Material: 'Carbono 12K Alum', Núcleo: 'HR3 Black EVA' },
     pros: ['Control excepcional', 'Efectos brillantes', 'Balance ajustable'],
     cons: ['Requiere técnica sólida', 'Precio alto'],
     verdict: 'Para jugadores que construyen el punto con inteligencia. Control y efecto al máximo nivel.',
@@ -936,11 +936,11 @@ const accesorios = [
     id: 'a3', img: 'img/a3.jpg',
     brand: 'NOX', name: 'Overgrip Pro x3', level: 'Accesorio',
     stars: 4, price: '8,99', badge: null,
-    desc: 'Pack de 3 overgrips profesionales. Finos, absorbentes y con buena durabilidad. Compatibles con cualquier empuñadura.',
-    specs: { Grosor: '0.6mm', Cantidad: '3 unidades', Material: 'PU absorbente', Compatibilidad: 'Universal' },
-    pros: ['Muy absorbentes', 'Precio excelente', 'Fáciles de colocar'],
-    cons: ['Se desgastan con sudor intenso', 'Duran unas 3-4 sesiones'],
-    verdict: 'Imprescindible en tu bolsa. Cambia el overgrip cada mes para un agarre óptimo.',
+    desc: 'Pack de 3 overgrips de calidad profesional de Nox, con elasticidad y capacidad de absorber vibraciones. Compatibles con cualquier empuñadura.',
+    specs: { Cantidad: '3 unidades', Compatibilidad: 'Universal', Uso: 'Sobre el grip base de la pala' },
+    pros: ['Precio excelente', 'Elásticos y fáciles de colocar', 'Ayudan a absorber vibraciones'],
+    cons: ['Se desgastan con sudor intenso'],
+    verdict: 'Imprescindible en tu bolsa. Cámbialo en cuanto notes que tienes que apretar más el mango para que no gire la pala.',
     query: 'NOX overgrip padel pack 3'
   },
   {
@@ -969,11 +969,11 @@ const accesorios = [
     id: 'a6', img: 'img/a6.jpg',
     brand: 'Wilson', name: 'Pro Overgrip x3', level: 'Accesorio',
     stars: 5, price: '7,49', badge: null,
-    desc: 'El overgrip más popular del mercado de raqueta. Suave, absorbente y con tacto premium. Los usan los profesionales de tenis y cada vez más padelistas de alto nivel.',
-    specs: { Grosor: '0.6mm', Cantidad: '3 unidades', Material: 'PU premium', Tacto: 'Muy suave' },
-    pros: ['Tacto premium', 'Muy absorbente', 'Gran durabilidad'],
+    desc: 'El overgrip más popular del mercado de raqueta según la propia Wilson. Muy fino, elástico, con tacto suave y algo pegajoso (tacky) y buena absorción. Lo usan profesionales de tenis y cada vez más padelistas.',
+    specs: { Cantidad: '3 unidades', Grosor: 'Muy fino', Tacto: 'Suave y tacky', Uso: 'Sobre el grip base de la pala' },
+    pros: ['Tacto suave con algo de agarre', 'Buena absorción', 'Punto intermedio si no sabes cuánto sudas'],
     cons: ['Algo más caro que marcas de pádel', 'Puede volverse resbaladizo con mucho sudor'],
-    verdict: 'El estándar de referencia en overgrips. Si no lo has probado, te sorprenderá la diferencia con los básicos.',
+    verdict: 'El estándar de referencia en overgrips y la compra segura si no sabes qué tipo necesitas: ni el más absorbente ni el más pegajoso, pero no falla en ningún extremo.',
     query: 'Wilson Pro Overgrip padel tennis'
   },
   {
@@ -991,23 +991,12 @@ const accesorios = [
     id: 'a8', img: 'img/a8.jpg',
     brand: 'Head', name: 'Xtreme Soft Overgrip x3', level: 'Accesorio',
     stars: 4, price: '6,99', badge: null,
-    desc: 'El overgrip de Head preferido por jugadores que buscan suavidad y absorción. Tacto muy cómodo y larga durabilidad en comparación con otras marcas.',
-    specs: { Grosor: '0.5mm', Cantidad: '3 unidades', Material: 'Microfibra', Tacto: 'Suave' },
-    pros: ['Muy suave al tacto', 'Buena absorción', 'Colores variados'],
-    cons: ['Algo menos agarre que Wilson', 'Se sucia antes'],
-    verdict: 'Una buena alternativa al Wilson Pro. Perfectos si prefieres un tacto suave a uno más pegajoso.',
+    desc: 'Overgrip de Head muy fino (0,5mm) en elastómero tacky con perforaciones extra grandes: da agarre pegajoso y a la vez absorbe la humedad. Pensado para jugadores que sudan y no quieren engrosar el mango.',
+    specs: { Grosor: '0,5mm', Cantidad: '3 unidades', Material: 'Elastómero perforado', Tacto: 'Tacky y suave' },
+    pros: ['Muy fino: no engrosa el mango', 'Tacky con perforaciones que absorben', 'Colores variados'],
+    cons: ['Muy fino: si prefieres un mango más grueso no lo consigue'],
+    verdict: 'Buena opción si sudas y quieres agarre pegajoso con perforaciones que ayuden a mantener la mano seca. Alternativa al Wilson Pro con más perforación.',
     query: 'Head Xtreme Soft overgrip padel'
-  },
-  {
-    id: 'a11', img: 'img/a11.jpg',
-    brand: 'Bullpadel', name: 'Overgrip BPP Pro x3', level: 'Accesorio',
-    stars: 4, price: '7,99', badge: 'new',
-    desc: 'Pack de 3 overgrips de Bullpadel con textura ligeramente rugosa para mejorar el agarre en manos sudorosas. Buen equilibrio entre grosor y sensibilidad de la empuñadura.',
-    specs: { Grosor: '0.7mm', Cantidad: '3 unidades', Material: 'PU microperforado', Compatibilidad: 'Universal' },
-    pros: ['Agarre superior en manos sudorosas', 'Buena durabilidad', 'Fácil de cortar y colocar'],
-    cons: ['Algo más grueso que otros overgrips', 'Color se ensucia rápido en tonos claros'],
-    verdict: 'Si sudas mucho de manos, este overgrip marca la diferencia frente a los básicos.',
-    query: 'Bullpadel overgrip BPP pack 3'
   },
   {
     id: 'a12', img: 'img/a12.jpg',
@@ -1022,14 +1011,14 @@ const accesorios = [
   },
   {
     id: 'a13', img: 'img/a13.jpg',
-    brand: 'Babolat', name: 'Syntec Pro Overgrip x3', level: 'Accesorio',
-    stars: 4, price: '9,49', badge: null,
-    desc: 'El overgrip de Babolat más usado en raqueta, adaptado a pádel. Tacto ligeramente tacky (pegajoso) en seco, pensado para quien busca sensación de agarre más que absorción máxima.',
-    specs: { Grosor: '0.6mm', Cantidad: '3 unidades', Material: 'PU tacky', Tacto: 'Pegajoso en seco' },
-    pros: ['Sensación de agarre muy directa', 'Buena durabilidad si no sudas en exceso', 'Fácil de recortar'],
-    cons: ['Pierde el tacto pegajoso rápido con sudor intenso', 'Menos absorbente que un overgrip esponjoso'],
-    verdict: 'Ideal si tienes manos normales o secas y buscas sensación de raqueta más que esponja. Si sudas mucho, no es tu overgrip.',
-    query: 'Babolat Syntec Pro Overgrip padel'
+    brand: 'Babolat', name: 'Syntec Pro Grip Base', level: 'Accesorio',
+    stars: 4, price: '8,20', badge: null,
+    desc: 'OJO: no es un overgrip, es un grip base (de recambio) que se pone directamente en el mango de la pala, debajo del overgrip. Babolat lo describe como tacky y absorbente, con 1,9mm de grosor, y es el que usan la mayoría de profesionales del circuito de tenis.',
+    specs: { Tipo: 'Grip base (no overgrip)', Grosor: '1,9mm', Cantidad: '1 unidad', Tacto: 'Tacky y absorbente' },
+    pros: ['Grosor equilibrado (1,9mm)', 'Muy absorbente dentro de la gama Babolat', 'Sensación de agarre directa'],
+    cons: ['Se vende suelto (1 unidad), no en pack de 3', 'Si sudas mucho, Babolat aconseja añadir un overgrip encima'],
+    verdict: 'Para renovar el grip base cuando el original ya está gastado. No lo confundas con un overgrip: lo que se cambia cada pocas sesiones es el overgrip.',
+    query: 'Babolat Syntec Pro grip base padel'
   },
   {
     id: 'a14', img: 'img/a14.jpg',
@@ -1485,13 +1474,15 @@ const guides = {
     body: `<p>En España, la mayoría de pistas de pádel son de <strong>hierba artificial con polvo de cuarzo</strong>. Esto hace que la elección de zapatilla sea crucial: una suela incorrecta puede hacerte resbalar o dañar tus rodillas.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">¿Qué suela necesitas?</h4>
 <p>Para hierba artificial con cuarzo necesitas una suela de <strong>espiga</strong> (también llamada "omni" en algunas marcas). Las espigas pequeñas y densas dan agarre sin clavarse en exceso en la superficie. Evita las suelas lisas (para cemento) o los tacos grandes (para tierra batida).</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Top 3 para hierba artificial</h4>
-<p><strong>1. Adidas Adizero Ubersonic 4</strong> – La referencia. Ligeras, buen agarre y disponibles en muchas tallas en Amazon.<br>
-<strong>2. Wilson Rush Pro 4.0 Clay</strong> – Muy buena estabilidad lateral. Ideal si sufres de tobillo.<br>
-<strong>3. Asics Gel-Game</strong> – Excelente amortiguación, buena relación calidad-precio para jugadores recreativos.</p>`,
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Top 3 para hierba artificial (sin gastar de más)</h4>
+<p><strong>1. Babolat Movea Padel (~79€)</strong> – La opción de entrada. Suela de espiga básica y buen peso, pensada para quien juega 1-2 veces por semana. Si no compites, con esta te sobra.<br>
+<strong>2. Head Revolt Pro 4.5 2026 (~109€)</strong> – La mejor relación calidad-precio. Espiga, transpirable y ligera, sin pagar por tecnologías que un principiante no aprovecha todavía.<br>
+<strong>3. Asics Gel-Padel Pro 6 2026 (~99€)</strong> – El clásico con amortiguación GEL en el talón y suela de espiga. Si vienes del tenis y ya conoces la marca, la transición es directa.</p>`,
     links: [
       { text: 'Ver zapatillas de pádel para hierba en Amazon', query: 'zapatillas padel hierba artificial espiga' },
-      { text: 'Adidas Adizero Ubersonic – la más vendida', query: 'Adidas Adizero Ubersonic padel' }
+      { text: 'Babolat Movea Padel – la más económica', query: 'Babolat Movea Padel' },
+      { text: 'Head Revolt Pro 4.5 2026 – mejor relación calidad-precio', query: 'Head Revolt Pro padel 2026' },
+      { text: 'Asics Gel-Padel Pro 6 2026', query: 'Asics Gel Padel Pro padel 2026' }
     ]
   },
   g6: {
@@ -1576,7 +1567,7 @@ const guides = {
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Head Coello Pro 2026: explosividad para quien ya la domina</h4>
 <p>Auxetic 2.0 + Power Foam, forma diamante con balance muy alto (272mm) y Extreme Spin 3D. Traducido: máxima potencia y efecto, pero un punto dulce diminuto y un tacto durísimo. En manos de un principiante eso es menos control, más bolas descentradas y riesgo real de codo de tenista. Es una herramienta de precisión para quien ya tiene técnica de sobra.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Nox AT10 Genius 12K Alum 2026: más polivalente, pero sigue siendo de pro</h4>
-<p>Carbono 12K aluminizado con Weight Balance y núcleo MLD Eva multicapa. Más manejable que la Coello y con efectos brutales, sí, pero sigue siendo una pala rígida pensada para un jugador avanzado que exprime cada gramo. Pagar 200€+ por prestaciones que aún no puedes aprovechar no te hace jugar mejor; a menudo te frena.</p>
+<p>Carbono 12K aluminizado con Weight Balance y núcleo HR3 Black EVA de alta densidad. Más manejable que la Coello y con efectos brutales, sí, pero sigue siendo una pala rígida pensada para un jugador avanzado que exprime cada gramo. Pagar 200€+ por prestaciones que aún no puedes aprovechar no te hace jugar mejor; a menudo te frena.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Entonces, ¿cuál compro?</h4>
 <p>Si eres avanzado y juegas en red buscando explosividad: <strong>Coello Pro</strong>. Si alternas ataque y defensa: <strong>AT10 Genius</strong>. Pero si llevas menos de un año, la respuesta honesta es <strong>ninguna</strong>: coge una pala <strong>redonda, de núcleo blando, de 50-90€</strong>, progresa, y cuando la pala te "frene" de verdad, entonces sí te habrás ganado una de estas. Guárdate los 200€ para cuando marquen la diferencia.</p>`,
     links: [
@@ -1633,18 +1624,18 @@ const guides = {
     ]
   },
   g17: {
-    cat: 'Guía de compra', meta: 'Actualizado julio 2026 · 6 min lectura',
+    cat: 'Guía de compra', meta: 'Actualizado septiembre 2026 · 6 min lectura',
     title: 'Mejor overgrip de pádel según cuánto sudas: guía de compra 2026',
-    body: `<p>El overgrip es lo más barato de tu equipo, pero es lo que decide si la pala se te escapa de la mano en el tercer set. Y aquí no hay overgrip "mejor" en absoluto: hay overgrip mejor <strong>para tu tipo de mano</strong>. Comprar el que usa tu compañero de pista sin mirar cuánto sudas es el motivo más habitual por el que acabas cambiándolo cada dos semanas.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Los dos tipos reales de overgrip (y por qué se confunden)</h4>
-<p>Por un lado están los <strong>absorbentes o "esponjosos"</strong> (microfibra o PU poroso): chupan el sudor hacia dentro del propio grip y mantienen una sensación seca más tiempo, pero se saturan y hay que cambiarlos antes. Por otro, los <strong>tacky o "pegajosos"</strong> (PU liso): dan una sensación de agarre directa al tacto en seco, pero en cuanto aparece sudor pierden ese punto pegajoso de golpe y no lo recuperan hasta que se secan. Ningún fabricante lo pone así de claro en el envase, así que fíjate en la palabra "soft/absorbente" frente a "tacky/pro" en la descripción.</p>
+    body: `<p>El overgrip es lo más barato de tu equipo, pero es lo que decide si la pala se te escapa de la mano en el tercer set. Y aquí no hay overgrip "mejor" en absoluto: hay overgrip mejor <strong>para tu tipo de mano</strong>. Comprar el que usa tu compañero de pista sin mirar cuánto sudas es el motivo más habitual por el que acabas cambiándolo a cada rato.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Los dos tipos de overgrip (y por qué se confunden)</h4>
+<p>Por un lado están los <strong>absorbentes</strong> (perforados o de textura porosa): chupan el sudor y mantienen una sensación seca más tiempo, pero se saturan antes. Por otro, los <strong>tacky o "pegajosos"</strong>: dan un agarre directo al tacto en seco, pero pierden ese punto pegajoso cuando aparece mucho sudor. En la práctica no son dos mundos separados: muchos overgrips actuales mezclan las dos cosas (tacky con perforaciones), así que fíjate en la descripción del fabricante y en si el overgrip es perforado, no solo en la palabra "soft" o "pro".</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Qué overgrip según cuánto sudes</h4>
-<p>Si te sudan mucho las manos, un overgrip esponjoso con textura microperforada como el <strong>Bullpadel BPP Pro</strong> o el <strong>Head Xtreme Soft</strong> te va a durar más agarre útil por sesión que uno tacky, aunque toque cambiarlo cada 3-4 partidos. Si tienes manos secas o normales, un tacky como el <strong>Babolat Syntec Pro</strong> te da mejor sensación de raqueta y dura más sesiones sin perder tacto. Y si no sabes en qué grupo estás, el <strong>Wilson Pro Overgrip</strong> es el punto intermedio más seguro: ni el más absorbente ni el más tacky, pero no falla en ningún extremo.</p>
+<p>Si te sudan mucho las manos, busca uno con perforaciones como el <strong>Head Xtreme Soft</strong>: es muy fino (0,5mm), tacky y con perforaciones extra grandes que absorben la humedad. Si tienes las manos secas o normales, uno tacky y fino como el <strong>Wilson Pro Overgrip</strong> te da buen agarre con tacto suave. Y si no sabes en qué grupo estás, el Wilson Pro es también la compra segura: ni el más absorbente ni el más pegajoso, pero no falla en ningún extremo. Otra opción económica de calidad profesional es el <strong>Nox Overgrip Pro</strong>. Ojo con el <strong>Babolat Syntec Pro</strong>: es un grip base (el que va pegado al mango, debajo), no un overgrip, y si sudas mucho Babolat recomienda añadirle un overgrip encima.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Cuándo cambiarlo y cómo notar que toca</h4>
-<p>La señal no es visual, es táctil: en cuanto notas que tienes que apretar más fuerte el mango para que no gire la pala en la volea, ya deberías haberlo cambiado hace una sesión. Como referencia con juego 2 veces por semana, un overgrip esponjoso aguanta 3-4 sesiones y uno tacky 5-6 si tus manos no sudan mucho. Llevar siempre un pack de 3 en el paletero (no uno suelto) evita quedarte a mitad de temporada sin recambio justo antes de un torneo.</p>`,
+<p>La señal no es visual, es táctil: en cuanto notas que tienes que apretar más fuerte el mango para que no gire la pala en la volea, ya deberías haberlo cambiado hace una sesión. No hay una cifra universal de sesiones: depende de cuánto sudes, de cuánto juegues y del tipo de overgrip (uno absorbente se satura antes que uno tacky si sudas mucho). Llevar siempre un pack de 3 en el paletero (no uno suelto) evita quedarte sin recambio a mitad de temporada, justo antes de un torneo.</p>`,
     links: [
       { text: 'Ver overgrips de pádel en Amazon', query: 'overgrip padel pack' },
-      { text: 'Babolat Syntec Pro Overgrip en Amazon', query: 'Babolat Syntec Pro Overgrip padel' }
+      { text: 'Head Xtreme Soft Overgrip en Amazon', query: 'Head Xtreme Soft overgrip padel' }
     ]
   },
   g18: {

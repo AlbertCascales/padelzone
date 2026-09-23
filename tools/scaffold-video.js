@@ -8,8 +8,11 @@
  *
  * Qué genera en videos/<slug>/ :
  *   - BRIEF.md, capture/extracted/{visible-text.txt,tokens.json}
- *   - frame.md + .hyperframes/caption-skin.html  (copiados del proyecto de referencia,
- *     preset blockframe remix lima/negro; misma estética que el primer vídeo)
+ *   - frame.md, referencia-demo.html, cover.html (plantilla de portada) y assets/fonts/
+ *     (copiados de tools/video-assets/; estilo "producto 3D en pista de noche", aprobado
+ *     el 23/09/2026 — el blockframe lima/negro anterior queda en frame-blockframe.md)
+ *   - assets/img/<id>.png: foto REAL de cada producto que nombra la guía, sin fondo
+ *     (tools/video-assets/recortar-fondo.py)
  *   - STORYBOARD.md + SCRIPT.md  (listicle: gancho + N puntos + CTA, con el ESCENARIO
  *     COMPARTIDO ya escrito y las ventanas de plano por tiempos)
  *
@@ -25,10 +28,10 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const REF = path.join(ROOT, 'videos', '5-errores-principiante-padel'); // proyecto de referencia (frame.md/caption)
+const REF = path.join(ROOT, 'tools', 'video-assets'); // estilo de vídeo versionado (frame.md, referencia, fuentes)
 const MAX_POINTS = 6;         // tope de puntos (frames de contenido) por vídeo
-const VOICE = '0077225a877e457db4572ccaf245910b'; // HeyGen "Narrator Mateo" (única voz ES)
-const SPEED = '1.12';         // ver memoria tiktok-video-pipeline: corrige las pausas de Mateo
+const VOICE = '3daec88b3c1a49b7a5e10a211426fc81'; // HeyGen "Fernando Sanz" (Mateo sonaba anglosajón)
+const SPEED = '1.5';          // ver memoria tiktok-video-pipeline
 
 // ---- extracción de guides desde index.html (mismo enfoque que generate-pages.js) ----
 const indexSrc = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
@@ -50,6 +53,28 @@ function extractLiteral(src, marker, open, close) {
   throw new Error('Literal sin cerrar: ' + marker);
 }
 const guides = new Function('return (' + extractLiteral(indexSrc, 'const guides =', '{', '}') + ')')();
+const products = ['palas', 'zapatillas', 'accesorios'].flatMap((k) =>
+  new Function('return (' + extractLiteral(indexSrc, 'const ' + k + ' =', '[', ']') + ')')());
+function norm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
+// Productos de index.html que nombra un texto (marca + modelo, o modelo si es largo), en orden de aparición.
+function findProducts(text) {
+  const h = ' ' + norm(text) + ' ';
+  const pos = (pr) => {
+    for (const k of [pr.brand + ' ' + pr.name, pr.name]) {
+      const n = norm(k);
+      if (n.length >= 6 && h.includes(' ' + n + ' ')) return h.indexOf(' ' + n + ' ');
+    }
+    // nombre abreviado en el texto ("Bullpadel Premium Pro" = "Premium Pro Padel Ball x3"): marca + las
+    // primeras palabras del modelo (mínimo 2)
+    const w = norm(pr.name).split(' ');
+    for (let k = w.length - 1; k >= 2; k--) {
+      const n = ' ' + norm(pr.brand) + ' ' + w.slice(0, k).join(' ') + ' ';
+      if (h.includes(n)) return h.indexOf(n);
+    }
+    return -1;
+  };
+  return products.map((pr) => [pr, pos(pr)]).filter(([, i]) => i >= 0).sort((a, b) => a[1] - b[1]).map(([pr]) => pr);
+}
 
 function slugify(s) {
   return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -87,7 +112,7 @@ function extractPoints(body) {
         // "1. Nox ML10 – La más cómoda" → heading="Nox ML10", takeaway="La más cómoda"
         const m = it.match(/^(.*?)\s*[–\-—:]\s*(.+)$/);
         const heading = shortHeading(m ? m[1] : it);
-        return { heading, takeaway: m ? m[2].trim() : it };
+        return { heading, takeaway: m ? m[2].trim() : it, full: it };
       });
     }
   }
@@ -96,7 +121,7 @@ function extractPoints(body) {
   const re = /<h4[^>]*>(.*?)<\/h4>\s*<p[^>]*>(.*?)<\/p>/gis;
   let m;
   while ((m = re.exec(body)) && pts.length < MAX_POINTS) {
-    pts.push({ heading: shortHeading(m[1]) || stripHtml(m[1]), takeaway: firstSentence(m[2]) });
+    pts.push({ heading: shortHeading(m[1]) || stripHtml(m[1]), takeaway: firstSentence(m[2]), full: stripHtml(m[2]) });
   }
   return pts;
 }
@@ -117,6 +142,13 @@ if (!g) { console.error(`Guía "${id}" no existe. Usa --list.`); process.exit(1)
 
 const points = extractPoints(g.body);
 if (!points.length) { console.error('No se extrajeron puntos (¿la guía no tiene <h4>?).'); process.exit(1); }
+// Cada punto: productos que nombra su sección; el principal es el primero que no fue principal antes.
+const usados = new Set();
+points.forEach((p) => {
+  p.prods = findProducts(p.heading + ' ' + (p.full || p.takeaway));
+  p.prod = p.prods.find((x) => !usados.has(x.id)) || null;
+  if (p.prod) usados.add(p.prod.id);
+});
 
 const slug = slugify(g.title).slice(0, 60);
 const projDir = path.join(ROOT, 'videos', slug);
@@ -125,16 +157,24 @@ if (fs.existsSync(projDir)) { console.error(`Ya existe ${path.relative(ROOT, pro
 // ------------------------------ escribir proyecto ------------------------------
 const mk = (p) => fs.mkdirSync(path.join(projDir, p), { recursive: true });
 const wr = (p, c) => fs.writeFileSync(path.join(projDir, p), c);
-mk('capture/extracted'); mk('.hyperframes'); mk('compositions/frames');
+mk('capture/extracted'); mk('.hyperframes'); mk('compositions/frames'); mk('assets/fonts'); mk('assets/img');
 
-// frame.md + caption-skin del proyecto de referencia (estética probada)
-if (fs.existsSync(path.join(REF, 'frame.md'))) {
-  fs.copyFileSync(path.join(REF, 'frame.md'), path.join(projDir, 'frame.md'));
-  const skin = path.join(REF, '.hyperframes', 'caption-skin.html');
-  if (fs.existsSync(skin)) fs.copyFileSync(skin, path.join(projDir, '.hyperframes', 'caption-skin.html'));
-} else {
-  wr('FRAME_TODO.txt', 'No hay proyecto de referencia. Ejecuta build-frame.mjs --preset blockframe.');
-}
+// estilo "producto 3D en pista de noche" (tools/video-assets/): guía, referencia, plantilla de portada, fuentes
+const cp = (from, to) => { if (fs.existsSync(from)) { fs.copyFileSync(from, path.join(projDir, to)); return true; } return false; };
+cp(path.join(REF, 'frame.md'), 'frame.md');
+cp(path.join(REF, 'caption-skin.html'), '.hyperframes/caption-skin.html');
+cp(path.join(REF, 'estilo', 'referencia-demo.html'), 'referencia-demo.html');
+cp(path.join(REF, 'estilo', 'portada-plantilla.html'), 'cover.html');
+for (const f of fs.readdirSync(path.join(REF, 'fonts'))) cp(path.join(REF, 'fonts', f), 'assets/fonts/' + f);
+// foto REAL de cada producto, sin fondo, para el 3D
+const sinFoto = [];
+new Set(points.flatMap((p) => p.prods)).forEach((pr) => {
+  const src = path.join(ROOT, pr.img || '');
+  if (!pr.img || !fs.existsSync(src)) { sinFoto.push(pr.id); return; }
+  try {
+    require('child_process').execFileSync('python', [path.join(REF, 'recortar-fondo.py'), src, path.join(projDir, 'assets', 'img', pr.id + '.png')], { stdio: 'ignore' });
+  } catch (e) { cp(src, 'assets/img/' + pr.id + path.extname(src)); sinFoto.push(pr.id + ' (sin recortar)'); }
+});
 
 // capture
 wr('capture/extracted/visible-text.txt', `${g.title}\n\n${stripHtml(g.body)}\n\nLa guía completa, en empiezapadel.es`);
@@ -180,9 +220,10 @@ music: "energetic upbeat sporty underscore, punchy, sin voz"
 ---
 
 ## Video direction
-- **palette** (frame.md): fondo negro #0d0d0d; lima #c8f135 = marca y dato clave; texto blanco. Número gigante DM Serif Display, cuerpo DM Sans. Tarjetas lima con borde negro 4px + sombra dura (neobrutalismo). Nunca inventar colores.
-- **motion**: eases power3, VO-paced (cada pieza entra en su cue hablado; nada en t=0). Reposo con jitter mínimo.
-- **ESCENARIO COMPARTIDO (puntos)**: número gigante arriba-izq + pill "CLAVE" · titular del punto en blanco (entra) · tarjeta-clave lima que hace spring-pop debajo con el dato/consejo. Mismo molde, contenido distinto; transición push-slide UP entre puntos.
+- **estilo**: "Producto 3D en pista de noche / motion comic" — LEER frame.md y referencia-demo.html (en este proyecto) antes de construir nada y reutilizar su CSS/patrones.
+- **palette** (frame.md): #070907 + verde oscuro, lima #c8f135 = marca y dato clave, texto #f2f5ea, rojo #ff4d5e para "no lo necesitas". Nunca inventar colores.
+- **motion**: eases power3/expo, VO-paced (cada pieza entra en su cue hablado). Reposo: producto girando despacio, focos oscilando, polvo. Fotograma 0 nunca vacío.
+- **ESCENARIO COMPARTIDO (puntos)**: pill "Nº X" arriba · producto 3D con su FOTO REAL sin fondo (assets/img/<id>.png) que cae girando y aterriza (thock) · 1–2 viñetas de motion comic que ilustran el porqué del consejo (pista, trayectoria de bola, forma de pala, punto dulce…) · caption narrativo con la frase de la VO y la clave en lima. Puntos sin producto: solo viñeta.
 - **negative list**: sin nav/cursores/chrome, sin bokeh ni degradados "AI", sin emojis. Contenido en el 83% superior (UI de TikTok tapa el borde inferior).
 
 ## Frame 1 — Gancho
@@ -225,7 +266,7 @@ points.forEach((p, i) => {
   const fid = String(n).padStart(2, '0');
   sb += `
 ## Frame ${n} — Punto ${i + 1}: ${p.heading}
-- scene: Número "${i + 1}"; "${upper(p.heading)}"; tarjeta lima con el consejo
+- scene: Nº ${i + 1} · ${p.prod ? `producto 3D "${esc(p.prod.brand + ' ' + p.prod.name)}"` : `viñeta "${esc(p.heading)}"`} · motion comic del porqué · caption
 - voiceover: "${esc(p.heading)}: ${esc(firstSentence(p.takeaway, 70))}"
 - duration: 6s
 - transition_in: push-slide UP
@@ -235,15 +276,16 @@ points.forEach((p, i) => {
 - beat: comprension
 - blueprint: kinetic-type-beats (Adapt)
 - focal: el titular "${upper(p.heading)}"
-- roles: número "${i + 1}" = supporting · titular = foreground · tarjeta lima = foreground · fondo = background
+- roles: producto 3D = foreground · viñeta = foreground · caption = foreground · atmósfera = background
 - sfx: thock, pop
 - src: compositions/frames/${fid}-punto-${i + 1}.html
+${p.prods.length ? p.prods.map((x) => `- producto${x === p.prod ? ' PRINCIPAL' : ''}: id ${x.id} · "${esc(x.brand + ' ' + x.name)}" · foto assets/img/${x.id}.png · ${x.level && /^pd/.test(x.id) ? "nivel " + x.level + " · " : ""}${x.price ? x.price + ' € · ' : ''}specs ${esc(JSON.stringify(x.specs || {}))}`).join('\n')
+  : `- producto: ninguno con ficha en esta sección. Si es un consejo general, ilústralo solo con viñeta. Si nombra un producto concreto sin ficha, crea antes la ficha con datos verificados y su foto real.`}
 
-Usa el ESCENARIO COMPARTIDO. Adapt de kinetic-type-beats.
-Scene 1 (0.0–1.3s): "${i + 1}" gigante lima entra (scale-pop, thock) + pill "CLAVE".
-Scene 2 (1.3–3.4s): "${upper(p.heading)}" entra en blanco (centrado).
-Scene 3 (3.4–5.0s): tarjeta lima spring-pop con el consejo: "${esc(firstSentence(p.takeaway, 60))}".
-Scene 4 (5.0–6.0s): hold quieto.
+Usa el ESCENARIO COMPARTIDO (frame.md + referencia-demo.html).
+Scene 1 (0.0–1.3s): pill "Nº ${i + 1}" + ${p.prod ? 'el producto 3D cae girando y aterriza (thock)' : 'entra la viñeta del consejo'} mientras se dice el titular.
+Scene 2 (1.3–4.4s): viñeta de motion comic con el porqué (1–2 golpes visuales); caption palabra a palabra con la frase de la VO.
+Scene 3 (4.4–6.0s): ${p.prod ? 'vuelve el producto girando despacio + ' : ''}tag con "${esc(firstSentence(p.takeaway, 60))}"; hold.
 
 narrativeRole: Enseñar el punto ${i + 1} del tema.
 keyMessage: ${p.takeaway}
@@ -273,7 +315,7 @@ sb += `
 - sfx: soft-chime
 - src: compositions/frames/${String(cta).padStart(2, '0')}-cta.html
 
-Reproduce de titlecard-reveal: un movimiento contenido y hold. Negro/lima de marca.
+Reproduce de titlecard-reveal en el estilo de frame.md: productos de la guía en fila girando sobre la pista, wordmark con "Padel" en lima.
 Scene 1 (0.0–1.4s): icono de pala + "EmpiezaPadel" (Padel en lima) slide-up al centro.
 Scene 2 (1.4–2.8s): "La guía completa, GRATIS" debajo; "GRATIS" en pill lima.
 Scene 3 (2.8–4.0s): "empiezapadel.es" subrayado en lima; hold.
@@ -298,7 +340,8 @@ const SK = 'C:/Users/marti/.claude/skills/faceless-explainer/scripts';
 console.log(`✓ Proyecto creado: ${rel}
   guía: ${id} — "${g.title}"
   frames: 1 gancho + ${N} puntos + 1 CTA = ${N + 2}
-
+  productos por punto: ${points.map((p, i) => (i + 1) + ') ' + (p.prods.length ? p.prods.map((x) => x.id + ' ' + x.name).join(', ') : 'consejo general')).join(' · ')}
+${sinFoto.length ? '  ⚠ sin foto recortada: ' + sinFoto.join(', ') + '\n' : ''}
 REVISA primero (borrador): el gancho (Frame 1 / Line 1) y las líneas de VO en SCRIPT.md.
 
 Luego, pasos de máquina/agente (desde ${rel}/):
@@ -309,5 +352,5 @@ Luego, pasos de máquina/agente (desde ${rel}/):
   4. Construir frames: despachar 1 worker por frame (Claude) con _role.md + su packet.
   5. Ensamblar:       node "${SK}/assemble-index.mjs" --storyboard ./STORYBOARD.md --hyperframes .
                       node "${SK}/transitions.mjs" inject --storyboard ./STORYBOARD.md --hyperframes .
-  6. Check + render:  npx hyperframes check  &&  npx hyperframes render --skill=faceless-explainer --quality high --output renders/video.mp4
+  6. Check + render:  npx hyperframes@0.8.63 check  &&  npx hyperframes@0.8.63 render --skill=faceless-explainer --quality high --output renders/video.mp4
 `);

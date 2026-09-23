@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      @font-face { font-family: 'DM Serif Display'; src: url("assets/fonts/DMSerifDisplay-Regular.woff2") format('woff2'); font-weight: 400 900; font-display: block; }
+      @font-face { font-family: 'DM Sans'; src: url("assets/fonts/DMSans-Variable.woff2") format('woff2'); font-weight: 100 1000; font-display: block; }
+      @font-face { font-family: 'Space Grotesk'; src: url("assets/fonts/SpaceGrotesk-Variable.woff2") format('woff2'); font-weight: 100 1000; font-display: block; }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #070907; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #070907; font-family: 'DM Sans', sans-serif; color: #f2f5ea; }
+      .layer { position: absolute; inset: 0; }
+      :root { --lime: #c8f135; --lime-d: #9ec22a; }
+
+      /* ---------- atmósfera: pista de noche ---------- */
+      .bg { background: radial-gradient(ellipse 80% 55% at 50% 38%, #1d2a10 0%, #0c120a 55%, #070907 100%); }
+      .glow { position: absolute; left: 50%; top: 700px; width: 1400px; height: 1400px; margin: -700px 0 0 -700px; border-radius: 50%;
+              background: radial-gradient(circle, rgba(200,241,53,0.22), transparent 60%); }
+      .beam { position: absolute; top: -200px; width: 380px; height: 2000px; transform-origin: 50% 0;
+              background: linear-gradient(180deg, rgba(240,255,210,0.16), transparent 75%); }
+      .beam.l { left: -80px; transform: rotate(-16deg); }
+      .beam.r { right: -80px; transform: rotate(16deg); }
+      .dust { position: absolute; border-radius: 50%; background: #e8ffb0; }
+      .grain { background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px); mix-blend-mode: overlay; }
+      .vignette { background: radial-gradient(ellipse at 50% 45%, transparent 45%, rgba(0,0,0,0.8) 100%); }
+
+      /* ---------- pala 3D (foto real recortada + grosor por capas) ---------- */
+      .stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1594px; perspective: 2200px; perspective-origin: 50% 40%; }
+      .palawrap { position: absolute; left: 50%; top: 700px; width: 440px; height: 717px; margin: -358px 0 0 -220px; transform-style: preserve-3d; }
+      .pala { position: absolute; inset: 0; transform-style: preserve-3d; }
+      .pala img { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: visible; }
+      .pala img.edge { filter: brightness(0.18) saturate(0.4); }
+      .shadow { position: absolute; left: 50%; top: 1100px; width: 460px; height: 70px; margin-left: -230px; border-radius: 50%;
+                background: radial-gradient(ellipse, rgba(0,0,0,0.75), transparent 70%); }
+
+      /* ---------- escena 1 ---------- */
+      .pill { position: absolute; top: 130px; left: 50%; transform: translateX(-50%); padding: 14px 36px; border: 3px solid #f2f5ea; border-radius: 999px;
+              font-family: 'Space Grotesk'; font-weight: 700; font-size: 30px; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; background: rgba(7,9,7,0.6); }
+      .pill b { color: var(--lime); }
+      .title { position: absolute; top: 1150px; width: 100%; text-align: center; font-family: 'DM Serif Display'; font-size: 132px; line-height: 1;
+               text-transform: uppercase; letter-spacing: -0.02em; }
+      .title .ch { display: inline-block; }
+      .rule { position: absolute; top: 1300px; left: 50%; width: 520px; height: 3px; margin-left: -260px; background: var(--lime); transform-origin: center; }
+      .author { position: absolute; top: 1325px; width: 100%; text-align: center; font-family: 'Space Grotesk'; font-weight: 600; font-size: 38px;
+                letter-spacing: 0.22em; text-transform: uppercase; color: var(--lime); }
+
+      /* ---------- historia ---------- */
+      .scn { position: absolute; inset: 0; overflow: hidden; }
+      .scn svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      .scn-a { background: radial-gradient(ellipse 90% 60% at 50% 30%, #13304d, #07131f 70%); }
+      .ball { position: absolute; left: 0; top: 0; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
+              background: radial-gradient(circle at 35% 35%, #f4ff9a, #c8f135 55%, #86a31c); box-shadow: 0 0 40px rgba(200,241,53,0.8); }
+      .scn-b { background: radial-gradient(ellipse 70% 45% at 50% 40%, #1c2a12, #070907 70%); }
+      .scn svg.shape { position: absolute; left: 50%; top: 250px; width: 600px; height: 900px; margin-left: -300px; }
+      .scn svg.cross { position: absolute; left: 50%; top: 380px; width: 520px; height: 520px; margin-left: -260px; }
+      .shape-tag { position: absolute; top: 1080px; left: 50%; transform: translateX(-50%); padding: 14px 30px; border-radius: 12px;
+                   font-family: 'Space Grotesk'; font-weight: 800; font-size: 34px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+      .tag-bad { background: #ff4d5e; color: #1a0508; }
+      .tag-good { background: var(--lime); color: #0c120a; }
+      .chapter { position: absolute; top: 130px; left: 50%; transform: translateX(-50%); padding: 14px 36px; border-radius: 999px; background: rgba(7,9,7,0.7);
+                 border: 3px solid var(--lime); font-family: 'Space Grotesk'; font-weight: 700; font-size: 30px; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
+      .capfade { position: absolute; left: 0; right: 0; top: 1150px; height: 520px; background: linear-gradient(180deg, transparent, rgba(7,9,7,0.88) 40%, rgba(7,9,7,0.88) 80%, transparent); }
+      .cap { position: absolute; left: 70px; right: 70px; top: 1290px; text-align: center; font-family: 'DM Serif Display'; font-size: 80px; line-height: 1.08;
+             text-shadow: 0 6px 30px rgba(0,0,0,0.9); }
+      .cap em { font-style: normal; color: var(--lime); }
+      .cap .w { display: inline-block; }
+
+      /* ---------- ficha ---------- */
+      .rating { position: absolute; top: 1010px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+      .rating-label { font-family: 'Space Grotesk'; font-weight: 700; font-size: 30px; letter-spacing: 0.2em; text-transform: uppercase; color: #dfff8a; }
+      .stars { display: flex; gap: 22px; }
+      .star { position: relative; width: 112px; height: 112px; }
+      .star svg { width: 100%; height: 100%; overflow: visible; }
+      .ring { position: absolute; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border: 5px solid var(--lime); border-radius: 50%; }
+      .specs { position: absolute; top: 1290px; left: 60px; right: 60px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .spec { padding: 22px 26px; background: rgba(242,245,234,0.06); border: 2px solid rgba(200,241,53,0.35); border-radius: 18px; }
+      .spec .l { font-family: 'Space Grotesk'; font-weight: 600; font-size: 22px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lime); }
+      .spec .n { margin-top: 6px; font-family: 'DM Serif Display'; font-size: 60px; line-height: 1; }
+      .cards { position: absolute; top: 880px; left: 70px; right: 70px; display: flex; flex-direction: column; gap: 26px; perspective: 1400px; }
+      .card { display: flex; align-items: center; gap: 28px; padding: 30px 36px; border-radius: 20px; font-size: 44px; font-weight: 600; line-height: 1.15; transform-origin: 50% 0%; }
+      .card.pro { background: #f2f5ea; color: #0c120a; box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
+      .card.con { background: #1a1f12; color: #f2f5ea; border: 3px dashed #ff4d5e; }
+      .ico { flex: none; width: 74px; height: 74px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk'; font-weight: 800; font-size: 44px; }
+      .pro .ico { background: #0c120a; color: var(--lime); }
+      .con .ico { background: #ff4d5e; color: #1a0508; }
+      .cards-head { font-family: 'Space Grotesk'; font-weight: 700; font-size: 30px; letter-spacing: 0.2em; text-transform: uppercase; color: #dfff8a; text-align: center; }
+
+      /* ---------- veredicto ---------- */
+      .stamp { position: absolute; left: 50%; top: 930px; width: 860px; margin-left: -430px; padding: 26px 0; text-align: center;
+               border: 10px solid var(--lime); border-radius: 16px; color: var(--lime); font-family: 'DM Serif Display'; font-size: 96px; line-height: 1;
+               text-transform: uppercase; background: rgba(7,9,7,0.9); box-shadow: 0 0 60px rgba(200,241,53,0.35); }
+      .verdict { position: absolute; top: 1215px; left: 90px; right: 90px; text-align: center; font-family: 'DM Serif Display'; font-size: 70px; line-height: 1.12; }
+      .verdict em { white-space: nowrap; font-style: normal; color: var(--lime); }
+      .cta { position: absolute; top: 1470px; left: 50%; transform: translateX(-50%); padding: 22px 50px; background: var(--lime); color: #0c120a; border-radius: 999px;
+             font-family: 'Space Grotesk'; font-weight: 800; font-size: 44px; letter-spacing: 0.04em; white-space: nowrap; }
+
+      .s1, .s2, .s3, .s4, .scn, .st, .cap { opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="1080" data-height="1920">
+      <div class="layer bg"></div>
+      <div class="glow" id="glow"></div>
+      <div class="beam l" id="beamL"></div>
+      <div class="beam r" id="beamR"></div>
+      <div class="layer" id="dust"></div>
+      <div class="layer grain"></div>
+      <div class="layer vignette"></div>
+
+      <div class="shadow" id="shadow"></div>
+      <div class="stage">
+        <div class="palawrap" id="palawrap"><div class="pala" id="pala"></div></div>
+      </div>
+
+      <!-- historia: por qué la primera pala no debe ser la de pro -->
+      <div class="scn scn-a" id="scnA">
+        <svg viewBox="0 0 1080 1920">
+          <defs><linearGradient id="court" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b5a8c"/><stop offset="1" stop-color="#0e3a5e"/></linearGradient></defs>
+          <!-- cristales -->
+          <path d="M150 420 L930 420 L1080 1300 L0 1300 Z" fill="none" stroke="rgba(180,220,255,0.18)" stroke-width="6"/>
+          <!-- pista en perspectiva -->
+          <path d="M250 520 L830 520 L1040 1250 L40 1250 Z" fill="url(#court)"/>
+          <g stroke="#e9f3ff" stroke-width="7" fill="none" opacity="0.9">
+            <path d="M250 520 L830 520 L1040 1250 L40 1250 Z"/>
+            <path d="M540 600 L540 1140"/>
+            <path d="M205 675 L875 675"/>
+            <path d="M92 1070 L988 1070"/>
+          </g>
+          <!-- red -->
+          <path d="M150 850 L930 850" stroke="#0b0f14" stroke-width="10"/>
+          <path d="M150 850 L150 790 L930 790 L930 850" fill="rgba(10,14,20,0.55)" stroke="#e9f3ff" stroke-width="5"/>
+          <g stroke="rgba(233,243,255,0.25)" stroke-width="2" id="netmesh"></g>
+          <!-- trayectoria -->
+          <path id="traj" d="M220 1180 Q 560 250 860 640" fill="none" stroke="#c8f135" stroke-width="6" stroke-dasharray="14 14" opacity="0.8"/>
+        </svg>
+        <div class="ball" id="ball"></div>
+      </div>
+
+      <div class="scn scn-b" id="scnB">
+        <svg class="shape" viewBox="0 0 600 900">
+          <defs>
+            <radialGradient id="spot"><stop offset="0" stop-color="#c8f135" stop-opacity="0.95"/><stop offset="1" stop-color="#c8f135" stop-opacity="0"/></radialGradient>
+          </defs>
+          <!-- diamante (PWR): punto dulce alto y pequeño -->
+          <g id="diamond">
+            <path d="M300 20 C360 20 560 160 560 330 C560 470 420 560 330 600 L330 880 L270 880 L270 600 C180 560 40 470 40 330 C40 160 240 20 300 20 Z" fill="#161b12" stroke="#ff4d5e" stroke-width="8"/>
+            <ellipse id="spotD" cx="300" cy="200" rx="70" ry="55" fill="url(#spot)"/>
+          </g>
+          <!-- redonda (Ctrl): punto dulce centrado y amplio -->
+          <g id="round">
+            <path d="M300 30 C470 30 570 160 570 320 C570 470 450 560 330 600 L330 880 L270 880 L270 600 C150 560 30 470 30 320 C30 160 130 30 300 30 Z" fill="#161b12" stroke="#c8f135" stroke-width="8"/>
+            <ellipse id="spotR" cx="300" cy="320" rx="190" ry="170" fill="url(#spot)"/>
+          </g>
+        </svg>
+        <svg class="cross" id="cross" viewBox="0 0 520 520"><path d="M60 60 L460 460 M460 60 L60 460" stroke="#ff4d5e" stroke-width="36" stroke-linecap="round"/></svg>
+        <div class="shape-tag tag-bad st" id="tagBad">Diamante · para pegar</div>
+        <div class="shape-tag tag-good st" id="tagGood">Redonda · punto dulce amplio</div>
+      </div>
+
+      <div class="capfade st" id="capfade"></div>
+      <div class="cap" id="c1">Empiezas en el pádel.</div>
+      <div class="cap" id="c2">Y te recomiendan <em>la pala de pro.</em></div>
+      <div class="cap" id="c3">Diamante y balance alto: <em>castiga cada fallo.</em></div>
+      <div class="cap" id="c4">Para aprender, <em>redonda.</em></div>
+      <div class="chapter st" id="chapter">Tu primera pala · <b style="color:#c8f135">sin postureo</b></div>
+
+      <!-- escena 1 -->
+      <div class="pill s1" id="pill">Reseña en <b>20 segundos</b></div>
+      <div class="title" id="title">Impulse Ctrl</div>
+      <div class="rule s1" id="rule"></div>
+      <div class="author s1" id="author">Bullpadel · 2026</div>
+
+      <!-- ficha -->
+      <div class="rating s2" id="rating">
+        <div class="rating-label">Nuestra valoración</div>
+        <div class="stars" id="stars"></div>
+      </div>
+      <div class="specs s2" id="specs">
+        <div class="spec"><div class="l">Forma</div><div class="n">Redonda</div></div>
+        <div class="spec"><div class="l">Balance</div><div class="n">Bajo-medio</div></div>
+        <div class="spec"><div class="l">Núcleo</div><div class="n">SoftEva</div></div>
+        <div class="spec"><div class="l">Precio</div><div class="n" id="price">0€</div></div>
+      </div>
+
+      <div class="cards s3" id="cards">
+        <div class="cards-head">Lo bueno · lo malo</div>
+        <div class="card pro"><div class="ico">✓</div>Muy manejable, perdona fallos</div>
+        <div class="card pro"><div class="ico">✓</div>Punto dulce amplio</div>
+        <div class="card pro"><div class="ico">✓</div>Precio real de entrada</div>
+        <div class="card con"><div class="ico">!</div>Potencia limitada para rematar</div>
+      </div>
+
+      <div class="stamp s4" id="stamp">Para aprender</div>
+      <div class="verdict s4" id="verdict">La PWR es para pegar. <em>Esta es para aprender.</em></div>
+      <div class="cta s4" id="cta">empiezapadel.es</div>
+
+      <audio id="bgm" src="assets/bgm/track.mp3" data-start="0" data-duration="24" data-track-index="20" data-volume="0.35"></audio>
+      <audio id="sfx-land" src="assets/sfx/thock.mp3" data-start="1.2" data-duration="0.8" data-track-index="21" data-volume="0.6"></audio>
+      <audio id="sfx-hit" src="assets/sfx/thock.mp3" data-start="4.2" data-duration="0.8" data-track-index="22" data-volume="0.9"></audio>
+      <audio id="sfx-bounce" src="assets/sfx/pop.mp3" data-start="5.6" data-duration="0.31" data-track-index="23" data-volume="0.5"></audio>
+      <audio id="sfx-x" src="assets/sfx/thock.mp3" data-start="8.3" data-duration="0.8" data-track-index="24" data-volume="0.8"></audio>
+      <audio id="sfx-good" src="assets/sfx/soft-chime.mp3" data-start="10.2" data-duration="1.3" data-track-index="25" data-volume="0.35"></audio>
+      <audio id="sfx-pop0" src="assets/sfx/pop.mp3" data-start="13.35" data-duration="0.31" data-track-index="26" data-volume="0.4"></audio>
+      <audio id="sfx-pop1" src="assets/sfx/pop.mp3" data-start="13.75" data-duration="0.31" data-track-index="27" data-volume="0.4"></audio>
+      <audio id="sfx-stamp" src="assets/sfx/thock.mp3" data-start="21.55" data-duration="0.8" data-track-index="28" data-volume="0.8"></audio>
+      <audio id="sfx-end" src="assets/sfx/soft-chime.mp3" data-start="22.3" data-duration="1.3" data-track-index="29" data-volume="0.35"></audio>
+    </div>
+
+    <script>
+      (function () {
+        var TOTAL = 24;
+        // --- DOM determinista ---
+        var pala = document.getElementById('pala');
+        for (var z = 0; z < 7; z++) pala.insertAdjacentHTML('beforeend', '<img class="edge" src="assets/img/pala.png" style="transform:translateZ(' + (-z * 2) + 'px)">');
+        pala.insertAdjacentHTML('beforeend', '<img src="assets/img/pala.png" style="transform:translateZ(2px)">');
+
+        var title = document.getElementById('title');
+        title.innerHTML = title.textContent.split('').map(function (c) { return '<span class="ch">' + (c === ' ' ? '&nbsp;' : c) + '</span>'; }).join('');
+        document.querySelectorAll('.cap').forEach(function (cap) {
+          cap.innerHTML = cap.innerHTML.replace(/(<em>|<\/em>)|([^\s<]+)/g, function (m, tag, word) { return tag ? tag : '<span class="w">' + word + '</span>'; });
+        });
+        var starPath = 'M50 4 L62 38 L98 38 L69 60 L80 95 L50 74 L20 95 L31 60 L2 38 L38 38 Z';
+        var stars = document.getElementById('stars');
+        for (var i = 0; i < 5; i++) {
+          stars.insertAdjacentHTML('beforeend', '<div class="star"><div class="ring"></div><svg viewBox="0 0 100 100">' +
+            '<path d="' + starPath + '" fill="none" stroke="rgba(242,245,234,0.3)" stroke-width="4"/>' +
+            (i < 4 ? '<path class="fill" d="' + starPath + '" fill="#c8f135"/>' : '') + '</svg></div>');
+        }
+        var seed = 11;
+        function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+        var dust = document.getElementById('dust');
+        for (var d = 0; d < 40; d++) {
+          var s = 3 + rnd() * 6;
+          dust.insertAdjacentHTML('beforeend', '<div class="dust" style="left:' + (rnd() * 1080) + 'px;top:' + (rnd() * 1920) + 'px;width:' + s + 'px;height:' + s + 'px;opacity:' + (0.1 + rnd() * 0.4) + '"></div>');
+        }
+        var mesh = '';
+        for (var m = 0; m < 26; m++) mesh += '<path d="M' + (150 + m * 30) + ' 790 L' + (150 + m * 30) + ' 850"/>';
+        document.getElementById('netmesh').innerHTML = mesh;
+
+        var q = function (sel) { return document.querySelectorAll(sel); };
+        var tl = gsap.timeline({ paused: true });
+        function capIn(id, t) {
+          tl.set(id, { opacity: 1 }, t);
+          tl.fromTo(q(id + ' .w'), { opacity: 0, y: 50, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.4, stagger: 0.07, ease: 'power3.out' }, t);
+        }
+        function capOut(id, t) { tl.to(id, { opacity: 0, y: -30, duration: 0.3, ease: 'power2.in' }, t); }
+
+        // ambiente
+        tl.fromTo('#glow', { scale: 0.8, opacity: 0.6 }, { scale: 1.15, opacity: 1, duration: TOTAL, ease: 'sine.inOut' }, 0);
+        tl.fromTo('#beamL', { rotation: -22, opacity: 0.5 }, { rotation: -10, opacity: 1, duration: TOTAL, ease: 'sine.inOut' }, 0);
+        tl.fromTo('#beamR', { rotation: 22, opacity: 1 }, { rotation: 10, opacity: 0.5, duration: TOTAL, ease: 'sine.inOut' }, 0);
+        q('.dust').forEach(function (el, k) { tl.fromTo(el, { y: 0, x: 0 }, { y: -(200 + (k % 7) * 60), x: ((k % 5) - 2) * 40, duration: TOTAL, ease: 'none' }, 0); });
+
+        // ESCENA 1 (0–3s): la pala cae girando sobre la pista
+        tl.fromTo('#palawrap', { z: -700, y: -160, rotationX: 22 }, { z: 0, y: 0, rotationX: 6, duration: 1.2, ease: 'power3.out' }, 0);
+        tl.fromTo('#pala', { rotationY: -720, rotationZ: -20 }, { rotationY: -18, rotationZ: -6, duration: 1.4, ease: 'power3.out' }, 0);
+        tl.fromTo('#shadow', { scale: 0.6, opacity: 0.5 }, { scale: 1, opacity: 1, duration: 1.2, ease: 'power3.out' }, 0);
+        tl.to('#palawrap', { y: 14, duration: 0.12, yoyo: true, repeat: 1, ease: 'power1.inOut' }, 1.2);
+        tl.fromTo('#pill', { opacity: 1, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' }, 0);
+        tl.fromTo(q('#title .ch'), { opacity: 0, y: 120, rotationX: -90, filter: 'blur(12px)' }, { opacity: 1, y: 0, rotationX: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.04, ease: 'back.out(1.6)' }, 1.2);
+        tl.fromTo('#rule', { opacity: 1, scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: 'power2.inOut' }, 1.8);
+        tl.fromTo('#author', { opacity: 0, scale: 1.25, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 1.9);
+        tl.to('#pala', { rotationY: 14, rotationZ: 0, duration: 1.5, ease: 'sine.inOut' }, 1.4);
+        tl.to(['#pill', '#rule', '#author'], { opacity: 0, y: -30, duration: 0.3, ease: 'power2.in' }, 2.9);
+        tl.to(q('#title .ch'), { opacity: 0, y: -80, duration: 0.3, stagger: 0.02, ease: 'power2.in' }, 2.85);
+        // la pala "golpea" hacia cámara y entramos en la historia
+        tl.to('#pala', { rotationY: 0, duration: 0.3, ease: 'power2.out' }, 3.0);
+        tl.to('#palawrap', { z: 1900, y: 60, rotationX: 0, duration: 0.5, ease: 'power3.in' }, 3.1);
+        tl.to('#palawrap', { opacity: 0, duration: 0.15 }, 3.45);
+        tl.to('#shadow', { opacity: 0, duration: 0.3 }, 3.1);
+
+        // ===== HISTORIA (3.5–11.4s) =====
+        tl.fromTo('#chapter', { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, 3.6);
+        tl.to('#capfade', { opacity: 1, duration: 0.4 }, 3.5);
+        // A: pista en picado, la bola traza su parábola
+        tl.fromTo('#scnA', { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }, 3.45);
+        var traj = document.getElementById('traj'), len = traj.getTotalLength();
+        tl.fromTo(traj, { strokeDashoffset: len, strokeDasharray: len + ' ' + len }, { strokeDashoffset: 0, duration: 1.4, ease: 'power1.inOut' }, 4.2);
+        var ball = document.getElementById('ball'), bo = { t: 0 };
+        tl.fromTo(bo, { t: 0 }, { t: 1, duration: 1.4, ease: 'power1.inOut', onUpdate: function () {
+          var t = bo.t, u = 1 - t;
+          var x = u * u * 220 + 2 * u * t * 560 + t * t * 860, y = u * u * 1180 + 2 * u * t * 250 + t * t * 640;
+          ball.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + (1.2 - 0.5 * Math.sin(Math.PI * t)) + ')';
+        } }, 4.2);
+        tl.fromTo('#ball', { opacity: 0 }, { opacity: 1, duration: 0.1 }, 4.2);
+        tl.fromTo('#scnA', { x: 0 }, { x: 10, duration: 0.05, repeat: 3, yoyo: true, ease: 'none', immediateRender: false }, 5.6);
+        capIn('#c1', 3.8); capOut('#c1', 5.3);
+        capIn('#c2', 5.5); capOut('#c2', 6.9);
+
+        // B: diamante tachado → redonda con punto dulce
+        tl.to('#scnA', { opacity: 0, duration: 0.4 }, 7.0);
+        tl.fromTo('#scnB', { opacity: 0 }, { opacity: 1, duration: 0.4 }, 7.0);
+        tl.set('#round', { opacity: 0 }, 0);
+        tl.fromTo('#diamond', { opacity: 0, y: 80, scale: 0.9, transformOrigin: '50% 50%' }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power3.out' }, 7.05);
+        tl.fromTo('#spotD', { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.5, ease: 'back.out(2)' }, 7.5);
+        tl.fromTo('#tagBad', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: 'back.out(2)' }, 7.6);
+        capIn('#c3', 7.2);
+        tl.fromTo('#cross', { opacity: 0, scale: 2.4, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.25, ease: 'power4.in' }, 8.05);
+        tl.fromTo('#scnB', { x: 0 }, { x: 12, duration: 0.05, repeat: 5, yoyo: true, ease: 'none', immediateRender: false }, 8.3);
+        capOut('#c3', 9.4);
+        tl.to(['#cross', '#tagBad'], { opacity: 0, duration: 0.3 }, 9.6);
+        tl.to('#diamond', { opacity: 0, scale: 0.92, duration: 0.4, ease: 'power2.in' }, 9.6);
+        tl.fromTo('#round', { opacity: 0, scale: 0.9, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.6)', immediateRender: false }, 9.9);
+        tl.fromTo('#spotR', { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.7, ease: 'expo.out' }, 10.2);
+        tl.fromTo('#tagGood', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: 'back.out(2)' }, 10.3);
+        capIn('#c4', 10.0);
+        tl.to(['#scnB', '#c4', '#chapter', '#capfade', '#tagGood'], { opacity: 0, duration: 0.4, ease: 'power2.in' }, 11.4);
+
+        // vuelve la pala real (11.8s)
+        tl.to('#palawrap', { opacity: 1, duration: 0.01 }, 11.8);
+        tl.fromTo('#palawrap', { z: -1800, y: -250, scale: 0.72, rotationX: 4 }, { z: 0, y: -250, scale: 0.72, rotationX: 4, duration: 0.7, ease: 'power3.out', immediateRender: false }, 11.8);
+        tl.fromTo('#pala', { rotationY: -200 }, { rotationY: 30, duration: 1.2, ease: 'power3.out', immediateRender: false }, 11.8);
+        tl.to('#pala', { rotationY: 12, duration: 3.2, ease: 'sine.inOut' }, 13.0);
+        tl.fromTo('#shadow', { y: -250, scale: 0.7, opacity: 0 }, { y: -250, scale: 0.7, opacity: 0.5, duration: 0.6, immediateRender: false }, 11.9);
+
+        // FICHA (12.4–15.9s)
+        tl.set('#rating', { opacity: 1 }, 12.4);
+        tl.fromTo('#rating .rating-label', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, 12.4);
+        q('.star').forEach(function (st, k) {
+          var t = 12.6 + k * 0.18;
+          tl.fromTo(st, { scale: 0, rotation: -120 }, { scale: 1, rotation: 0, duration: 0.45, ease: 'back.out(2.5)' }, t);
+          var f = st.querySelector('.fill');
+          if (f) {
+            tl.fromTo(f, { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.3, ease: 'back.out(3)' }, t + 0.15);
+            tl.fromTo(st.querySelector('.ring'), { scale: 0.3, opacity: 1 }, { scale: 1.6, opacity: 0, duration: 0.5, ease: 'power2.out' }, t + 0.15);
+          } else tl.set(st.querySelector('.ring'), { opacity: 0 }, 0);
+        });
+        tl.set('#specs', { opacity: 1 }, 13.3);
+        q('.spec').forEach(function (el, k) {
+          tl.fromTo(el, { opacity: 0, y: 80, rotationX: -60 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.5, ease: 'back.out(1.8)' }, 13.3 + k * 0.14);
+        });
+        var price = document.getElementById('price'), po = { v: 0 };
+        tl.to(po, { v: 65, duration: 1.0, ease: 'power2.out', onUpdate: function () { price.textContent = po.v.toFixed(2).replace('.', ',') + '€'; } }, 13.8);
+        tl.to(['#rating', '#specs'], { opacity: 0, y: 40, duration: 0.35, ease: 'power2.in' }, 15.9);
+
+        // PROS / CONTRAS (16.1–18.8s)
+        tl.to('#palawrap', { y: -410, scale: 0.5, duration: 0.6, ease: 'power3.inOut' }, 15.9);
+        tl.to('#shadow', { opacity: 0, duration: 0.4 }, 15.9);
+        tl.to('#pala', { rotationY: -16, duration: 2.7, ease: 'sine.inOut' }, 16.2);
+        tl.set('#cards', { opacity: 1 }, 16.1);
+        tl.fromTo('#cards .cards-head', { opacity: 0 }, { opacity: 1, duration: 0.3 }, 16.1);
+        q('#cards .card').forEach(function (c, k) {
+          tl.fromTo(c, { opacity: 0, rotationX: -95, y: -20 }, { opacity: 1, rotationX: 0, y: 0, duration: 0.6, ease: 'back.out(1.5)' }, 16.25 + k * 0.4);
+        });
+        tl.fromTo('#cards .con', { x: 0 }, { x: 12, duration: 0.06, repeat: 5, yoyo: true, ease: 'none' }, 17.7);
+        tl.to('#cards', { opacity: 0, scale: 0.92, duration: 0.35, ease: 'power2.in' }, 21.0);
+
+        // VEREDICTO (21.1–24s)
+        tl.to('#palawrap', { y: -140, scale: 0.78, rotationX: 4, duration: 0.5, ease: 'power3.out' }, 21.1);
+        tl.to('#pala', { rotationY: 0, duration: 0.5, ease: 'power3.out' }, 21.1);
+        tl.to('#shadow', { y: -140, scale: 0.78, opacity: 0.8, duration: 0.5 }, 21.1);
+        tl.fromTo('#stamp', { opacity: 0, scale: 3.2, rotation: -4 }, { opacity: 1, scale: 1, rotation: -7, duration: 0.3, ease: 'power4.in' }, 21.3);
+        tl.fromTo('#palawrap', { x: 0 }, { x: 10, duration: 0.05, repeat: 5, yoyo: true, ease: 'none', immediateRender: false }, 21.6);
+        tl.fromTo('#verdict', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 21.9);
+        tl.fromTo('#cta', { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' }, 22.4);
+        tl.to('#cta', { scale: 1.06, duration: 0.4, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 23.0);
+
+        tl.to({}, { duration: TOTAL }, 0);
+        window.__timelines = window.__timelines || {};
+        window.__timelines['main'] = tl;
+      })();
+    </script>
+  </body>
+</html>

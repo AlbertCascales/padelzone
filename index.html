@@ -948,7 +948,7 @@ const accesorios = [
     brand: 'Nox', name: 'Paletero ML10 Competition XL', level: 'Paletero',
     stars: 5, price: '89,00', badge: null,
     desc: 'El paletero premium de Nox para competición. Capacidad para 4 palas, doble compartimento térmico ThermoTech, bolsillo circular para pelotas y compartimento ventilado.',
-    specs: { Capacidad: '4 palas', Material: 'Neopreno + poliéster', Bolsillo: 'Doble térmico', Dimensiones: '65x32x40cm' },
+    specs: { Capacidad: '4 palas (80 litros)', Térmico: 'Doble: palas + bote de pelotas', Zapatillas: 'Espacio ventilado', Dimensiones: '60x30x45cm' },
     pros: ['Gran capacidad', 'Doble térmico excelente', 'Muy premium'],
     cons: ['Precio alto', 'Grande para uso diario'],
     verdict: 'El paletero para los más exigentes. Si vas a torneos y necesitas llevar todo el equipo, este no falla.',
@@ -979,11 +979,11 @@ const accesorios = [
   {
     id: 'a7', img: 'img/a7.jpg',
     brand: 'Adidas', name: 'Paletero Control 3.4', level: 'Paletero',
-    stars: 4, price: '54,00', badge: null,
-    desc: 'Paletero compacto de Adidas para el día a día. Diseño moderno, bolsillo térmico para 2 palas y compartimento lateral para zapatillas.',
-    specs: { Capacidad: '2 palas', Material: 'Poliéster', Bolsillo: 'Térmico', Dimensiones: '58x28x35cm' },
-    pros: ['Diseño muy moderno', 'Ligero', 'Precio competitivo'],
-    cons: ['Sin compartimento ventilado', 'Menos capacidad que otros'],
+    stars: 4, price: '44,99', badge: null,
+    desc: 'Paletero compacto de Adidas para el día a día. Compartimento lateral térmico para la pala, compartimento principal con doble cremallera para ropa y pelotas, y compartimento independiente para el calzado. Se lleva del asa o a modo mochila.',
+    specs: { Capacidad: 'Pala + ropa + pelotas', Bolsillo: 'Lateral térmico', Zapatillas: 'Compartimento independiente', Dimensiones: '56x18x42cm' },
+    pros: ['Térmico para la pala a precio de entrada', 'Zapatillas separadas del resto', 'Se puede llevar como mochila'],
+    cons: ['Menos capacidad que un paletero grande', 'Justo si llevas dos palas y ropa de cambio'],
     verdict: 'Para el padelista urbano que quiere un paletero con estilo. Adidas acierta en diseño.',
     query: 'Adidas paletero control padel 2026'
   },
@@ -1046,10 +1046,10 @@ const accesorios = [
     id: 'a20', img: 'img/a20.jpg',
     brand: 'Adidas', name: 'Protour Backpack 3.2', level: 'Mochila',
     stars: 4, price: '44,95', badge: null,
-    desc: 'Mochila de pádel con compartimento independiente para 1 pala, bolsillo ventilado para zapatillas y espalda acolchada. Pensada para quien se mueve a la pista en bici, moto o transporte público y no quiere cargar con un paletero de bandolera.',
-    specs: { Capacidad: '1 pala + ropa y calzado', Compartimentos: '2 principales + bolsillo zapatillas', Material: 'Poliéster resistente al agua', Peso: '~650g' },
-    pros: ['Se lleva a la espalda: libera las manos y no tira del hombro como un paletero', 'Bolsillo ventilado independiente para las zapatillas', 'Cabe como equipaje de mano en vuelos low-cost'],
-    cons: ['Solo entra 1 pala cómodamente, no vale para llevar equipo de pareja', 'Menos protección rígida que un paletero para 2+ palas'],
+    desc: 'Mochila de pádel con compartimento acolchado para la pala (o un portátil), un segundo compartimento para el resto del equipo, 4 bolsillos delanteros y 2 laterales para bote de pelotas o botella. Espalda y tirantes acolchados. Pensada para quien se mueve a la pista en bici, moto o transporte público y no quiere cargar con un paletero de bandolera.',
+    specs: { Compartimentos: 'Acolchado para pala + principal', Bolsillos: '4 delanteros + 2 laterales', Material: 'Poliéster', Dimensiones: '48x14x31cm' },
+    pros: ['Se lleva a la espalda: libera las manos y no tira del hombro como un paletero', 'Espalda y tirantes acolchados', 'Compacta: sirve también para el día a día'],
+    cons: ['Sin compartimento separado para zapatillas', 'Sin térmico y con menos protección que un paletero'],
     verdict: 'Si vas a la pista en bici, moto o transporte público y juegas con una sola pala, la mochila gana al paletero en comodidad. Si sueles cargar con el equipo de tu pareja de juego o vas en coche, el paletero sigue siendo mejor opción.',
     query: 'Adidas Protour Backpack padel mochila'
   }
@@ -1567,7 +1567,7 @@ const guides = {
     title: 'Qué paletero comprar según cuánto equipo llevas al club',
     body: `<p>No todos necesitan el mismo paletero. La clave es saber cuánto equipo llevas y con qué frecuencia juegas. Y, como con la pala, un paletero caro no te hace jugar mejor: solo cabe más cosas.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Perfil 1: el padelista de fin de semana</h4>
-<p>Juegas 1-2 veces por semana con una pala y zapatillas. Un <strong>paletero de capacidad media con un térmico</strong> es suficiente. Presupuesto: 40-70€. Recomendamos el Adidas Control 3.4 (~54€) o, si quieres algo más protector, el Bullpadel BPP26005 Ionic (~69€).</p>
+<p>Juegas 1-2 veces por semana con una pala y zapatillas. Un <strong>paletero de capacidad media con un térmico</strong> es suficiente. Presupuesto: 40-70€. Recomendamos el Adidas Control 3.4 (~45€) o, si quieres algo más protector, el Bullpadel BPP26005 Ionic (~69€).</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Perfil 2: el padelista habitual</h4>
 <p>Juegas 3+ veces por semana, a veces vas directo del trabajo. Necesitas espacio para ropa, dos palas y zapatillas. Un <strong>paletero grande con doble térmico y compartimento ventilado</strong>. Presupuesto: 70-100€.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Perfil 3: el competidor</h4>
@@ -1823,10 +1823,10 @@ const guides = {
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Cuándo elegir paletero</h4>
 <p>Si sueles cargar con el equipo de tu pareja de juego, llevas 2 o más palas a torneos, o vas siempre en coche, el paletero sigue ganando: su forma alargada protege mejor los marcos y tiene más compartimentos pensados específicamente para pelotas, overgrips y toalla.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Una opción concreta</h4>
-<p><strong>Mochila (~45€):</strong> Adidas Protour Backpack 3.2 — compartimento para 1 pala, bolsillo ventilado para zapatillas y espalda acolchada.<br>
+<p><strong>Mochila (~45€):</strong> Adidas Protour Backpack 3.2 — compartimento acolchado para la pala, bolsillos para pelotas y botella, y espalda y tirantes acolchados. Ojo: no tiene hueco aparte para las zapatillas.<br>
 <strong>Paletero (~69€):</strong> Bullpadel BPP26005 Ionic 2026 — para 2 palas y quien prioriza protección sobre comodidad de transporte.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">5. Qué mirar en cualquiera de los dos</h4>
-<p><strong>Protección de la pala:</strong> el marco es lo más frágil. Un paletero suele llevar un compartimento acolchado o térmico; en una mochila, comprueba que el compartimento de la pala tenga algo de rigidez y que no la aplaste el resto de la carga. <strong>Ventilación para las zapatillas:</strong> un bolsillo aparte evita que la humedad y el olor pasen a la ropa. <strong>Peso en vacío:</strong> una mochila ligera (la Adidas Protour Backpack 3.2 ronda los 650 g) cansa menos cuando la llevas cargada durante todo el día.</p>
+<p><strong>Protección de la pala:</strong> el marco es lo más frágil. Un paletero suele llevar un compartimento acolchado o térmico; en una mochila, comprueba que el compartimento de la pala tenga algo de rigidez y que no la aplaste el resto de la carga. <strong>Ventilación para las zapatillas:</strong> un bolsillo aparte evita que la humedad y el olor pasen a la ropa. <strong>Peso en vacío:</strong> una mochila ligera cansa menos cuando la llevas cargada durante todo el día.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">6. La duda de siempre: ¿sirve una mochila normal?</h4>
 <p>Puedes llevar la pala en una mochila cualquiera, pero sin compartimento propio se golpeará con lo demás y el marco sufre. Si vas a hacerlo, envuélvela en una funda o toalla y déjala en el lado pegado a la espalda. Una mochila específica de pádel resuelve ese problema por poco dinero.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Resumen</h4>
